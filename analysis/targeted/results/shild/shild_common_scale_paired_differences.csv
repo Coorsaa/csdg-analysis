@@ -1,0 +1,10 @@
+metric,n_cases,median,q25,q75,contrast,improvement_direction
+weighted_r2,100,0.13574019503597,0.0984857860007191,0.188086249088931,logit-backtransformed minus probability surrogate; difference before aggregation,positive
+weighted_rmse,100,-0.00637477533205817,-0.0106118916053151,-0.00338743037554129,logit-backtransformed minus probability surrogate; difference before aggregation,negative
+weighted_mae,100,-0.00445491419147132,-0.00619960817302675,-0.00329966484190298,logit-backtransformed minus probability surrogate; difference before aggregation,negative
+error_q50,100,-0.0029647698788278,-0.00374888476642997,-0.00216238991232609,logit-backtransformed minus probability surrogate; difference before aggregation,negative
+error_q90,100,-0.0087482637245105,-0.0129079591597199,-0.00667097190172157,logit-backtransformed minus probability surrogate; difference before aggregation,negative
+error_q95,100,-0.0118908211132474,-0.0183860709763392,-0.00902471688548172,logit-backtransformed minus probability surrogate; difference before aggregation,negative
+maximum_absolute_error,100,-0.022538818584842,-0.0865719508569286,-0.00507948020444586,logit-backtransformed minus probability surrogate; difference before aggregation,negative
+target_absolute_error,100,-0.00069526430855001,-0.00115109851843387,-0.000128963320351331,logit-backtransformed minus probability surrogate; difference before aggregation,negative
+out_of_probability_range_fraction,100,-0.054,-0.0783333333333333,-0.038,logit-backtransformed minus probability surrogate; difference before aggregation,negative

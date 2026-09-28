@@ -1,0 +1,19 @@
+field,value
+outcome,PV1READ
+observed_countries,32
+repetitions_per_country,50
+total_refits,1600
+reference_analysis_rows,38400
+base_seed,24260714
+sampling,simple random sample from all other observed countries without replacement
+assessment,all rows from the held-out observed country
+stored_models,FALSE
+stored_row_level_predictions,FALSE
+focal_oof_input_sha256,4da916b0628aff25e0f6cca6130b99cde831bc1aa0a93162875edeefdfc400ca
+computation_runner_sha256,0cf5e3049a7ec932d801f41af4df5abde191066e2b79016219c796477f6dafdc
+metadata_writer_runner_sha256,e15d49f14b2db95b7c4005db17d4a65c734c7c21bece601c68599d3629565499
+source_identity_helper_sha256,7534c6d8b00d164e4d2dd8c5e3ef6168252a3069f4a80a66b40c34b604468588
+package_version,0.1.0
+package_source_tree_sha256,59937a11973de368ba94f5ad58d730d903f891a8670fdbda489e8d3714a8af24
+computation_source_sha256,ac9a2ce94a37adc18c766ae373e88d8ade358a55f84e2631e9691d56b5e416e0
+package_source_scope,"DESCRIPTION, NAMESPACE, R/**, and inst/** regular files"

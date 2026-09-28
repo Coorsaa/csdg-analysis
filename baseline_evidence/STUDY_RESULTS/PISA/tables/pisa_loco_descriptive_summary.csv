@@ -1,0 +1,4 @@
+measure_id,n_pv_country,mean,sd,minimum,median,maximum,interpretation
+regr.rmse,320,73.5286773359658,5.15864733502025,64.5505683839313,72.6607749327641,84.3028303130106,Descriptive variation across aligned PV-country refits; not sampling inference
+regr.mae,320,58.4487784707759,4.15228551441937,51.243106746582,58.1601711305339,67.2947672910156,Descriptive variation across aligned PV-country refits; not sampling inference
+regr.rsq,320,0.444706348201904,0.0879785646543291,0.123364140160177,0.462776996049344,0.568779985597454,Descriptive variation across aligned PV-country refits; not sampling inference

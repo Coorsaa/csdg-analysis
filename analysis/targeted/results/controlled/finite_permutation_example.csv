@@ -1,0 +1,2 @@
+n,seed,realized_permutation_loss,expected_random_permutation_conditional_on_sample,population_independent_replacement_loss,interpretation
+1000,20260911,2.29382021528826,2.17078513048968,2,Finite empirical permutation is not required to equal its population expectation

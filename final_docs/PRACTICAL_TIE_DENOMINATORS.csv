@@ -1,0 +1,5 @@
+study,learner_1,learner_2,practical_tolerance,n_total_pairs,n_practical_ties_excluded,n_comparable_pairs,n_practical_reversals,practical_reversal_percent_among_comparable,direction
+"SHILD","xgboost","ridge_logistic",1e-04,351,104,247,30,12.1457489878543,"Lower reversal percentage means less explanation-order disagreement"
+"SHILD","xgboost","random_forest",1e-04,351,87,264,32,12.1212121212121,"Lower reversal percentage means less explanation-order disagreement"
+"PISA","xgboost","random_forest",0.1,820,286,534,5,0.936329588014981,"Lower reversal percentage means less explanation-order disagreement"
+"PISA","xgboost","ridge",0.1,820,291,529,87,16.4461247637051,"Lower reversal percentage means less explanation-order disagreement"

@@ -1,0 +1,22 @@
+{
+  "run_id": "targeted_pisa_aggregate_20260910",
+  "design_status": "retrospective_exploratory_synthesis",
+  "source": "analysis/targeted/resources/pisa_model_pfi_all_pv.csv",
+  "source_sha256": "ea5826dca250c4914808872768c25d9f893171d078fd1e93c25b69d97705534e",
+  "canonical_basis": "CSDG_final_followup_review_20260910.zip",
+  "identity_checks": ["All 420 selected-model numeric and descriptive rows match canonical evidence", "Model-class agreement at all three tolerances exactly reconciles with canonical aggregate evidence"],
+  "outcome_definition": "Ten separately analyzed reading proficiency plausible values",
+  "variation": {
+    "varied_component": "Outcome realization and learner",
+    "held_constant": "Analytic rows, folds, RMSE loss, and within-country/school-aware marginal perturbation",
+    "same_estimand": false,
+    "rationale": "Each learner and outcome realization defines a different fitted-model reliance quantity",
+    "invariance_claimed": "Leading content areas, not exact coefficients or complete ranks",
+    "relevance_to_proposition": "Tests whether the selected-model indicator interpretation recurs in the evaluated set"
+  },
+  "joint_pfi_decision": "No new joint query is needed for the indicator-level question; overlapping block retained separately",
+  "uncertainty": "Across-PV min-max ranges are descriptive, not sampling confidence intervals or independent replication",
+  "models_refit": false,
+  "new_pfi_queries": false,
+  "raw_data_reproduced": false
+}

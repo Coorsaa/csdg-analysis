@@ -1,0 +1,20 @@
+Type: Project
+Package: csdganalysis
+Title: Analyses for "From Interpretation Claims to Diagnostic Evidence" (CSDG)
+Version: 1.0.0
+Authors@R: c(
+    person("Stefan", "Coors", role = c("aut", "cre")),
+    person("Clara", "Vetter", role = "aut"),
+    person("Jonas", "Hauck", role = "aut"),
+    person("Bernd", "Bischl", role = "aut"),
+    person("Sven", "Hilbert", role = "aut"))
+Description: Research compendium with the SHILD and PISA analyses, public
+    aggregate results, figure sources, and the computational supplement of the
+    article. It is not an R package; the file marks the repository root for the
+    analysis scripts and records their dependencies.
+License: MIT
+Depends: R (>= 4.5.0)
+Imports: mlr3autoiml, mlr3, mlr3learners, mlr3misc, mlr3pipelines, data.table,
+    ggplot2, digest, jsonlite
+Remotes: coorsaa/mlr3autoiml
+Encoding: UTF-8

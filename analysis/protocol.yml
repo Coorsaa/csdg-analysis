@@ -1,0 +1,287 @@
+protocol_version: 3.0
+package:
+  name: mlr3autoiml
+  required_version: "0.1.1"
+  framework: "Claim-Scoped Diagnostic Gates"
+execution:
+  default_seed: 20260714
+  environment_contract:
+    - CSDG_ANALYSIS_SEED
+    - CSDG_QUICK
+    - CSDG_THREADS
+    - CSDG_ALE_BOOTSTRAP_WORKERS
+    - CSDG_RUN_ID
+  publication_mode: "CSDG_QUICK=0; locked settings"
+  smoke_test_mode: "CSDG_QUICK=1; plumbing only; never report"
+principles:
+  - "Fit learned preprocessing inside each training split."
+  - >-
+    Use held-out or out-of-fold observations for performance, calibration, PFI, local fidelity, subgroups, and
+    transport.
+  - "Treat fold and plausible-value variation as descriptive, not independent-sample inferential uncertainty."
+  - >-
+    Treat one-dimensional ALE ribbons as pointwise model-refit bootstrap intervals conditional on the fixed
+    learner specification; never describe them as simultaneous bands or model-selection uncertainty.
+  - "Do not use fold t tests, fold t intervals, pseudo-Rubin pooling, or in-sample PFI."
+  - "Keep private complete outputs separate from sanitized shareable outputs."
+  - "Construct every shareable figure only from the aggregate tables named in its figure-catalog entry."
+SHILD:
+  estimand: "Unweighted respondent-level behavior among respondents aged 16-64 with substantive extreme A1 responses."
+  predictors: 27
+  source: "The supplied raw SHILD questionnaire export, prepared directly by the documented workflow."
+  outcome: "A1 codes 1/2 are content, codes 4/5 are discontent, and codes 3/8/9 are excluded."
+  resampling: "One prespecified target-stratified 10-fold split; fold variation is descriptive."
+  focal_model: "XGBoost; 200 rounds, depth 3, eta 0.05, unit subsampling, and unit column sampling."
+  model_sensitivity:
+    candidates: >-
+      XGBoost, five-fold internally tuned ridge logistic regression, random forest, decision tree, and featureless
+      baseline.
+    near_equivalence: >-
+      Exploratory mean held-out log-loss boundary of 10% above focal XGBoost on common outer folds;
+      this is a study-specific sensitivity boundary, not a universal equivalence threshold.
+    limitation: >-
+      Raw probability dispersion across log-loss-near-equivalent models combines model-class and calibration
+      differences.
+    reproducibility: "The benchmark and Gate 6 use identical learner-specific seeds on the same outer folds."
+    tolerance_sensitivity: >-
+      Accepted-model membership is also reported at 5%, 10%, and 20% focal-XGBoost-relative log-loss allowances;
+      these values form a descriptive sensitivity grid rather than equivalence tests.
+    public_multiplicity_figure: >-
+      Stepwise cumulative summary from fixed-width shareable aggregate counts, with exact p50, p90, and p95 anchors.
+  calibration: >-
+    A flexible loess curve with pointwise 95% respondent-bootstrap percentile intervals conditional on supplied
+    out-of-fold predictions. Ten prediction-quantile bins are retained only as an unconnected descriptive table.
+  decision_thresholds: >-
+    0.03 through 0.20 in increments of 0.01; illustrative utility analysis only. The public plot contains only
+    threshold-level aggregate curves and no row-level probability rug.
+  subgroup_audit: "Gender and five age bands; 1,000 row-bootstrap replicates conditional on stored OOF predictions."
+  explanation_settings:
+    pfi: >-
+      Ten held-out marginal permutations per outer fold using log loss. A separate overlapping grouped query jointly
+      permutes A2 and D2 under the same fold models; it is not additive with individual PFI values and is not a
+      conditional-PFI estimator.
+    local_fidelity: >-
+      Communication-only diagnostic for two post-hoc cases; 500 perturbations; deterministic five-fold cross-fitted
+      weighted ridge surrogate. The systematic individual-level audit below provides the inferentially relevant
+      local-fidelity evidence.
+    ale: >-
+      Full-fit numeric ALE on 1,500 sampled rows with ten intervals and public support threshold n >= 20;
+      pointwise 95% percentile intervals use 500 respondent bootstrap samples, complete fixed-pipeline refits, and
+      common point-reference-sample boundaries. An interval additionally requires at least 80% of refits to meet the
+      interval-support threshold; the point curve and interval support are reported separately.
+    interactions: >-
+      Grid-based H screen; 2D ALE only for a pair with H above numerical tolerance; public cells require n >= 20.
+    shap: >-
+      Private-only approximate conditional Shapley output with 256 Monte Carlo draws per case. Communication bars
+      are displayed only when every case satisfies abs(additivity residual) <= 0.01 + 0.25 * abs(case prediction -
+      background baseline); otherwise a quality-suppression record replaces the bars.
+  missing_data:
+    primary: "Fold-contained numeric median and categorical mode imputation."
+    sensitivity: >-
+      Complete-case analysis on the retained sample using the prespecified fold allocation, with a private bridge
+      from reindexed complete-case rows to original analytic rows, folds, strata, and respondent identifiers.
+    sentinel_rule: "Documented non-substantive categorical codes and audited high codes are recoded before resampling."
+    numeric_rule: >-
+      F15 remains numeric on its documented 0-10 scale. E1 values below 100 cm and E2 values below 20 kg are set to
+      missing as implausible adult entries; alternative units are neither inferred nor converted.
+    limitation: >-
+      The dictionary has no value labels. Mappings were cross-checked mechanically, and the analytic cut and
+      preprocessing were verified by the responsible co-authors; no independent protected-source rerun is claimed.
+  audit_only:
+    - audit_age_group
+    - audit_gender
+  local_cases: >-
+    Two post-hoc communication cases selected near the 10th and 90th percentiles of the focal OOF prediction score;
+    these are shown only as communication examples and are distinct from the prespecified 300-case systematic audit.
+  systematic_local_fidelity:
+    protocol_id: shild_g4_systematic_local_fidelity_v2
+    frozen_on: "2026-09-07"
+    analysis_role: "Systematic held-out local-fidelity audit and cross-study evidence synthesis"
+    default_shild_pair: "current/shild"
+    default_pisa_pair: "current/pisa"
+    parent_result: "objects/shild_csdg_result_private.rds"
+    estimand: >-
+      Cross-fitted weighted prediction error of an additive weighted-ridge surrogate for the focal XGBoost fold
+      model under the declared case, neighborhood generator, distance, kernel, output scale, and cross-fit design.
+    case_sampling:
+      population: "Every row with one out-of-fold focal-model prediction"
+      strata: "10 held-out folds by 10 within-fold out-of-fold prediction-score deciles"
+      folds: 10
+      prediction_score_deciles: 10
+      cases_per_stratum: 3
+      total_cases: 300
+      selection_seed: 20260812
+      cell_seed_rule: "selection seed + 100 * fold number + within-fold prediction-score decile"
+      tie_rule: "Order equal scores by analytic row identifier before balanced within-fold decile assignment"
+      replacement: false
+    local_evaluation:
+      model: "Only the model from the case's held-out fold"
+      training_background: "Only that fold's training rows"
+      perturbations_per_case_seed: 500
+      perturbation_replicates: 20
+      perturbation_seed_base: 202608120
+      perturbation_seed_stride: 1000000
+      perturbation_seed_rule: "base + 1000000 * replicate number + public sequential case number"
+      crossfit_seed_base: 302608120
+      crossfit_seed_rule: "cross-fit base + 1000000 * replicate number + public sequential case number"
+      surrogate_folds: 5
+      primary_kernel_width: 0.75
+      sensitivity_kernel_widths: [0.25, 0.50, 1.00]
+      case_summary: >-
+        Medians across 20 perturbation replicates for weighted R-squared, weighted RMSE, weighted MAE, maximum
+        absolute error, and target-case absolute error.
+      historical_weighted_r2_reference: 0.80
+      primary_decision_rule: >-
+        No universal binary adequacy rule. The historical 0.80 weighted-R-squared value is retained only for
+        comparability; interpretation jointly considers relative and absolute errors.
+    secondary_sensitivity:
+      cases: "One deterministically selected case from each fold-by-prediction-decile cell (100 cases)."
+      perturbation_replicates: 5
+      randomness_seeds_per_source: 5
+      randomness_decomposition: >-
+        Complete 5-by-5 crossing of perturbation and surrogate cross-fit seeds for the response-scale synthetic
+        additive reference. Balanced two-way sums of squares separate marginal perturbation, marginal cross-fit,
+        and interaction components as deterministic computational variation.
+      output_scales: [response, link]
+      neighborhood_methods: [synthetic, empirical_knn]
+      empirical_neighbors: 500
+      kernel_widths: [0.25, 0.50, 0.75, 1.00]
+      nonlinear_comparator: "Pre-pruned cross-fitted regression tree on the same neighborhoods and seeds."
+      explanation_stability: "Coefficient sign and absolute-rank stability across perturbation seeds."
+    support_diagnostic:
+      scope: "Descriptive empirical proximity in the same mixed-type distance used by the local surrogate"
+      primary_measure: "10th-nearest fold-training distance; smaller values indicate closer observed training rows"
+      additional_measures:
+        - "nearest fold-training distance"
+        - "50th-nearest fold-training distance"
+        - "share of fold-training rows within the primary kernel width"
+        - "Kish effective sample size of kernel weights, interpreted only as weight concentration"
+    reporting:
+      inference: "No hypothesis tests and no confidence intervals"
+      quartile_definition: "R quantile type 8"
+      monte_carlo_scope: >-
+        Primary 20-replicate summaries pair independently generated perturbation and surrogate cross-fit seeds. A
+        secondary complete 5-by-5 crossed grid on 100 cases separates their marginal and interaction components.
+        Both analyses describe computational variation, not model-fit or population-sampling uncertainty.
+      prediction_scope: "Descriptive summaries by the prespecified within-fold prediction-score decile"
+      disagreement_scope: "Descriptive association with accepted-model out-of-fold prediction range"
+      historical_reference: "The 0.80 value is reported descriptively and is not treated as a pass/fail gate."
+      communication_cases: "The two post-hoc cases remain communication examples only"
+    prohibited_changes:
+      - "No predictive-model retraining or reselection"
+      - "No preprocessing or split changes"
+      - "No PISA refit"
+      - "No post-hoc case replacement"
+      - "No significance tests over folds, cases, seeds, plausible values, models, or countries"
+      - "No expansion of causal, individual-recourse, decision-readiness, or transport claims"
+PISA:
+  estimand: >-
+    Unweighted equal-country prediction in a seeded analytic sample of 1,500 students from each of 32 countries.
+  outcomes: >-
+    PV1READ-PV10READ are analyzed separately on aligned splits. Prediction, calibration, and PFI are evaluated for
+    every plausible value; value-scale quantities are aggregated before ranking, and no student-level averaging or
+    generic Rubin rule is applied to cross-validated predictive statistics.
+  canonical_claims:
+    - id: PISA-C0
+      parent_id: null
+      relation: original
+      decision: unresolved
+      statement: >-
+        Within the seeded, unweighted equal-country PISA 2018 analytic sample prepared and verified by the
+        responsible co-authors, the selected XGBoost pipeline achieved lower held-out RMSE than the featureless
+        learner for each of the ten reading plausible values, and within-country, school-aware held-out marginal PFI
+        placed the same five atomic feature groups in the leading set for every plausible value; importance values
+        were aggregated on the RMSE-increase scale for the selected-model summary. The pipeline is also sufficiently
+        calibrated across the prediction range for the intended scientific interpretation.
+      decision_basis: >-
+        The prediction comparison, calibration estimates, and selected-model PFI recurrence are available, but no
+        claim-specific calibration-adequacy criterion was supplied. Favorable descriptive evidence cannot resolve
+        that necessary requirement.
+    - id: PISA-C1
+      parent_id: PISA-C0
+      relation: narrower
+      decision: met
+      coordinate_relations:
+        target: narrower
+        model_scope: same
+        semantics: narrower
+        analytic_distribution: same
+        scientific_use: narrower
+        explanation_design: same
+      statement: >-
+        Within the seeded, unweighted equal-country PISA 2018 analytic sample prepared and verified by the
+        responsible co-authors, the selected XGBoost pipeline achieved lower held-out RMSE than the featureless
+        learner for each of the ten reading plausible values, and within-country, school-aware held-out marginal PFI
+        placed the same five atomic feature groups in the leading set for every plausible value; importance values
+        were aggregated on the RMSE-increase scale for the selected-model summary.
+      decision_basis: >-
+        This literal restriction removes only the unadjudicated calibration-adequacy clause. It preserves the same
+        selected model, analytic distribution, and PFI design, and both retained conjuncts are reproduced for all ten
+        plausible values.
+  historical_claim_id_quarantine: >-
+    The superseded identifier may occur only in immutable parent-run evidence and provenance. It is not a current
+    canonical claim ID; imported model-sensitivity records are attached to PISA-C1.
+  resampling: "Five-fold country-stratified, school-clustered, row-load-balanced splits shared by all PVs."
+  excluded_features:
+    - CNT
+    - CNTSCHID
+    - CNTSTUID
+  missing_data:
+    primary: "Fold-contained numeric median and categorical mode imputation."
+    sensitivity: >-
+      A same-row, same-school-fold XGBoost analysis adds pre-imputation missingness indicators for every incomplete
+      predictor and is evaluated separately for all ten plausible values. A PV1 complete-case analysis retains
+      schools intact and reports changed country composition explicitly. These alternatives probe sensitivity but do
+      not constitute multilevel multiple imputation or restore survey-population inference.
+  model_sensitivity: >-
+    Prespecified ridge, random forest, decision-tree, and featureless probes on common school-clustered splits for
+    all ten plausible values; no fold tests.
+  near_equivalence: >-
+    Mean held-out RMSE across ten aligned plausible values no more than five score points worse than focal XGBoost. Five
+    points equal 0.05 of the conventional 100-point PISA scale standard deviation and define a sensitivity boundary,
+    not a universal equivalence threshold.
+  near_equivalence_sensitivity: >-
+    Accepted-model membership is additionally reported at 2.5-, 5-, and 10-point focal-relative all-PV RMSE
+    allowances, corresponding to 0.025, 0.05, and 0.10 of the conventional 100-point scale standard deviation.
+  subgroup_audit: "Gender and immigration groups; 1,000 school-cluster bootstrap replicates stratified within country."
+  explanation_settings:
+    pfi: >-
+      Ten held-out within-country permutations per fold, plausible value, and accepted model. School-level variables
+      are permuted coherently by school. PFI is aggregated on the RMSE-increase scale across plausible values before
+      atomic-feature ranking; the overlapping socioeconomic joint block is reported separately.
+    calibration: >-
+      Natural cubic regression-spline curves with four fixed degrees of freedom and pointwise 95%
+      school-within-country bootstrap intervals are calculated separately for all ten plausible values conditional
+      on the supplied out-of-fold predictions. Four degrees of freedom provide a prespecified smooth nonlinear
+      diagnostic without data-adaptive smoothness selection.
+    ale: >-
+      Full-fit PV1 ALE on 1,500 sampled rows; pointwise 95% percentile intervals use 500 school-cluster bootstrap
+      samples drawn independently within country, complete fixed-pipeline refits, and common point-reference-sample
+      boundaries. Public 1D point estimates and 2D cells require n >= 20; a 1D interval additionally requires at
+      least 80% of refits to meet that threshold, and point-curve and interval support are reported separately.
+    multiplicity: >-
+      Common-split OOF prediction-range distribution across PV1 RMSE-near-equivalent models; the public figure is a
+      fixed-width binned empirical CDF from shareable aggregate counts and quantiles.
+  transport: >-
+    Genuine leave-one-country-out refits for every country and plausible value, descriptive country-level
+    calibration, and 50 PV1 training-size-matched removal refits per observed country, all with checkpoint/resume.
+  country_calibration_uncertainty: >-
+    For each of the 320 observed-country/plausible-value LOCO prediction sets, pointwise 95% percentile intervals
+    use 500 school-within-country bootstrap samples conditional on the stored country-exclusion predictions. The
+    prediction pipeline is not refitted. These intervals omit model-training, plausible-value-generation,
+    survey-design, new-country, and future-cycle uncertainty, and they do not support a transport claim.
+  weights: "No final or replicate survey weights are present; no design-based population claim."
+preprocessing_verification:
+  status: verified_by_responsible_coauthors
+  verification_date: "2026-09-09"
+  independent_raw_data_rerun: false
+  artifact: analysis/preprocessing_review.md
+calibration_metric:
+  canonical_name: uniform_grid_mean_absolute_calibration_error
+  definition: >-
+    Arithmetic mean of the absolute flexible-calibration-curve deviation from the identity line at equally spaced
+    points on the declared prediction grid; every grid point receives equal weight.
+  classification_grid: "101 equally spaced points from the empirical 0.01 to 0.99 prediction quantiles."
+  regression_grid: "101 equally spaced points from the empirical 0.005 to 0.995 prediction quantiles."
+  weighting_measure: "Uniform discrete weighting over grid points; this is not a numerical integral."
+  deprecated_alias: integrated_absolute_calibration_error

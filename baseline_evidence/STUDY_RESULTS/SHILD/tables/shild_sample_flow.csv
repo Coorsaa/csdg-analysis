@@ -1,0 +1,5 @@
+stage,n,exclusion_from_previous
+raw source rows,18957,0
+"rows with substantive extreme A1 outcome (1, 2, 4, or 5)",16971,1986
+analytic rows with substantive outcome and age 16-64,16971,0
+primary complete cases after documented recoding,15529,1442

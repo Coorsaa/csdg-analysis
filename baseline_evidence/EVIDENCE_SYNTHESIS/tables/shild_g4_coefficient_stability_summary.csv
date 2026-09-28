@@ -1,0 +1,2 @@
+target_scale,neighborhood_method,n_cases,n_case_terms,median_sign_consistency,q10_sign_consistency,proportion_case_terms_below_80_percent_sign_consistency,median_absolute_rank_sd,uncertainty_semantics
+response,synthetic,300,30300,0.7,0.5,0.618415841584158,17.9948823080677,Descriptive perturbation and cross-fit stability; not model-fit uncertainty

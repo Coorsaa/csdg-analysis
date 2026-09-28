@@ -1,0 +1,8 @@
+n_rows,n_accepted_models,statistic,prediction_range,interpretation
+48000,3,mean,29.2541027307906,Descriptive OOF prediction dispersion across prespecified near-equivalent models
+48000,3,sd,19.1167758905463,Descriptive OOF prediction dispersion across prespecified near-equivalent models
+48000,3,p50,25.3642273562143,Descriptive OOF prediction dispersion across prespecified near-equivalent models
+48000,3,p90,54.1951459683618,Descriptive OOF prediction dispersion across prespecified near-equivalent models
+48000,3,p95,65.2757255171921,Descriptive OOF prediction dispersion across prespecified near-equivalent models
+48000,3,p99,90.8414316518698,Descriptive OOF prediction dispersion across prespecified near-equivalent models
+48000,3,maximum,225.890092077205,Descriptive OOF prediction dispersion across prespecified near-equivalent models

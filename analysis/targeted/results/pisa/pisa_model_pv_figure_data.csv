@@ -1,0 +1,61 @@
+feature_group,learner_name,importance_mean,pv_min,pv_max,top_five_pv_count,rank_min,rank_max,n_plausible_values,atomic,mean_scale_rank,content_label,content_family,interpretation,source,plot_label,model
+ESCS,xgboost,0.691366923727349,0.63919211999584,0.797865872973795,0,11,12,10,TRUE,11,"Economic, social, and cultural status",Family-background indicator,Reported indicator label; not a newly constructed latent scale or a causal effect,"OECD PISA 2018 code labels; OECD 21st-Century Readers, 2021","Economic, social, and cultural status
+(ESCS)",XGBoost
+ESCS,random_forest,0.887684095676947,0.844723105038647,0.917961195340293,0,7,9,10,TRUE,7,"Economic, social, and cultural status",Family-background indicator,Reported indicator label; not a newly constructed latent scale or a causal effect,"OECD PISA 2018 code labels; OECD 21st-Century Readers, 2021","Economic, social, and cultural status
+(ESCS)",Random forest
+ESCS,ridge,5.19816561497127,4.59772567922044,5.9528736010022,10,1,2,10,TRUE,2,"Economic, social, and cultural status",Family-background indicator,Reported indicator label; not a newly constructed latent scale or a causal effect,"OECD PISA 2018 code labels; OECD 21st-Century Readers, 2021","Economic, social, and cultural status
+(ESCS)",Ridge regression
+HOMEPOS,xgboost,0.627664003938804,0.579552973444701,0.695269578706953,0,11,14,10,TRUE,13,Home possessions,Family-background indicator,Reported indicator label; not a newly constructed latent scale or a causal effect,"OECD PISA 2018 code labels; OECD 21st-Century Readers, 2021","Home possessions
+(HOMEPOS)",XGBoost
+HOMEPOS,random_forest,0.551610202504757,0.522464795996759,0.574625169249692,0,11,11,10,TRUE,11,Home possessions,Family-background indicator,Reported indicator label; not a newly constructed latent scale or a causal effect,"OECD PISA 2018 code labels; OECD 21st-Century Readers, 2021","Home possessions
+(HOMEPOS)",Random forest
+HOMEPOS,ridge,3.72663555757707,3.32565393638409,4.00626421344709,10,3,4,10,TRUE,3,Home possessions,Family-background indicator,Reported indicator label; not a newly constructed latent scale or a causal effect,"OECD PISA 2018 code labels; OECD 21st-Century Readers, 2021","Home possessions
+(HOMEPOS)",Ridge regression
+JOYREAD,xgboost,1.92484910456911,1.86416088019207,1.98733492573598,10,4,5,10,TRUE,4,Enjoyment of reading,Reading-related indicator,Reported indicator label; not a newly constructed latent scale or a causal effect,"OECD PISA 2018 code labels; OECD 21st-Century Readers, 2021","Enjoyment of reading
+(JOYREAD)",XGBoost
+JOYREAD,random_forest,2.19669551123407,2.15441798697634,2.28747200966514,10,3,3,10,TRUE,3,Enjoyment of reading,Reading-related indicator,Reported indicator label; not a newly constructed latent scale or a causal effect,"OECD PISA 2018 code labels; OECD 21st-Century Readers, 2021","Enjoyment of reading
+(JOYREAD)",Random forest
+JOYREAD,ridge,0.818564780318009,0.773580249590866,0.858780555060644,0,12,13,10,TRUE,13,Enjoyment of reading,Reading-related indicator,Reported indicator label; not a newly constructed latent scale or a causal effect,"OECD PISA 2018 code labels; OECD 21st-Century Readers, 2021","Enjoyment of reading
+(JOYREAD)",Ridge regression
+METASPAM,xgboost,7.63660824956339,7.45613396660483,7.82419393106516,10,1,1,10,TRUE,1,Assessing credibility,Reading-related indicator,Reported indicator label; not a newly constructed latent scale or a causal effect,"OECD PISA 2018 code labels; OECD 21st-Century Readers, 2021","Assessing credibility
+(METASPAM)",XGBoost
+METASPAM,random_forest,5.87698466390029,5.7754480621806,5.9695554478194,10,1,1,10,TRUE,1,Assessing credibility,Reading-related indicator,Reported indicator label; not a newly constructed latent scale or a causal effect,"OECD PISA 2018 code labels; OECD 21st-Century Readers, 2021","Assessing credibility
+(METASPAM)",Random forest
+METASPAM,ridge,5.5315179071088,5.38514074253244,5.61058799145765,10,1,2,10,TRUE,1,Assessing credibility,Reading-related indicator,Reported indicator label; not a newly constructed latent scale or a causal effect,"OECD PISA 2018 code labels; OECD 21st-Century Readers, 2021","Assessing credibility
+(METASPAM)",Ridge regression
+METASUM,xgboost,3.41637404719267,3.29753620181398,3.5729904476839,10,2,2,10,TRUE,2,Summarizing strategies,Reading-related indicator,Reported indicator label; not a newly constructed latent scale or a causal effect,"OECD PISA 2018 code labels; OECD 21st-Century Readers, 2021","Summarizing strategies
+(METASUM)",XGBoost
+METASUM,random_forest,3.25818671224945,3.14892011146776,3.31624659213711,10,2,2,10,TRUE,2,Summarizing strategies,Reading-related indicator,Reported indicator label; not a newly constructed latent scale or a causal effect,"OECD PISA 2018 code labels; OECD 21st-Century Readers, 2021","Summarizing strategies
+(METASUM)",Random forest
+METASUM,ridge,2.00384635844222,1.94716316358509,2.08964577596499,0,7,7,10,TRUE,7,Summarizing strategies,Reading-related indicator,Reported indicator label; not a newly constructed latent scale or a causal effect,"OECD PISA 2018 code labels; OECD 21st-Century Readers, 2021","Summarizing strategies
+(METASUM)",Ridge regression
+SCREADCOMP,xgboost,2.44806987793989,2.28496514548254,2.55509754040062,10,3,3,10,TRUE,3,Perceived reading competence,Reading-related indicator,Reported indicator label; not a newly constructed latent scale or a causal effect,"OECD PISA 2018 code labels; OECD 21st-Century Readers, 2021","Perceived reading competence
+(SCREADCOMP)",XGBoost
+SCREADCOMP,random_forest,1.86262472260114,1.80189206036688,1.91598175946097,10,4,4,10,TRUE,4,Perceived reading competence,Reading-related indicator,Reported indicator label; not a newly constructed latent scale or a causal effect,"OECD PISA 2018 code labels; OECD 21st-Century Readers, 2021","Perceived reading competence
+(SCREADCOMP)",Random forest
+SCREADCOMP,ridge,2.14867177105908,2.03306364488466,2.24121760066948,4,5,6,10,TRUE,6,Perceived reading competence,Reading-related indicator,Reported indicator label; not a newly constructed latent scale or a causal effect,"OECD PISA 2018 code labels; OECD 21st-Century Readers, 2021","Perceived reading competence
+(SCREADCOMP)",Ridge regression
+SCREADDIFF,xgboost,1.81848492098132,1.73734147205192,1.87844649470042,10,4,5,10,TRUE,5,Perceived reading difficulty,Reading-related indicator,Reported indicator label; not a newly constructed latent scale or a causal effect,"OECD PISA 2018 code labels; OECD 21st-Century Readers, 2021","Perceived reading difficulty
+(SCREADDIFF)",XGBoost
+SCREADDIFF,random_forest,1.53619812632918,1.4853167593585,1.55613638922215,4,5,6,10,TRUE,6,Perceived reading difficulty,Reading-related indicator,Reported indicator label; not a newly constructed latent scale or a causal effect,"OECD PISA 2018 code labels; OECD 21st-Century Readers, 2021","Perceived reading difficulty
+(SCREADDIFF)",Random forest
+SCREADDIFF,ridge,1.17567138143815,1.11034862352925,1.22475057767901,0,9,9,10,TRUE,9,Perceived reading difficulty,Reading-related indicator,Reported indicator label; not a newly constructed latent scale or a causal effect,"OECD PISA 2018 code labels; OECD 21st-Century Readers, 2021","Perceived reading difficulty
+(SCREADDIFF)",Ridge regression
+ST001D01T,xgboost,0.946123061249421,0.877117706120484,0.990915659161646,0,7,8,10,TRUE,7,Grade,Schooling indicator,Reported indicator label; not a newly constructed latent scale or a causal effect,"OECD PISA 2018 code labels; OECD 21st-Century Readers, 2021","Grade
+(ST001D01T)",XGBoost
+ST001D01T,random_forest,0.460586623036134,0.435955481126337,0.48942854656302,0,12,13,10,TRUE,12,Grade,Schooling indicator,Reported indicator label; not a newly constructed latent scale or a causal effect,"OECD PISA 2018 code labels; OECD 21st-Century Readers, 2021","Grade
+(ST001D01T)",Random forest
+ST001D01T,ridge,2.17148025181148,2.01988110992077,2.27799070630145,6,5,6,10,TRUE,5,Grade,Schooling indicator,Reported indicator label; not a newly constructed latent scale or a causal effect,"OECD PISA 2018 code labels; OECD 21st-Century Readers, 2021","Grade
+(ST001D01T)",Ridge regression
+UNDREM,xgboost,1.23664389060905,1.12824885372707,1.28757961106004,0,6,6,10,TRUE,6,Understanding and remembering,Reading-related indicator,Reported indicator label; not a newly constructed latent scale or a causal effect,"OECD PISA 2018 code labels; OECD 21st-Century Readers, 2021","Understanding and remembering
+(UNDREM)",XGBoost
+UNDREM,random_forest,1.56692545381607,1.43701388147373,1.62514691272731,6,5,6,10,TRUE,5,Understanding and remembering,Reading-related indicator,Reported indicator label; not a newly constructed latent scale or a causal effect,"OECD PISA 2018 code labels; OECD 21st-Century Readers, 2021","Understanding and remembering
+(UNDREM)",Random forest
+UNDREM,ridge,0.706250203504135,0.647513339608554,0.73459156680581,0,14,14,10,TRUE,14,Understanding and remembering,Reading-related indicator,Reported indicator label; not a newly constructed latent scale or a causal effect,"OECD PISA 2018 code labels; OECD 21st-Century Readers, 2021","Understanding and remembering
+(UNDREM)",Ridge regression
+WEALTH,xgboost,0.0355080978167984,0.0216384458685172,0.0550468145670732,0,25,31,10,TRUE,27,Family wealth,Family-background indicator,Reported indicator label; not a newly constructed latent scale or a causal effect,"OECD PISA 2018 code labels; OECD 21st-Century Readers, 2021","Family wealth
+(WEALTH)",XGBoost
+WEALTH,random_forest,0.126479984594368,0.114397595999275,0.137317790008611,0,25,27,10,TRUE,26,Family wealth,Family-background indicator,Reported indicator label; not a newly constructed latent scale or a causal effect,"OECD PISA 2018 code labels; OECD 21st-Century Readers, 2021","Family wealth
+(WEALTH)",Random forest
+WEALTH,ridge,3.5005963573708,3.1965871955384,3.65028829060611,10,3,4,10,TRUE,4,Family wealth,Family-background indicator,Reported indicator label; not a newly constructed latent scale or a causal effect,"OECD PISA 2018 code labels; OECD 21st-Century Readers, 2021","Family wealth
+(WEALTH)",Ridge regression

@@ -1,0 +1,19 @@
+surrogate_scale,metric,n_cases,median,q25,q75,aggregation,uncertainty
+response,weighted_r2,100,0.688346158330229,0.606686461487854,0.76715938730115,Across-case medians of five within-case computational replicates,Descriptive across cases; quartiles are not confidence intervals
+link,weighted_r2,100,0.892556129191734,0.843109390982474,0.932765687037053,Across-case medians of five within-case computational replicates,Descriptive across cases; quartiles are not confidence intervals
+response,weighted_rmse,100,0.0197446929018777,0.0154629582309343,0.0255650595516804,Across-case medians of five within-case computational replicates,Descriptive across cases; quartiles are not confidence intervals
+link,weighted_rmse,100,0.0117330371931485,0.00902537051416386,0.0165436952997063,Across-case medians of five within-case computational replicates,Descriptive across cases; quartiles are not confidence intervals
+response,weighted_mae,100,0.0073593976237853,0.00507007001944125,0.0102605703136325,Across-case medians of five within-case computational replicates,Descriptive across cases; quartiles are not confidence intervals
+link,weighted_mae,100,0.00240307670185804,0.00182822830898333,0.00427599412600064,Across-case medians of five within-case computational replicates,Descriptive across cases; quartiles are not confidence intervals
+response,error_q50,100,0.00361365935979392,0.00257774919479192,0.00517618101272226,Across-case medians of five within-case computational replicates,Descriptive across cases; quartiles are not confidence intervals
+link,error_q50,100,0.00060574999567675,0.000383597356255217,0.00152513031342792,Across-case medians of five within-case computational replicates,Descriptive across cases; quartiles are not confidence intervals
+response,error_q90,100,0.0133343925167861,0.00918980026296601,0.0186711855113075,Across-case medians of five within-case computational replicates,Descriptive across cases; quartiles are not confidence intervals
+link,error_q90,100,0.00326502013377794,0.00219507702146398,0.00642532980586441,Across-case medians of five within-case computational replicates,Descriptive across cases; quartiles are not confidence intervals
+response,error_q95,100,0.0204975484138722,0.0148641854262744,0.0299999687594321,Across-case medians of five within-case computational replicates,Descriptive across cases; quartiles are not confidence intervals
+link,error_q95,100,0.00749705666362869,0.00477958285961213,0.0129152858771864,Across-case medians of five within-case computational replicates,Descriptive across cases; quartiles are not confidence intervals
+response,maximum_absolute_error,100,0.295272301951514,0.211471607205279,0.338677647796045,Across-case medians of five within-case computational replicates,Descriptive across cases; quartiles are not confidence intervals
+link,maximum_absolute_error,100,0.181304720615902,0.13935608958273,0.247199265790322,Across-case medians of five within-case computational replicates,Descriptive across cases; quartiles are not confidence intervals
+response,target_absolute_error,100,0.000991889505439876,0.000785866401310925,0.00189679751786285,Across-case medians of five within-case computational replicates,Descriptive across cases; quartiles are not confidence intervals
+link,target_absolute_error,100,0.000303217715129703,0.000105716719992492,0.00118361482353704,Across-case medians of five within-case computational replicates,Descriptive across cases; quartiles are not confidence intervals
+response,out_of_probability_range_fraction,100,0.054,0.038,0.0783333333333333,Across-case medians of five within-case computational replicates,Descriptive across cases; quartiles are not confidence intervals
+link,out_of_probability_range_fraction,100,0,0,0,Across-case medians of five within-case computational replicates,Descriptive across cases; quartiles are not confidence intervals

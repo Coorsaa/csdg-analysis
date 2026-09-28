@@ -1,0 +1,24 @@
+# Restricted or respondent-level material: never commit.
+data/
+paper_artifacts/
+private/
+**/private/
+*.rds
+*.RData
+*.rda
+*.qs
+*.zip
+# Local run artifacts
+.Rhistory
+.RData
+.Rproj.user/
+.DS_Store
+Rplots.pdf
+__pycache__/
+*.pyc
+*.aux
+*.log
+*.out
+*.fls
+*.fdb_latexmk
+*.xdv

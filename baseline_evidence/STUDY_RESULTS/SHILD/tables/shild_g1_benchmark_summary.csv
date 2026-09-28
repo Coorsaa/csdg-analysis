@@ -1,0 +1,21 @@
+learner_id,measure_id,n_folds,mean,sd,q10,median,q90,uncertainty
+xgboost,classif.auc,10,0.934093858931039,0.0155636147614573,0.915024604450202,0.93623760070263,0.948148717061412,Descriptive fold variation; folds are not independent inferential units
+xgboost,classif.prauc,10,0.646024540852698,0.0443670677331433,0.590079557097627,0.652844366586778,0.68854906961698,Descriptive fold variation; folds are not independent inferential units
+xgboost,classif.bbrier,10,0.03329123872869,0.0023156015081408,0.0305175060211726,0.0331789340095971,0.0359429220611284,Descriptive fold variation; folds are not independent inferential units
+xgboost,classif.logloss,10,0.122188545027771,0.00893684892465357,0.112839227524963,0.120637984869766,0.13087454907272,Descriptive fold variation; folds are not independent inferential units
+ridge_logistic,classif.auc,10,0.933041525907993,0.0132324724490207,0.921616816440674,0.932513919035499,0.949042121578588,Descriptive fold variation; folds are not independent inferential units
+ridge_logistic,classif.prauc,10,0.640922458050407,0.036237746321438,0.594934091358069,0.641141407836684,0.67765904905315,Descriptive fold variation; folds are not independent inferential units
+ridge_logistic,classif.bbrier,10,0.0340177678039687,0.00186138672108634,0.0320313419216451,0.0341521060774807,0.0356754026514722,Descriptive fold variation; folds are not independent inferential units
+ridge_logistic,classif.logloss,10,0.125922572186619,0.00709878959265982,0.119400755045202,0.126789739100663,0.131527085310771,Descriptive fold variation; folds are not independent inferential units
+random_forest,classif.auc,10,0.927279241137836,0.0170991147852468,0.90987922358282,0.929159666091508,0.941076380409553,Descriptive fold variation; folds are not independent inferential units
+random_forest,classif.prauc,10,0.626724430790093,0.0502284035378659,0.578402172324931,0.625241139374544,0.676544076910052,Descriptive fold variation; folds are not independent inferential units
+random_forest,classif.bbrier,10,0.0352807074112796,0.0020372155736799,0.0332929979979882,0.035324174971744,0.0368882992254785,Descriptive fold variation; folds are not independent inferential units
+random_forest,classif.logloss,10,0.13317931189071,0.0140174458575077,0.123600289712372,0.12858708390241,0.152400591866031,Descriptive fold variation; folds are not independent inferential units
+decision_tree,classif.auc,10,0.767136986831437,0.0344931983400441,0.709579853644187,0.773079644875212,0.79849042172749,Descriptive fold variation; folds are not independent inferential units
+decision_tree,classif.prauc,10,0.449040586053827,0.0590181095194184,0.375712123514386,0.440630597466443,0.527070771400464,Descriptive fold variation; folds are not independent inferential units
+decision_tree,classif.bbrier,10,0.0393868478023866,0.00328371884487705,0.0354371073928383,0.0395022912574371,0.0433507463773582,Descriptive fold variation; folds are not independent inferential units
+decision_tree,classif.logloss,10,0.160428386557975,0.0120991009233897,0.148882262925123,0.158945271850052,0.177245467317445,Descriptive fold variation; folds are not independent inferential units
+featureless,classif.auc,10,0.5,0,0.5,0.5,0.5,Descriptive fold variation; folds are not independent inferential units
+featureless,classif.prauc,10,0.0605738541084432,0.000228449001657803,0.0601415094339623,0.0606774721274223,0.060695344725987,Descriptive fold variation; folds are not independent inferential units
+featureless,classif.bbrier,10,0.0569046733181163,0.000200755704262212,0.0565247390820982,0.0569957298172604,0.0570114380567021,Descriptive fold variation; folds are not independent inferential units
+featureless,classif.logloss,10,0.228543688338502,0.000626120149078221,0.2273587448315,0.228827673302782,0.228876676952667,Descriptive fold variation; folds are not independent inferential units

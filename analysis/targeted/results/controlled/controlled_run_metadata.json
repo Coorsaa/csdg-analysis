@@ -1,0 +1,11 @@
+{
+  "seed": 20260910,
+  "monte_carlo_rows_per_scenario": 200000,
+  "scenarios": 4,
+  "result_rows": 40,
+  "maximum_absolute_monte_carlo_error": 0.0082,
+  "analytical_checks": "All 40 loss-contrast estimates within six Monte Carlo standard errors",
+  "model_functions": ["f1(X) = X1", "f2(X) = X2"],
+  "human_or_application_data": false,
+  "status": "executed_and_analytically_checked"
+}

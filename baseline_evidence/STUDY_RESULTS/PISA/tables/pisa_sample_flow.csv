@@ -1,0 +1,4 @@
+stage,n,countries
+source compact file,260641,32
+equal-country analytic sample,48000,32
+PV1 complete cases,24909,27

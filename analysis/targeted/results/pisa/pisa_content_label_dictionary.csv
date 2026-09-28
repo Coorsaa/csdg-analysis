@@ -1,0 +1,11 @@
+feature_group,content_label,content_family,interpretation,source
+METASPAM,Assessing credibility,Reading-related indicator,Reported indicator label; not a newly constructed latent scale or a causal effect,"OECD PISA 2018 code labels; OECD 21st-Century Readers, 2021"
+METASUM,Summarizing strategies,Reading-related indicator,Reported indicator label; not a newly constructed latent scale or a causal effect,"OECD PISA 2018 code labels; OECD 21st-Century Readers, 2021"
+SCREADCOMP,Perceived reading competence,Reading-related indicator,Reported indicator label; not a newly constructed latent scale or a causal effect,"OECD PISA 2018 code labels; OECD 21st-Century Readers, 2021"
+SCREADDIFF,Perceived reading difficulty,Reading-related indicator,Reported indicator label; not a newly constructed latent scale or a causal effect,"OECD PISA 2018 code labels; OECD 21st-Century Readers, 2021"
+JOYREAD,Enjoyment of reading,Reading-related indicator,Reported indicator label; not a newly constructed latent scale or a causal effect,"OECD PISA 2018 code labels; OECD 21st-Century Readers, 2021"
+UNDREM,Understanding and remembering,Reading-related indicator,Reported indicator label; not a newly constructed latent scale or a causal effect,"OECD PISA 2018 code labels; OECD 21st-Century Readers, 2021"
+ESCS,"Economic, social, and cultural status",Family-background indicator,Reported indicator label; not a newly constructed latent scale or a causal effect,"OECD PISA 2018 code labels; OECD 21st-Century Readers, 2021"
+HOMEPOS,Home possessions,Family-background indicator,Reported indicator label; not a newly constructed latent scale or a causal effect,"OECD PISA 2018 code labels; OECD 21st-Century Readers, 2021"
+WEALTH,Family wealth,Family-background indicator,Reported indicator label; not a newly constructed latent scale or a causal effect,"OECD PISA 2018 code labels; OECD 21st-Century Readers, 2021"
+ST001D01T,Grade,Schooling indicator,Reported indicator label; not a newly constructed latent scale or a causal effect,"OECD PISA 2018 code labels; OECD 21st-Century Readers, 2021"

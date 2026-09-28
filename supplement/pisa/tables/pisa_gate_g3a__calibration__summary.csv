@@ -1,0 +1,2 @@
+n,outcome_mean,prediction_mean,rmse,mae,calibration_in_the_large,calibration_intercept,calibration_slope
+48000,491.5788968125,491.628361467998,72.04895020344,57.0030645151876,-0.0494646554972118,-52.992077164263,1.10768827972144

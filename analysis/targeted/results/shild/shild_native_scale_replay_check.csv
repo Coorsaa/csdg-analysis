@@ -1,0 +1,3 @@
+surrogate_scale,n_cases,median_native_r2,maximum_replay_difference,interpretation
+link,100,0.943746631418121,5.32907051820075e-15,Different native target scales; not a common-scale performance contrast
+response,100,0.688346158330229,2.44249065417534e-15,Different native target scales; not a common-scale performance contrast

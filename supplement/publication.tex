@@ -1,0 +1,223 @@
+% !TeX program = xelatex
+\documentclass[11pt]{article}
+\usepackage[margin=0.8in]{geometry}
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\setsansfont{Arial}
+\usepackage{graphicx,caption,hyperref,xurl}
+\hypersetup{hidelinks}
+\captionsetup{font=small,labelfont=bf,justification=raggedright,singlelinecheck=false}
+\renewcommand{\thefigure}{S\arabic{figure}}
+\setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{2em}
+\begin{document}
+\section*{Selected computational supplement}
+\textbf{Claims Before Explanations: A Claim-Scoped Evidence Framework for Interpretable Machine Learning in Psychological Research}\par
+\medskip
+This supplement assembles 30 existing monochrome components as 28 captioned diagnostic figures. Two shared ICE legends are embedded with their first corresponding plot. Numerical estimates and graphical data are unchanged; decimal labels follow APA conventions, and captions make the variable, scale, and variation target explicit.\par
+\medskip
+SHILD describes the unweighted two-extremes life-satisfaction analytic sample; PISA describes the unweighted equal-country reading sample. These fitted-model diagnostics do not establish causal effects, transport, or adequacy for individual decisions. Pointwise bootstrap intervals, across-case ICE quantiles, and descriptive model ranges answer different questions.\par
+\medskip
+\texttt{PUBLICATION\_INDEX.csv} maps every component to its figure, page, original and current identity, caption, generator, and public source tables. The complete uncertainty-object descriptions remain in \path{ALE_OBJECT_UNCERTAINTY_METADATA.csv}.
+\clearpage
+\begin{figure}[p]
+\centering
+\includegraphics[width=.98\linewidth,height=5.8in,keepaspectratio]{shild/figures/shild_g3_calibration.pdf}
+\caption{\textbf{SHILD flexible out-of-fold calibration.} The curve is a loess estimate; the band is a pointwise 95\% respondent-bootstrap percentile interval conditional on the supplied out-of-fold predictions. It is neither simultaneous nor inclusive of model-training variation; the diagonal denotes perfect calibration.}
+\label{supp:shild_g3_calibration}
+\end{figure}
+\clearpage
+\begin{figure}[p]
+\centering
+\includegraphics[width=.98\linewidth,height=5.8in,keepaspectratio]{shild/figures/shild_g7_subgroups__audit_age_group.pdf}
+\caption{\textbf{SHILD focal-model subgroup ROC AUC audit.} Row-bootstrap 95\% intervals conditional on out-of-fold predictions; direct labels show AUC and n.  The full .5–1.0 AUC scale avoids magnifying small absolute gaps.}
+\label{supp:shild_g7_subgroups__audit_age_group}
+\end{figure}
+\clearpage
+\begin{figure}[p]
+\centering
+\includegraphics[width=.98\linewidth,height=5.8in,keepaspectratio]{shild/figures/shild_g7_subgroups__audit_gender.pdf}
+\caption{\textbf{SHILD focal-model subgroup ROC AUC audit.} Row-bootstrap 95\% intervals conditional on out-of-fold predictions; direct labels show AUC and n.  The full .5–1.0 AUC scale avoids magnifying small absolute gaps.}
+\label{supp:shild_g7_subgroups__audit_gender}
+\end{figure}
+\clearpage
+\begin{figure}[p]
+\centering
+\includegraphics[width=.98\linewidth,height=5.8in,keepaspectratio]{shild/figures/shild_g7_subgroup_contrasts.pdf}
+\caption{\textbf{SHILD pairwise subgroup AUC contrasts.} Points are first-minus-second differences; interval whiskers are unadjusted conditional 95\% bootstrap intervals. Model-training variation is excluded, and no significance claim is made.}
+\label{supp:shild_g7_subgroup_contrasts}
+\end{figure}
+\clearpage
+\begin{figure}[p]
+\centering
+\includegraphics[width=.98\linewidth,height=5.8in,keepaspectratio]{shild/figures/shild_rich_ale_1d__age.pdf}
+\caption{\textbf{SHILD: ALE for Age.} Horizontal axis: Age, measured in years. Ribbon: pointwise 95\% respondent-bootstrap percentile interval from complete learner refits; not a simultaneous band and conditional on the fixed learner specification. The curve is centered accumulated local prediction differences from the full-analytic-sample focal XGBoost fit over supported empirical intervals. Cells below 20 reference observations are suppressed. Bands use 500 complete fixed-pipeline refits on common boundaries; they omit model-selection variation and are not simultaneous.}
+\label{supp:shild_rich_ale_1d__age}
+\end{figure}
+\clearpage
+\begin{figure}[p]
+\centering
+\includegraphics[width=.98\linewidth,height=5.8in,keepaspectratio]{shild/figures/shild_rich_ale_1d__e1.pdf}
+\caption{\textbf{SHILD: ALE for Height (E1).} Horizontal axis: Height (E1), measured in centimeters. Ribbon: pointwise 95\% respondent-bootstrap percentile interval from complete learner refits; not a simultaneous band and conditional on the fixed learner specification. The curve is centered accumulated local prediction differences from the full-analytic-sample focal XGBoost fit over supported empirical intervals. Cells below 20 reference observations are suppressed. Bands use 500 complete fixed-pipeline refits on common boundaries; they omit model-selection variation and are not simultaneous.}
+\label{supp:shild_rich_ale_1d__e1}
+\end{figure}
+\clearpage
+\begin{figure}[p]
+\centering
+\includegraphics[width=.98\linewidth,height=5.8in,keepaspectratio]{shild/figures/shild_rich_ale_1d__m6.pdf}
+\caption{\textbf{SHILD: ALE for Medicine and supplement spending (M6).} Horizontal axis: Medicine and supplement spending (M6), measured in raw survey amount; currency and recall period have not been verified against the 2012 item documentation. Ribbon: pointwise 95\% respondent-bootstrap percentile interval from complete learner refits; not a simultaneous band and conditional on the fixed learner specification. The curve is centered accumulated local prediction differences from the full-analytic-sample focal XGBoost fit over supported empirical intervals. Cells below 20 reference observations are suppressed. Bands use 500 complete fixed-pipeline refits on common boundaries; they omit model-selection variation and are not simultaneous.}
+\label{supp:shild_rich_ale_1d__m6}
+\end{figure}
+\clearpage
+\begin{figure}[p]
+\centering
+\includegraphics[width=.98\linewidth,height=5.8in,keepaspectratio]{shild/figures/shild_rich_ale_1d__e2.pdf}
+\caption{\textbf{SHILD: ALE for Weight (E2).} Horizontal axis: Weight (E2), measured in kilograms. Ribbon: pointwise 95\% respondent-bootstrap percentile interval from complete learner refits; not a simultaneous band and conditional on the fixed learner specification. The curve is centered accumulated local prediction differences from the full-analytic-sample focal XGBoost fit over supported empirical intervals. Cells below 20 reference observations are suppressed. Bands use 500 complete fixed-pipeline refits on common boundaries; they omit model-selection variation and are not simultaneous.}
+\label{supp:shild_rich_ale_1d__e2}
+\end{figure}
+\clearpage
+\begin{figure}[p]
+\centering
+\includegraphics[width=.98\linewidth,height=5.8in,keepaspectratio]{shild/figures/shild_rich_ice_quantiles__age.pdf}
+\par\smallskip
+\includegraphics[width=.98\linewidth]{shild/figures/shild_rich_ice_quantiles__legend.pdf}
+\caption{\textbf{SHILD: aggregate ICE for Age.} Horizontal axis: Age, measured in years. The outer band is pointwise q05-q95, the inner band is q25-q75, and the line is the pointwise median across row-level ICE curves; these are descriptive curve quantiles, not CIs. Quantiles summarize the 30 reference-case prediction curves at each queried value; they are not confidence intervals. Queries may leave empirical support and are not causal effects or feasible changes for individuals.}
+\label{supp:shild_rich_ice_quantiles__age}
+\end{figure}
+\clearpage
+\begin{figure}[p]
+\centering
+\includegraphics[width=.98\linewidth,height=5.8in,keepaspectratio]{shild/figures/shild_rich_ice_quantiles__e1.pdf}
+\caption{\textbf{SHILD: aggregate ICE for Height (E1).} Horizontal axis: Height (E1), measured in centimeters. The outer band is pointwise q05-q95, the inner band is q25-q75, and the line is the pointwise median across row-level ICE curves; these are descriptive curve quantiles, not CIs. Quantiles summarize the 30 reference-case prediction curves at each queried value; they are not confidence intervals. Queries may leave empirical support and are not causal effects or feasible changes for individuals.}
+\label{supp:shild_rich_ice_quantiles__e1}
+\end{figure}
+\clearpage
+\begin{figure}[p]
+\centering
+\includegraphics[width=.98\linewidth,height=5.8in,keepaspectratio]{shild/figures/shild_rich_ice_quantiles__m6.pdf}
+\caption{\textbf{SHILD: aggregate ICE for Medicine and supplement spending (M6).} Horizontal axis: Medicine and supplement spending (M6), measured in raw survey amount; currency and recall period have not been verified against the 2012 item documentation. The outer band is pointwise q05-q95, the inner band is q25-q75, and the line is the pointwise median across row-level ICE curves; these are descriptive curve quantiles, not CIs. Quantiles summarize the 30 reference-case prediction curves at each queried value; they are not confidence intervals. Queries may leave empirical support and are not causal effects or feasible changes for individuals.}
+\label{supp:shild_rich_ice_quantiles__m6}
+\end{figure}
+\clearpage
+\begin{figure}[p]
+\centering
+\includegraphics[width=.98\linewidth,height=5.8in,keepaspectratio]{shild/figures/shild_rich_ice_quantiles__e2.pdf}
+\caption{\textbf{SHILD: aggregate ICE for Weight (E2).} Horizontal axis: Weight (E2), measured in kilograms. The outer band is pointwise q05-q95, the inner band is q25-q75, and the line is the pointwise median across row-level ICE curves; these are descriptive curve quantiles, not CIs. Quantiles summarize the 30 reference-case prediction curves at each queried value; they are not confidence intervals. Queries may leave empirical support and are not causal effects or feasible changes for individuals.}
+\label{supp:shild_rich_ice_quantiles__e2}
+\end{figure}
+\clearpage
+\begin{figure}[p]
+\centering
+\includegraphics[width=.98\linewidth,height=5.8in,keepaspectratio]{shild/figures/shild_rich_ale_2d.pdf}
+\caption{\textbf{SHILD second-order ALE interaction surface.} First-order effects are removed; irregular rectangles follow empirical cells, and gray cells have n < 20. Model-fitting uncertainty is not represented. Age is measured in years and height in centimeters; first-order effects are removed.}
+\label{supp:shild_rich_ale_2d}
+\end{figure}
+\clearpage
+\begin{figure}[p]
+\centering
+\includegraphics[width=.98\linewidth,height=5.8in,keepaspectratio]{shild/figures/shild_prediction_multiplicity.pdf}
+\caption{\textbf{SHILD raw-probability dispersion across log-loss-near-equivalent models.} Stepwise cumulative OOF summary from shareable fixed-width bin counts, with exact aggregate p50, p90, and p95 anchors. The steps do not imply continuous or row-level resolution; labeled ranges are not CIs. Range means the largest minus smallest accepted-model OOF prediction for the same row. The cumulative step curve summarizes fixed-width bins; separately labeled quantile anchors retain exact aggregate values. This is not a ROC curve or an exact row-level ECDF.}
+\label{supp:shild_prediction_multiplicity}
+\end{figure}
+\clearpage
+\begin{figure}[p]
+\centering
+\includegraphics[width=.98\linewidth,height=5.8in,keepaspectratio]{pisa/figures/pisa_g3_calibration.pdf}
+\caption{\textbf{PISA PV1 flexible out-of-fold calibration illustration.} The curve is a natural cubic regression spline with four degrees of freedom; the band is a pointwise 95\% school-within-country bootstrap percentile interval conditional on the supplied out-of-fold predictions. The band is not simultaneous and omits model-training and plausible-value uncertainty; all ten plausible-value summaries are reported in the accompanying tables. Scope: first reading plausible value in the unweighted 48,000-student equal-country sample across 32 observed countries, not design-weighted population inference.}
+\label{supp:pisa_g3_calibration}
+\end{figure}
+\clearpage
+\begin{figure}[p]
+\centering
+\includegraphics[width=.98\linewidth,height=5.8in,keepaspectratio]{pisa/figures/pisa_g7_subgroups__audit_gender.pdf}
+\caption{\textbf{PISA PV1 technical subgroup boundary diagnostic.} School-clustered 95\% percentile-bootstrap intervals are stratified within country and conditional on OOF predictions. The common RMSE axis spans 64-84 points; this is not a population subgroup claim. Scope: first reading plausible value in the unweighted 48,000-student equal-country sample across 32 observed countries, not design-weighted population inference.}
+\label{supp:pisa_g7_subgroups__audit_gender}
+\end{figure}
+\clearpage
+\begin{figure}[p]
+\centering
+\includegraphics[width=.98\linewidth,height=5.8in,keepaspectratio]{pisa/figures/pisa_g7_subgroups__audit_immigration.pdf}
+\caption{\textbf{PISA PV1 technical subgroup boundary diagnostic.} School-clustered 95\% percentile-bootstrap intervals are stratified within country and conditional on OOF predictions. The common RMSE axis spans 64-84 points; this is not a population subgroup claim. Scope: first reading plausible value in the unweighted 48,000-student equal-country sample across 32 observed countries, not design-weighted population inference.}
+\label{supp:pisa_g7_subgroups__audit_immigration}
+\end{figure}
+\clearpage
+\begin{figure}[p]
+\centering
+\includegraphics[width=.98\linewidth,height=5.8in,keepaspectratio]{pisa/figures/pisa_g7_subgroup_contrasts.pdf}
+\caption{\textbf{PISA PV1 technical subgroup RMSE contrasts.} Points are first-minus-second RMSE differences; Whiskers are school-clustered 95\% percentile-bootstrap intervals stratified within country and conditional on OOF predictions. This is a technical boundary diagnostic, not a population subgroup claim. Scope: first reading plausible value in the unweighted 48,000-student equal-country sample across 32 observed countries, not design-weighted population inference.}
+\label{supp:pisa_g7_subgroup_contrasts}
+\end{figure}
+\clearpage
+\begin{figure}[p]
+\centering
+\includegraphics[width=.98\linewidth,height=5.8in,keepaspectratio]{pisa/figures/pisa_rich_ale_1d__effort2.pdf}
+\caption{\textbf{PISA: ALE for Hypothetical test effort (EFFORT2).} Horizontal axis: Hypothetical test effort (EFFORT2), measured in reported effort-rating points, not actual effort (EFFORT1). Ribbon: pointwise 95\% country-stratified school-bootstrap percentile interval from complete learner refits; not simultaneous and conditional on PV1 and the fixed learner specification. A ribbon is omitted where fewer than 80\% of refits meet the interval-support threshold. The curve is centered accumulated local prediction differences from the full-analytic-sample focal XGBoost fit over supported empirical intervals. Cells below 20 reference observations are suppressed. Bands use 500 complete fixed-pipeline refits on common boundaries; they omit model-selection variation and are not simultaneous. Scope: first reading plausible value in the unweighted 48,000-student equal-country sample across 32 observed countries, not design-weighted population inference.}
+\label{supp:pisa_rich_ale_1d__effort2}
+\end{figure}
+\clearpage
+\begin{figure}[p]
+\centering
+\includegraphics[width=.98\linewidth,height=5.8in,keepaspectratio]{pisa/figures/pisa_rich_ale_1d__pared.pdf}
+\caption{\textbf{PISA: ALE for Highest parental education (PARED).} Horizontal axis: Highest parental education (PARED), measured in years of schooling. Ribbon: pointwise 95\% country-stratified school-bootstrap percentile interval from complete learner refits; not simultaneous and conditional on PV1 and the fixed learner specification. A ribbon is omitted where fewer than 80\% of refits meet the interval-support threshold. The curve is centered accumulated local prediction differences from the full-analytic-sample focal XGBoost fit over supported empirical intervals. Cells below 20 reference observations are suppressed. Bands use 500 complete fixed-pipeline refits on common boundaries; they omit model-selection variation and are not simultaneous. Scope: first reading plausible value in the unweighted 48,000-student equal-country sample across 32 observed countries, not design-weighted population inference.}
+\label{supp:pisa_rich_ale_1d__pared}
+\end{figure}
+\clearpage
+\begin{figure}[p]
+\centering
+\includegraphics[width=.98\linewidth,height=5.8in,keepaspectratio]{pisa/figures/pisa_rich_ale_1d__hisei.pdf}
+\caption{\textbf{PISA: ALE for Highest parental occupational status (HISEI).} Horizontal axis: Highest parental occupational status (HISEI), measured in occupational-status index points. Ribbon: pointwise 95\% country-stratified school-bootstrap percentile interval from complete learner refits; not simultaneous and conditional on PV1 and the fixed learner specification. A ribbon is omitted where fewer than 80\% of refits meet the interval-support threshold. The curve is centered accumulated local prediction differences from the full-analytic-sample focal XGBoost fit over supported empirical intervals. Cells below 20 reference observations are suppressed. Bands use 500 complete fixed-pipeline refits on common boundaries; they omit model-selection variation and are not simultaneous. Scope: first reading plausible value in the unweighted 48,000-student equal-country sample across 32 observed countries, not design-weighted population inference.}
+\label{supp:pisa_rich_ale_1d__hisei}
+\end{figure}
+\clearpage
+\begin{figure}[p]
+\centering
+\includegraphics[width=.98\linewidth,height=5.8in,keepaspectratio]{pisa/figures/pisa_rich_ale_1d__joyread.pdf}
+\caption{\textbf{PISA: ALE for Joy/like reading (JOYREAD).} Horizontal axis: Joy/like reading (JOYREAD), measured in standardized weighted-likelihood index units. Ribbon: pointwise 95\% country-stratified school-bootstrap percentile interval from complete learner refits; not simultaneous and conditional on PV1 and the fixed learner specification. A ribbon is omitted where fewer than 80\% of refits meet the interval-support threshold. The curve is centered accumulated local prediction differences from the full-analytic-sample focal XGBoost fit over supported empirical intervals. Cells below 20 reference observations are suppressed. Bands use 500 complete fixed-pipeline refits on common boundaries; they omit model-selection variation and are not simultaneous. Scope: first reading plausible value in the unweighted 48,000-student equal-country sample across 32 observed countries, not design-weighted population inference.}
+\label{supp:pisa_rich_ale_1d__joyread}
+\end{figure}
+\clearpage
+\begin{figure}[p]
+\centering
+\includegraphics[width=.98\linewidth,height=5.8in,keepaspectratio]{pisa/figures/pisa_rich_ice_quantiles__effort2.pdf}
+\par\smallskip
+\includegraphics[width=.98\linewidth]{pisa/figures/pisa_rich_ice_quantiles__legend.pdf}
+\caption{\textbf{PISA: aggregate ICE for Hypothetical test effort (EFFORT2).} Horizontal axis: Hypothetical test effort (EFFORT2), measured in reported effort-rating points, not actual effort (EFFORT1). The outer light-gray band is pointwise q05-q95, the inner dark-gray band is q25-q75, and the line is the pointwise median. All panels use the same labeled 350-650 reading-score scale; these are curve quantiles, not CIs. Quantiles summarize the 30 reference-case prediction curves at each queried value; they are not confidence intervals. Queries may leave empirical support and are not causal effects or feasible changes for individuals. Scope: first reading plausible value in the unweighted 48,000-student equal-country sample across 32 observed countries, not design-weighted population inference.}
+\label{supp:pisa_rich_ice_quantiles__effort2}
+\end{figure}
+\clearpage
+\begin{figure}[p]
+\centering
+\includegraphics[width=.98\linewidth,height=5.8in,keepaspectratio]{pisa/figures/pisa_rich_ice_quantiles__pared.pdf}
+\caption{\textbf{PISA: aggregate ICE for Highest parental education (PARED).} Horizontal axis: Highest parental education (PARED), measured in years of schooling. The outer light-gray band is pointwise q05-q95, the inner dark-gray band is q25-q75, and the line is the pointwise median. All panels use the same labeled 350-650 reading-score scale; these are curve quantiles, not CIs. Quantiles summarize the 30 reference-case prediction curves at each queried value; they are not confidence intervals. Queries may leave empirical support and are not causal effects or feasible changes for individuals. Scope: first reading plausible value in the unweighted 48,000-student equal-country sample across 32 observed countries, not design-weighted population inference.}
+\label{supp:pisa_rich_ice_quantiles__pared}
+\end{figure}
+\clearpage
+\begin{figure}[p]
+\centering
+\includegraphics[width=.98\linewidth,height=5.8in,keepaspectratio]{pisa/figures/pisa_rich_ice_quantiles__hisei.pdf}
+\caption{\textbf{PISA: aggregate ICE for Highest parental occupational status (HISEI).} Horizontal axis: Highest parental occupational status (HISEI), measured in occupational-status index points. The outer light-gray band is pointwise q05-q95, the inner dark-gray band is q25-q75, and the line is the pointwise median. All panels use the same labeled 350-650 reading-score scale; these are curve quantiles, not CIs. Quantiles summarize the 30 reference-case prediction curves at each queried value; they are not confidence intervals. Queries may leave empirical support and are not causal effects or feasible changes for individuals. Scope: first reading plausible value in the unweighted 48,000-student equal-country sample across 32 observed countries, not design-weighted population inference.}
+\label{supp:pisa_rich_ice_quantiles__hisei}
+\end{figure}
+\clearpage
+\begin{figure}[p]
+\centering
+\includegraphics[width=.98\linewidth,height=5.8in,keepaspectratio]{pisa/figures/pisa_rich_ice_quantiles__joyread.pdf}
+\caption{\textbf{PISA: aggregate ICE for Joy/like reading (JOYREAD).} Horizontal axis: Joy/like reading (JOYREAD), measured in standardized weighted-likelihood index units. The outer light-gray band is pointwise q05-q95, the inner dark-gray band is q25-q75, and the line is the pointwise median. All panels use the same labeled 350-650 reading-score scale; these are curve quantiles, not CIs. Quantiles summarize the 30 reference-case prediction curves at each queried value; they are not confidence intervals. Queries may leave empirical support and are not causal effects or feasible changes for individuals. Scope: first reading plausible value in the unweighted 48,000-student equal-country sample across 32 observed countries, not design-weighted population inference.}
+\label{supp:pisa_rich_ice_quantiles__joyread}
+\end{figure}
+\clearpage
+\begin{figure}[p]
+\centering
+\includegraphics[width=.98\linewidth,height=5.8in,keepaspectratio]{pisa/figures/pisa_rich_ale_2d.pdf}
+\caption{\textbf{PISA PV1 accumulated local interaction surface.} Irregular rectangles follow empirical cell boundaries; gray cells have fewer than 20 sampled observations. Model-fitting uncertainty is not represented. Scope: first reading plausible value in the unweighted 48,000-student equal-country sample across 32 observed countries, not design-weighted population inference. The variables are the standardized JOYREAD index and hypothetical test effort EFFORT2 (rating points), not actual effort EFFORT1. First-order effects are removed.}
+\label{supp:pisa_rich_ale_2d}
+\end{figure}
+\clearpage
+\begin{figure}[p]
+\centering
+\includegraphics[width=.98\linewidth,height=5.8in,keepaspectratio]{pisa/figures/pisa_prediction_multiplicity.pdf}
+\caption{\textbf{PISA PV1 prediction multiplicity across near-equivalent models.} Stepwise cumulative OOF summary from shareable fixed-width bin counts, with exact aggregate p50, p90, and p95 anchors. The steps do not imply continuous or row-level resolution; row-level ranges remain private. Scope: first reading plausible value in the unweighted 48,000-student equal-country sample across 32 observed countries, not design-weighted population inference. Range means the largest minus smallest accepted-model OOF prediction for the same row. The cumulative step curve summarizes fixed-width bins; separately labeled quantile anchors retain exact aggregate values. This is not a ROC curve or an exact row-level ECDF.}
+\label{supp:pisa_prediction_multiplicity}
+\end{figure}
+\clearpage
+\end{document}
