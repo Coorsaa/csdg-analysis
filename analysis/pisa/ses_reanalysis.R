@@ -144,15 +144,20 @@ make_learner = function(learner_id) {
     ridge_fixed = pipeline_learner(lrn("regr.glmnet", alpha = 0, lambda = 0.10), "pisa_ridge", scale_numeric = TRUE),
     ridge_cv = pipeline_learner(lrn("regr.cv_glmnet", alpha = 0, nfolds = 5L, s = "lambda.1se"),
       "pisa_ridge_cv", scale_numeric = TRUE),
+    # Median of the configurations chosen by nested tuning in analysis/pisa/tuning_check.R (PV1).
+    xgboost_tuned = pipeline_learner(lrn("regr.xgboost", nrounds = if (quick) 15L else 856L, max_depth = 3L,
+      eta = 0.0828, min_child_weight = 16.4, subsample = 0.773, colsample_bytree = 0.684, base_score = 500,
+      nthread = 1L), "pisa_xgboost_tuned"),
     featureless = { learner = lrn("regr.featureless"); learner$id = "pisa_featureless"; learner }
   )
 }
 learner_ids = c("xgboost", "random_forest", "ridge_fixed", "ridge_cv", "featureless")
 # Seeds of the primary analysis: resampling seed offsets by candidate position and PFI seed offsets.
 resample_seed = function(learner_id) seed + switch(learner_id, xgboost = 0L, ridge_fixed = 200000L,
-  random_forest = 300000L, featureless = 500000L, ridge_cv = 600000L)
+  random_forest = 300000L, featureless = 500000L, ridge_cv = 600000L, xgboost_tuned = 700000L)
 pfi_seed = function(learner_id, pv_index) seed + switch(learner_id,
-  xgboost = 1000000L, random_forest = 2400000L, ridge_fixed = 2500000L, ridge_cv = 2600000L) + pv_index * 10000L
+  xgboost = 1000000L, random_forest = 2400000L, ridge_fixed = 2500000L, ridge_cv = 2600000L,
+  xgboost_tuned = 2700000L) + pv_index * 10000L
 
 make_task = function(pv, features) {
   backend = dt[, c(features, "audit_country", "audit_school"), with = FALSE]
@@ -271,6 +276,14 @@ jobs = rbindlist(list(
   CJ(learner = setdiff(learner_ids, "featureless"), outcome_id = settings$pvs, design = names(designs), sorted = FALSE),
   CJ(learner = "featureless", outcome_id = settings$pvs, design = "full", sorted = FALSE)
 ))
+# Optional restriction, e.g. --learners=xgboost_tuned --designs=full (used for the tuned-XGBoost check).
+only_learners = arg_value("learners", NULL)
+only_designs = arg_value("designs", NULL)
+if (!is.null(only_learners)) {
+  requested = strsplit(only_learners, ",")[[1L]]
+  jobs = CJ(learner = requested, outcome_id = settings$pvs, design = if (is.null(only_designs)) names(designs) else
+    strsplit(only_designs, ",")[[1L]], sorted = FALSE)
+}
 # Longest jobs first.
 jobs[, cost := fifelse(learner == "random_forest", 3, fifelse(learner == "xgboost", 2, 1)) *
   fifelse(design == "full", 3, 1)]
@@ -292,7 +305,7 @@ tables = list(
   fold_rmse = collect("fold_rmse"), pooled_rmse = collect("pooled_rmse"), pfi_fold = collect("pfi_fold"),
   pfi_summary = collect("pfi_summary"), coefficients = collect("coefficients"), ale = collect("ale")
 )
-for (name in names(tables)) fwrite(tables[[name]], file.path(output_dir, paste0(name, ".csv")))
+for (name in names(tables)) if (nrow(tables[[name]])) fwrite(tables[[name]], file.path(output_dir, paste0(name, ".csv")))
 
 # Held-out predictions are row-level; they are kept only for the private identity check against the primary
 # run and never written to the public results.

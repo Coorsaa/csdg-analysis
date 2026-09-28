@@ -1,0 +1,11 @@
+stage,learner,outcome_id,design,pooled_rmse
+exploratory,xgboost_tuned,PV1READ,full,67.5409968907948
+exploratory,xgboost_tuned,PV2READ,full,67.9073228712335
+exploratory,xgboost_tuned,PV3READ,full,67.4627692180097
+exploratory,xgboost_tuned,PV4READ,full,67.6520563687873
+exploratory,xgboost_tuned,PV5READ,full,67.3995835879902
+exploratory,xgboost_tuned,PV6READ,full,67.3729339376311
+exploratory,xgboost_tuned,PV7READ,full,67.6085925380779
+exploratory,xgboost_tuned,PV8READ,full,67.6999434442061
+exploratory,xgboost_tuned,PV9READ,full,67.4194310440616
+exploratory,xgboost_tuned,PV10READ,full,67.6397873113378
