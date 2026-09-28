@@ -1,0 +1,3 @@
+scale,n_cases,share_at_least_19_of_20,median_modal_count,share_median_r2_at_least_80
+response,300,0.903333333333333,20,0.15
+link,300,0.933333333333333,20,1
