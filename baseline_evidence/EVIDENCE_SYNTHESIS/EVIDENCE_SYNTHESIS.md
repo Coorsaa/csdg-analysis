@@ -1,12 +1,12 @@
 # Systematic local-fidelity and cross-study evidence synthesis
 
-- Synthesis ID: `major-review-final-20260908g_evidence_synthesis`
-- Frozen SHILD parent: `major-review-final-20260908g_shild`
-- Frozen PISA parent: `major-review-final-20260908g_pisa2018_reading`
-- Parent-derived release state: `NOT_ELIGIBLE`
-- SHILD parent: structural `PASS`, release `NOT_ELIGIBLE`
-- PISA parent: structural `PASS`, release `NOT_ELIGIBLE`
-- Review-delivery eligibility blocker: Parent release eligibility not satisfied: SHILD=NOT_ELIGIBLE (manuscript readiness is FALSE | analyst verification not signed); PISA=NOT_ELIGIBLE (manuscript readiness is FALSE | analyst verification not signed)
+> Run labels are shortened from the archived run identifiers of the primary runs (same dates and suffixes).
+
+- Synthesis ID: `primary-20260908g_evidence_synthesis`
+- Frozen SHILD parent: `primary-20260908g_shild`
+- Frozen PISA parent: `primary-20260908g_pisa2018_reading`
+- SHILD parent: structural output checks `PASS`
+- PISA parent: structural output checks `PASS`
 - Predictive models retrained: `FALSE`
 - Canonical results overwritten: `FALSE`
 - Prespecified SHILD cases: `300`

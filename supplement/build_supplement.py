@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Export an explicitly bounded supplement from the retained presentation archive."""
+"""Export, check, and verify the computational supplement components from the archived black-and-white figure set."""
 
 import argparse
 import csv
@@ -200,7 +200,11 @@ def refresh_checksums():
         for suffix in ("pdf", "png"):
             if sha256(ROOT / row[f"{suffix}_path"]) != row[f"{suffix}_sha256"]:
                 raise ValueError("Figure hashes must be reconciled in the manifest before refreshing checksums.")
-    payloads = sorted(path for path in ROOT.rglob("*") if path.is_file() and path.name != "SHA256SUMS")
+    payloads = sorted(
+        path for path in ROOT.rglob("*")
+        if path.is_file() and path.name != "SHA256SUMS"
+        and not any(part.startswith(".") or part == "__pycache__" for part in path.relative_to(ROOT).parts)
+    )
     (ROOT / "SHA256SUMS").write_text(
         "".join(f"{sha256(path)}  {path.relative_to(ROOT)}\n" for path in payloads), encoding="utf-8"
     )
@@ -232,7 +236,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--archive", type=Path, help="Local retained paper_bw archive; required only for release assembly")
     parser.add_argument("--verify", action="store_true", help="Verify the distributed public supplement without private inputs")
-    parser.add_argument("--refresh-checksums", action="store_true", help="Refresh delivery checksums after a verified public re-render")
+    parser.add_argument("--refresh-checksums", action="store_true", help="Refresh the checksums after a verified public re-render")
     arguments = parser.parse_args()
     if arguments.verify:
         verify()

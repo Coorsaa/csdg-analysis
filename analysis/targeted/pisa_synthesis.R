@@ -49,12 +49,12 @@ pisa_content_synthesis = function(root = ".", additional_aggregate = NULL) {
   source_path = if (is.null(additional_aggregate)) saved else additional_aggregate
   if (!file.exists(source_path)) stop("Supply the frozen model-by-PV PFI aggregate; do not refit predictors.")
   values = data.table::fread(source_path)
-  canonical = data.table::fread(file.path(
-    root, "baseline_evidence/STUDY_RESULTS/PISA/tables/pisa_all_pv_pfi_summary.csv"
-  ))
-  agreement = data.table::fread(file.path(
-    root, "baseline_evidence/STUDY_RESULTS/PISA/tables/pisa_model_importance_agreement.csv"
-  ))
+  canonical_files = c(
+    "baseline_evidence/STUDY_RESULTS/PISA/tables/pisa_all_pv_pfi_summary.csv",
+    "baseline_evidence/STUDY_RESULTS/PISA/tables/pisa_model_importance_agreement.csv"
+  )
+  canonical = data.table::fread(file.path(root, canonical_files[[1L]]))
+  agreement = data.table::fread(file.path(root, canonical_files[[2L]]))
   verified_agreement = verify_pisa_aggregate(values, canonical, agreement)
   if (normalizePath(source_path) != normalizePath(saved, mustWork = FALSE)) {
     if (file.exists(saved)) {
@@ -133,7 +133,12 @@ pisa_content_synthesis = function(root = ".", additional_aggregate = NULL) {
     run_id = "targeted_pisa_aggregate_20260910", design_status = "retrospective_exploratory_synthesis",
     source = "analysis/targeted/resources/pisa_model_pfi_all_pv.csv",
     source_sha256 = digest::digest(file = saved, algo = "sha256"),
-    canonical_basis = "CSDG_final_followup_review_20260910.zip",
+    canonical_basis = list(
+      description = "Archived study outputs of the primary PISA run",
+      files = canonical_files,
+      sha256 = vapply(file.path(root, canonical_files), digest::digest, character(1L),
+        file = TRUE, algo = "sha256", USE.NAMES = FALSE)
+    ),
     identity_checks = c("All 420 selected-model numeric and descriptive rows match canonical evidence",
       "Model-class agreement at all three tolerances exactly reconciles with canonical aggregate evidence"),
     outcome_definition = "Ten separately analyzed reading proficiency plausible values",

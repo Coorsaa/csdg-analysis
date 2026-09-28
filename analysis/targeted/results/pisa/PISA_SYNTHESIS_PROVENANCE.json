@@ -3,7 +3,11 @@
   "design_status": "retrospective_exploratory_synthesis",
   "source": "analysis/targeted/resources/pisa_model_pfi_all_pv.csv",
   "source_sha256": "ea5826dca250c4914808872768c25d9f893171d078fd1e93c25b69d97705534e",
-  "canonical_basis": "CSDG_final_followup_review_20260910.zip",
+  "canonical_basis": {
+    "description": "Archived study outputs of the primary PISA run",
+    "files": ["baseline_evidence/STUDY_RESULTS/PISA/tables/pisa_all_pv_pfi_summary.csv", "baseline_evidence/STUDY_RESULTS/PISA/tables/pisa_model_importance_agreement.csv"],
+    "sha256": ["3e3fc315b05ccd3bbfd70b5bc31e411f30cae7712dc5a5d9ceffd413db604295", "20d08dfd7c8e7d8c8ff61e3d685fa718541629a2ca17f916d589d2d4b90eeead"]
+  },
   "identity_checks": ["All 420 selected-model numeric and descriptive rows match canonical evidence", "Model-class agreement at all three tolerances exactly reconciles with canonical aggregate evidence"],
   "outcome_definition": "Ten separately analyzed reading proficiency plausible values",
   "variation": {

@@ -13,8 +13,8 @@ by section in an interactive R session.
 - `evidence_synthesis.R` performs the prespecified 300-case systematic SHILD local-fidelity audit, separates
   perturbation and surrogate-partition variation on a complete crossed secondary seed grid, and derives the
   cross-study claim-boundary summaries from verified SHILD and PISA study pairs.
-- `build_delivery.R` assembles manifest-checked sanitized outputs, analysis code, figure metadata, QA records, a ZIP
-  archive, and its SHA-256 checksum.
+- `build_delivery.R` assembles manifest-checked sanitized outputs, analysis code, figure metadata, verification
+  records, a ZIP archive, and its SHA-256 checksum.
 - `shared/` contains only reusable workflow, diagnostic, output, and study-support functions.
 - `protocol.yml` records all publication settings, estimands, thresholds, and interpretation boundaries.
 - `preprocessing_review.md` records the responsible co-authors' group-level verification dated 2026-09-09 and the
@@ -57,10 +57,10 @@ When the parent variables are omitted, the defaults pinned in `protocol.yml` are
 ## Install and validate
 
 The analyses use the companion package `mlr3autoiml` in the version recorded for each step (see the repository
-README). Install a tagged version from GitHub, for example:
+README). The study scripts and `analysis/preflight.R` require the tagged version 0.1.1:
 
 ```sh
-Rscript -e 'remotes::install_github("coorsaa/mlr3autoiml@v0.1.4")'
+Rscript -e 'remotes::install_github("coorsaa/mlr3autoiml@v0.1.1")'
 Rscript analysis/preflight.R
 ```
 
@@ -90,9 +90,9 @@ CSDG_QUICK=0 CSDG_ANALYSIS_SEED=20260714 CSDG_RUN_ID=publication-current \
 The complete workflow runs the preflight, both studies, the evidence synthesis, and the delivery audit. It writes
 the final private/upload pairs below `paper_artifacts/current/` and creates the shareable archive at
 `paper_artifacts/current/delivery/CSDG_publication_results_upload.zip`. It stops before computation if
-`paper_artifacts/current/` already exists, so a completed result is never overwritten. The delivery records
+`paper_artifacts/current/` already exists, so a completed result is never overwritten. The archive records
 `ELIGIBLE` only after all release gates, including the recorded preprocessing verification and structural output
-audit, pass; otherwise it is labeled as a review delivery with the exact blockers.
+audit, pass; otherwise it lists the unmet conditions.
 
 The study scripts can also be run separately when an individual analysis needs inspection:
 
@@ -156,18 +156,19 @@ study-specific graphics. Every component is saved as a separate PDF and PNG file
 belong in LaTeX. Figure metadata are written to each run's `upload/provenance/` folder. The repository README maps the
 figures of the article to their generators.
 
-## Review and delivery
+## Assembling a results archive
 
 The private result contains fitted objects and restricted diagnostics. The corresponding `_upload` directory is the
-sanitized shareable result. Do not assemble a delivery from selected screenshots or from a private directory.
+sanitized shareable result. Do not assemble an archive from selected screenshots or from a private directory.
 
-Before delivery:
+Before assembling an archive:
 
 1. verify each private manifest and sanitized upload manifest;
 2. inspect all warnings, source tables, plots, and interpretation boundaries;
 3. retain the dated responsible-co-author verification and run linkage in `preprocessing_review.md`;
 4. run the output audit and package tests; and
-5. build the delivery from the complete sanitized directories.
+5. build the archive from the complete sanitized directories.
 
-The delivery builder verifies its result after construction and writes a ZIP archive plus a SHA-256 sidecar. Upload
-the complete verified archive so that tables, figures, figure metadata, code, provenance, and QA remain together.
+The archive builder verifies its result after construction and writes a ZIP archive plus a SHA-256 sidecar. Share
+the complete verified archive so that tables, figures, figure metadata, code, provenance, and verification records
+remain together.

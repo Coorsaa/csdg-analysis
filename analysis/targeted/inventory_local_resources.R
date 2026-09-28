@@ -38,7 +38,7 @@ inventory_local_resources = function(workspace, project_root = getwd()) {
   dir.create(resources, recursive = TRUE, showWarnings = FALSE)
   stopifnot(file.copy(pfi_path, file.path(resources, "shild_selected_model_pfi_summary.csv"), overwrite = TRUE))
   jsonlite::write_json(list(
-    date = "2026-09-10", scientific_basis = "CSDG_final_followup_review_20260910.zip",
+    date = "2026-09-10", scientific_basis = "Archived study outputs of the primary SHILD run (paper_artifacts/current/)",
     scope = "Authorized retained author caches; no alternate scientific baseline",
     frozen_result = list(path = "paper_artifacts/current/shild/private/objects/shild_csdg_result_private.rds",
       sha256 = verified$model_sha256, n_outer_models = 10L, analytic_rows = 16971L, predictors = 27L,

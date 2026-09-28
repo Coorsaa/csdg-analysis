@@ -5,20 +5,21 @@
 \setmainfont{Times New Roman}
 \setsansfont{Arial}
 \usepackage{graphicx,caption,hyperref,xurl}
-\hypersetup{hidelinks}
+\hypersetup{hidelinks,pdftitle={Computational Supplement},pdfsubject={From Interpretation Claims to Diagnostic Evidence: A Practical Framework for Interpretable Machine Learning in Psychological Research}}
 \captionsetup{font=small,labelfont=bf,justification=raggedright,singlelinecheck=false}
-\renewcommand{\thefigure}{S\arabic{figure}}
+\renewcommand{\thefigure}{C\arabic{figure}}
 \setlength{\parindent}{0pt}
 \setlength{\emergencystretch}{2em}
 \begin{document}
-\section*{Selected computational supplement}
-\textbf{Claims Before Explanations: A Claim-Scoped Evidence Framework for Interpretable Machine Learning in Psychological Research}\par
+\special{pdf:trailerid [<8d9d786219d75f5eb5d1fc4f90fe2eba> <8d9d786219d75f5eb5d1fc4f90fe2eba>]}
+\section*{Computational Supplement}
+\textbf{From Interpretation Claims to Diagnostic Evidence: A Practical Framework for Interpretable Machine Learning in Psychological Research}\par
 \medskip
-This supplement assembles 30 existing monochrome components as 28 captioned diagnostic figures. Two shared ICE legends are embedded with their first corresponding plot. Numerical estimates and graphical data are unchanged; decimal labels follow APA conventions, and captions make the variable, scale, and variation target explicit.\par
+This supplement contains the diagnostic figures of the SHILD and PISA applications on calibration, subgroup comparisons, one- and two-dimensional ALE, aggregate ICE, and prediction multiplicity. It assembles 30 monochrome components as 28 captioned figures, numbered C1--C28 to distinguish them from the figures of the methods supplement (S1, S2, ...). Two shared ICE legends are shown with their first corresponding plot. Decimal labels follow APA conventions, and captions state the variable, scale, and variation target.\par
 \medskip
 SHILD describes the unweighted two-extremes life-satisfaction analytic sample; PISA describes the unweighted equal-country reading sample. These fitted-model diagnostics do not establish causal effects, transport, or adequacy for individual decisions. Pointwise bootstrap intervals, across-case ICE quantiles, and descriptive model ranges answer different questions.\par
 \medskip
-\texttt{PUBLICATION\_INDEX.csv} maps every component to its figure, page, original and current identity, caption, generator, and public source tables. The complete uncertainty-object descriptions remain in \path{ALE_OBJECT_UNCERTAINTY_METADATA.csv}.
+The figure components, their aggregate source tables, and this document are in the folder \texttt{supplement/} of the analysis repository (\url{https://github.com/coorsaa/csdg-analysis}). \texttt{PUBLICATION\_INDEX.csv} maps every component to its figure, page, caption, generator, public source tables, and checksums; \path{ALE_OBJECT_UNCERTAINTY_METADATA.csv} describes the uncertainty objects in full.
 \clearpage
 \begin{figure}[p]
 \centering
@@ -30,14 +31,14 @@ SHILD describes the unweighted two-extremes life-satisfaction analytic sample; P
 \begin{figure}[p]
 \centering
 \includegraphics[width=.98\linewidth,height=5.8in,keepaspectratio]{shild/figures/shild_g7_subgroups__audit_age_group.pdf}
-\caption{\textbf{SHILD focal-model subgroup ROC AUC audit.} Row-bootstrap 95\% intervals conditional on out-of-fold predictions; direct labels show AUC and n.  The full .5–1.0 AUC scale avoids magnifying small absolute gaps.}
+\caption{\textbf{SHILD XGBoost subgroup ROC AUC comparison, by age group.} Row-bootstrap 95\% intervals conditional on out-of-fold predictions; direct labels show AUC and n.  The full .5–1.0 AUC scale avoids magnifying small absolute gaps.}
 \label{supp:shild_g7_subgroups__audit_age_group}
 \end{figure}
 \clearpage
 \begin{figure}[p]
 \centering
 \includegraphics[width=.98\linewidth,height=5.8in,keepaspectratio]{shild/figures/shild_g7_subgroups__audit_gender.pdf}
-\caption{\textbf{SHILD focal-model subgroup ROC AUC audit.} Row-bootstrap 95\% intervals conditional on out-of-fold predictions; direct labels show AUC and n.  The full .5–1.0 AUC scale avoids magnifying small absolute gaps.}
+\caption{\textbf{SHILD XGBoost subgroup ROC AUC comparison, by gender.} Row-bootstrap 95\% intervals conditional on out-of-fold predictions; direct labels show AUC and n.  The full .5–1.0 AUC scale avoids magnifying small absolute gaps.}
 \label{supp:shild_g7_subgroups__audit_gender}
 \end{figure}
 \clearpage
@@ -51,28 +52,28 @@ SHILD describes the unweighted two-extremes life-satisfaction analytic sample; P
 \begin{figure}[p]
 \centering
 \includegraphics[width=.98\linewidth,height=5.8in,keepaspectratio]{shild/figures/shild_rich_ale_1d__age.pdf}
-\caption{\textbf{SHILD: ALE for Age.} Horizontal axis: Age, measured in years. Ribbon: pointwise 95\% respondent-bootstrap percentile interval from complete learner refits; not a simultaneous band and conditional on the fixed learner specification. The curve is centered accumulated local prediction differences from the full-analytic-sample focal XGBoost fit over supported empirical intervals. Cells below 20 reference observations are suppressed. Bands use 500 complete fixed-pipeline refits on common boundaries; they omit model-selection variation and are not simultaneous.}
+\caption{\textbf{SHILD: ALE for Age.} Horizontal axis: Age, measured in years. Ribbon: pointwise 95\% respondent-bootstrap percentile interval from complete learner refits; not a simultaneous band and conditional on the fixed learner specification. The curve is centered accumulated local prediction differences from the XGBoost fit to the full analytic sample over supported empirical intervals. Cells below 20 reference observations are suppressed. Bands use 500 complete fixed-pipeline refits on common boundaries; they omit model-selection variation and are not simultaneous.}
 \label{supp:shild_rich_ale_1d__age}
 \end{figure}
 \clearpage
 \begin{figure}[p]
 \centering
 \includegraphics[width=.98\linewidth,height=5.8in,keepaspectratio]{shild/figures/shild_rich_ale_1d__e1.pdf}
-\caption{\textbf{SHILD: ALE for Height (E1).} Horizontal axis: Height (E1), measured in centimeters. Ribbon: pointwise 95\% respondent-bootstrap percentile interval from complete learner refits; not a simultaneous band and conditional on the fixed learner specification. The curve is centered accumulated local prediction differences from the full-analytic-sample focal XGBoost fit over supported empirical intervals. Cells below 20 reference observations are suppressed. Bands use 500 complete fixed-pipeline refits on common boundaries; they omit model-selection variation and are not simultaneous.}
+\caption{\textbf{SHILD: ALE for Height (E1).} Horizontal axis: Height (E1), measured in centimeters. Ribbon: pointwise 95\% respondent-bootstrap percentile interval from complete learner refits; not a simultaneous band and conditional on the fixed learner specification. The curve is centered accumulated local prediction differences from the XGBoost fit to the full analytic sample over supported empirical intervals. Cells below 20 reference observations are suppressed. Bands use 500 complete fixed-pipeline refits on common boundaries; they omit model-selection variation and are not simultaneous.}
 \label{supp:shild_rich_ale_1d__e1}
 \end{figure}
 \clearpage
 \begin{figure}[p]
 \centering
 \includegraphics[width=.98\linewidth,height=5.8in,keepaspectratio]{shild/figures/shild_rich_ale_1d__m6.pdf}
-\caption{\textbf{SHILD: ALE for Medicine and supplement spending (M6).} Horizontal axis: Medicine and supplement spending (M6), measured in raw survey amount; currency and recall period have not been verified against the 2012 item documentation. Ribbon: pointwise 95\% respondent-bootstrap percentile interval from complete learner refits; not a simultaneous band and conditional on the fixed learner specification. The curve is centered accumulated local prediction differences from the full-analytic-sample focal XGBoost fit over supported empirical intervals. Cells below 20 reference observations are suppressed. Bands use 500 complete fixed-pipeline refits on common boundaries; they omit model-selection variation and are not simultaneous.}
+\caption{\textbf{SHILD: ALE for Medicine and supplement spending (M6).} Horizontal axis: Medicine and supplement spending (M6), measured in raw survey amount; currency and recall period have not been verified against the 2012 item documentation. Ribbon: pointwise 95\% respondent-bootstrap percentile interval from complete learner refits; not a simultaneous band and conditional on the fixed learner specification. The curve is centered accumulated local prediction differences from the XGBoost fit to the full analytic sample over supported empirical intervals. Cells below 20 reference observations are suppressed. Bands use 500 complete fixed-pipeline refits on common boundaries; they omit model-selection variation and are not simultaneous.}
 \label{supp:shild_rich_ale_1d__m6}
 \end{figure}
 \clearpage
 \begin{figure}[p]
 \centering
 \includegraphics[width=.98\linewidth,height=5.8in,keepaspectratio]{shild/figures/shild_rich_ale_1d__e2.pdf}
-\caption{\textbf{SHILD: ALE for Weight (E2).} Horizontal axis: Weight (E2), measured in kilograms. Ribbon: pointwise 95\% respondent-bootstrap percentile interval from complete learner refits; not a simultaneous band and conditional on the fixed learner specification. The curve is centered accumulated local prediction differences from the full-analytic-sample focal XGBoost fit over supported empirical intervals. Cells below 20 reference observations are suppressed. Bands use 500 complete fixed-pipeline refits on common boundaries; they omit model-selection variation and are not simultaneous.}
+\caption{\textbf{SHILD: ALE for Weight (E2).} Horizontal axis: Weight (E2), measured in kilograms. Ribbon: pointwise 95\% respondent-bootstrap percentile interval from complete learner refits; not a simultaneous band and conditional on the fixed learner specification. The curve is centered accumulated local prediction differences from the XGBoost fit to the full analytic sample over supported empirical intervals. Cells below 20 reference observations are suppressed. Bands use 500 complete fixed-pipeline refits on common boundaries; they omit model-selection variation and are not simultaneous.}
 \label{supp:shild_rich_ale_1d__e2}
 \end{figure}
 \clearpage
@@ -130,49 +131,49 @@ SHILD describes the unweighted two-extremes life-satisfaction analytic sample; P
 \begin{figure}[p]
 \centering
 \includegraphics[width=.98\linewidth,height=5.8in,keepaspectratio]{pisa/figures/pisa_g7_subgroups__audit_gender.pdf}
-\caption{\textbf{PISA PV1 technical subgroup boundary diagnostic.} School-clustered 95\% percentile-bootstrap intervals are stratified within country and conditional on OOF predictions. The common RMSE axis spans 64-84 points; this is not a population subgroup claim. Scope: first reading plausible value in the unweighted 48,000-student equal-country sample across 32 observed countries, not design-weighted population inference.}
+\caption{\textbf{PISA PV1 technical subgroup boundary diagnostic, by gender.} School-clustered 95\% percentile-bootstrap intervals are stratified within country and conditional on OOF predictions. The common RMSE axis spans 64-84 points; this is not a population subgroup claim. Scope: first reading plausible value in the unweighted 48,000-student equal-country sample across 32 observed countries, not design-weighted population inference.}
 \label{supp:pisa_g7_subgroups__audit_gender}
 \end{figure}
 \clearpage
 \begin{figure}[p]
 \centering
 \includegraphics[width=.98\linewidth,height=5.8in,keepaspectratio]{pisa/figures/pisa_g7_subgroups__audit_immigration.pdf}
-\caption{\textbf{PISA PV1 technical subgroup boundary diagnostic.} School-clustered 95\% percentile-bootstrap intervals are stratified within country and conditional on OOF predictions. The common RMSE axis spans 64-84 points; this is not a population subgroup claim. Scope: first reading plausible value in the unweighted 48,000-student equal-country sample across 32 observed countries, not design-weighted population inference.}
+\caption{\textbf{PISA PV1 technical subgroup boundary diagnostic, by immigration background.} School-clustered 95\% percentile-bootstrap intervals are stratified within country and conditional on OOF predictions. The common RMSE axis spans 64-84 points; this is not a population subgroup claim. Scope: first reading plausible value in the unweighted 48,000-student equal-country sample across 32 observed countries, not design-weighted population inference.}
 \label{supp:pisa_g7_subgroups__audit_immigration}
 \end{figure}
 \clearpage
 \begin{figure}[p]
 \centering
 \includegraphics[width=.98\linewidth,height=5.8in,keepaspectratio]{pisa/figures/pisa_g7_subgroup_contrasts.pdf}
-\caption{\textbf{PISA PV1 technical subgroup RMSE contrasts.} Points are first-minus-second RMSE differences; Whiskers are school-clustered 95\% percentile-bootstrap intervals stratified within country and conditional on OOF predictions. This is a technical boundary diagnostic, not a population subgroup claim. Scope: first reading plausible value in the unweighted 48,000-student equal-country sample across 32 observed countries, not design-weighted population inference.}
+\caption{\textbf{PISA PV1 technical subgroup RMSE contrasts.} Points are first-minus-second RMSE differences; whiskers are school-clustered 95\% percentile-bootstrap intervals stratified within country and conditional on OOF predictions. This is a technical boundary diagnostic, not a population subgroup claim. Scope: first reading plausible value in the unweighted 48,000-student equal-country sample across 32 observed countries, not design-weighted population inference.}
 \label{supp:pisa_g7_subgroup_contrasts}
 \end{figure}
 \clearpage
 \begin{figure}[p]
 \centering
 \includegraphics[width=.98\linewidth,height=5.8in,keepaspectratio]{pisa/figures/pisa_rich_ale_1d__effort2.pdf}
-\caption{\textbf{PISA: ALE for Hypothetical test effort (EFFORT2).} Horizontal axis: Hypothetical test effort (EFFORT2), measured in reported effort-rating points, not actual effort (EFFORT1). Ribbon: pointwise 95\% country-stratified school-bootstrap percentile interval from complete learner refits; not simultaneous and conditional on PV1 and the fixed learner specification. A ribbon is omitted where fewer than 80\% of refits meet the interval-support threshold. The curve is centered accumulated local prediction differences from the full-analytic-sample focal XGBoost fit over supported empirical intervals. Cells below 20 reference observations are suppressed. Bands use 500 complete fixed-pipeline refits on common boundaries; they omit model-selection variation and are not simultaneous. Scope: first reading plausible value in the unweighted 48,000-student equal-country sample across 32 observed countries, not design-weighted population inference.}
+\caption{\textbf{PISA: ALE for Hypothetical test effort (EFFORT2).} Horizontal axis: Hypothetical test effort (EFFORT2), measured in reported effort-rating points, not actual effort (EFFORT1). Ribbon: pointwise 95\% country-stratified school-bootstrap percentile interval from complete learner refits; not simultaneous and conditional on PV1 and the fixed learner specification. A ribbon is omitted where fewer than 80\% of refits meet the interval-support threshold. The curve is centered accumulated local prediction differences from the XGBoost fit to the full analytic sample over supported empirical intervals. Cells below 20 reference observations are suppressed. Bands use 500 complete fixed-pipeline refits on common boundaries; they omit model-selection variation and are not simultaneous. Scope: first reading plausible value in the unweighted 48,000-student equal-country sample across 32 observed countries, not design-weighted population inference.}
 \label{supp:pisa_rich_ale_1d__effort2}
 \end{figure}
 \clearpage
 \begin{figure}[p]
 \centering
 \includegraphics[width=.98\linewidth,height=5.8in,keepaspectratio]{pisa/figures/pisa_rich_ale_1d__pared.pdf}
-\caption{\textbf{PISA: ALE for Highest parental education (PARED).} Horizontal axis: Highest parental education (PARED), measured in years of schooling. Ribbon: pointwise 95\% country-stratified school-bootstrap percentile interval from complete learner refits; not simultaneous and conditional on PV1 and the fixed learner specification. A ribbon is omitted where fewer than 80\% of refits meet the interval-support threshold. The curve is centered accumulated local prediction differences from the full-analytic-sample focal XGBoost fit over supported empirical intervals. Cells below 20 reference observations are suppressed. Bands use 500 complete fixed-pipeline refits on common boundaries; they omit model-selection variation and are not simultaneous. Scope: first reading plausible value in the unweighted 48,000-student equal-country sample across 32 observed countries, not design-weighted population inference.}
+\caption{\textbf{PISA: ALE for Highest parental education (PARED).} Horizontal axis: Highest parental education (PARED), measured in years of schooling. Ribbon: pointwise 95\% country-stratified school-bootstrap percentile interval from complete learner refits; not simultaneous and conditional on PV1 and the fixed learner specification. A ribbon is omitted where fewer than 80\% of refits meet the interval-support threshold. The curve is centered accumulated local prediction differences from the XGBoost fit to the full analytic sample over supported empirical intervals. Cells below 20 reference observations are suppressed. Bands use 500 complete fixed-pipeline refits on common boundaries; they omit model-selection variation and are not simultaneous. Scope: first reading plausible value in the unweighted 48,000-student equal-country sample across 32 observed countries, not design-weighted population inference.}
 \label{supp:pisa_rich_ale_1d__pared}
 \end{figure}
 \clearpage
 \begin{figure}[p]
 \centering
 \includegraphics[width=.98\linewidth,height=5.8in,keepaspectratio]{pisa/figures/pisa_rich_ale_1d__hisei.pdf}
-\caption{\textbf{PISA: ALE for Highest parental occupational status (HISEI).} Horizontal axis: Highest parental occupational status (HISEI), measured in occupational-status index points. Ribbon: pointwise 95\% country-stratified school-bootstrap percentile interval from complete learner refits; not simultaneous and conditional on PV1 and the fixed learner specification. A ribbon is omitted where fewer than 80\% of refits meet the interval-support threshold. The curve is centered accumulated local prediction differences from the full-analytic-sample focal XGBoost fit over supported empirical intervals. Cells below 20 reference observations are suppressed. Bands use 500 complete fixed-pipeline refits on common boundaries; they omit model-selection variation and are not simultaneous. Scope: first reading plausible value in the unweighted 48,000-student equal-country sample across 32 observed countries, not design-weighted population inference.}
+\caption{\textbf{PISA: ALE for Highest parental occupational status (HISEI).} Horizontal axis: Highest parental occupational status (HISEI), measured in occupational-status index points. Ribbon: pointwise 95\% country-stratified school-bootstrap percentile interval from complete learner refits; not simultaneous and conditional on PV1 and the fixed learner specification. A ribbon is omitted where fewer than 80\% of refits meet the interval-support threshold. The curve is centered accumulated local prediction differences from the XGBoost fit to the full analytic sample over supported empirical intervals. Cells below 20 reference observations are suppressed. Bands use 500 complete fixed-pipeline refits on common boundaries; they omit model-selection variation and are not simultaneous. Scope: first reading plausible value in the unweighted 48,000-student equal-country sample across 32 observed countries, not design-weighted population inference.}
 \label{supp:pisa_rich_ale_1d__hisei}
 \end{figure}
 \clearpage
 \begin{figure}[p]
 \centering
 \includegraphics[width=.98\linewidth,height=5.8in,keepaspectratio]{pisa/figures/pisa_rich_ale_1d__joyread.pdf}
-\caption{\textbf{PISA: ALE for Joy/like reading (JOYREAD).} Horizontal axis: Joy/like reading (JOYREAD), measured in standardized weighted-likelihood index units. Ribbon: pointwise 95\% country-stratified school-bootstrap percentile interval from complete learner refits; not simultaneous and conditional on PV1 and the fixed learner specification. A ribbon is omitted where fewer than 80\% of refits meet the interval-support threshold. The curve is centered accumulated local prediction differences from the full-analytic-sample focal XGBoost fit over supported empirical intervals. Cells below 20 reference observations are suppressed. Bands use 500 complete fixed-pipeline refits on common boundaries; they omit model-selection variation and are not simultaneous. Scope: first reading plausible value in the unweighted 48,000-student equal-country sample across 32 observed countries, not design-weighted population inference.}
+\caption{\textbf{PISA: ALE for Joy/like reading (JOYREAD).} Horizontal axis: Joy/like reading (JOYREAD), measured in standardized weighted-likelihood index units. Ribbon: pointwise 95\% country-stratified school-bootstrap percentile interval from complete learner refits; not simultaneous and conditional on PV1 and the fixed learner specification. A ribbon is omitted where fewer than 80\% of refits meet the interval-support threshold. The curve is centered accumulated local prediction differences from the XGBoost fit to the full analytic sample over supported empirical intervals. Cells below 20 reference observations are suppressed. Bands use 500 complete fixed-pipeline refits on common boundaries; they omit model-selection variation and are not simultaneous. Scope: first reading plausible value in the unweighted 48,000-student equal-country sample across 32 observed countries, not design-weighted population inference.}
 \label{supp:pisa_rich_ale_1d__joyread}
 \end{figure}
 \clearpage

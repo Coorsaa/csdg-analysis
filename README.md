@@ -1,77 +1,201 @@
 # CSDG analyses
 
-Analyses, public aggregate results, figure sources, and the computational supplement for the article
+Analysis code, public aggregate results, figure sources, and the computational supplement of the article
 *From Interpretation Claims to Diagnostic Evidence: A Practical Framework for Interpretable Machine Learning in
-Psychological Research*. The workflow itself is implemented in the R package
+Psychological Research*. The repository reproduces the SHILD and PISA applications, the controlled examples, and the
+simulation of the decision criteria. The workflow itself is implemented in the R package
 [`mlr3autoiml`](https://github.com/coorsaa/mlr3autoiml).
 
-## Contents
+All tables and figures in the repository are aggregates. Data files, fitted models, predictions, and case-level
+results are not included (see [Data](#data)).
 
-| Folder | Content |
+## Repository layout
+
+| Path | Content |
 |---|---|
-| `analysis/shild/`, `analysis/pisa/` | Complete SHILD and PISA study analyses (data preparation, resampling, models, diagnostics). |
+| `analysis/shild/analysis.R`, `analysis/pisa/analysis.R`, `analysis/run_all.R` | Primary SHILD and PISA analyses (data preparation, resampling, models, diagnostics); `run_all.R` runs both studies and the evidence synthesis. |
 | `analysis/evidence_synthesis.R` | 300-case systematic SHILD local-fidelity evaluation and cross-study summaries. |
-| `analysis/targeted/` | Targeted SHILD comparisons (probability vs. log-odds surrogate, number of perturbed points), PISA model and plausible-value synthesis, controlled examples (Supplement G), and their public results in `results/`. |
-| `analysis/pisa/run_pv1_matched_controls.R`, `analysis/pisa/run_loco_country_calibration_bootstrap.R`, `analysis/pisa/results/` | PISA matched-control and country-calibration summaries (Supplement D.8, F.2). |
-| `analysis/sensitivity/` | Sensitivity of the model comparisons (Supplement I; admission allowances, tie tolerances, and aggregation rules, all specified after the original results were known), Figure 2b, and numerical checks of the article (`article_checks.R`). |
+| `analysis/shild/claim_extensions.R` | SHILD claim records: learner-level global importance from the stored permutation feature importance (PFI) (`--part=importance`), leave-one-covariate-out (LOCO) importance with refits (`--part=loco`), nested check of the predictor selection (`--part=selection`), and repeated local surrogates of the 300 evaluated cases (`--part=local`). Results and column definitions: `analysis/shild/results/claim_extensions/`. |
+| `analysis/pisa/ses_reanalysis.R` | PISA re-analysis of the reliance on socioeconomic indices across four learners, 10 plausible values, and refit-based designs. Stages: `exploratory` (the equal-country sample of the primary analysis), `confirmatory` (1,500 new students per country), and `tuned_xgboost` (run with `--learners=xgboost_tuned`: XGBoost with the median configuration of the nested tuning check, on the exploratory sample). Results: `analysis/pisa/results/ses_reanalysis/<stage>/`. |
+| `analysis/pisa/confirmatory_claims.md` | Claims and criteria of the PISA confirmatory stage, committed before that stage was run (see [Prespecification](#prespecification-of-the-pisa-confirmatory-stage)). |
+| `analysis/pisa/evaluate_confirmatory.R` | Applies the prespecified criteria to the confirmatory stage (and, for comparison, to the exploratory stage); writes `analysis/pisa/results/ses_reanalysis/confirmatory_*.csv`. |
+| `analysis/pisa/render_ses_figure.R` | Figure 3 of the article (panels a and b) from the aggregates of `ses_reanalysis.R`. |
+| `analysis/pisa/tuning_check.R` | Nested tuning of XGBoost and random forest (PV1) compared with the fixed learner settings; results in `analysis/pisa/results/ses_reanalysis/tuning_check/`. |
+| `analysis/pisa/preprocess_PISA_v2.R`, `analysis/pisa/pisa2018_reading_compactv2_manifest.csv` | Extraction of the 32-country analytic extract from the public OECD PISA 2018 files, and the variable table of the extract used in the article. |
+| `analysis/pisa/run_pv1_matched_controls.R`, `analysis/pisa/run_loco_country_calibration_bootstrap.R`, `analysis/pisa/results/` | PISA matched-control and country-calibration summaries (Supplements D and F). |
+| `analysis/targeted/` | Probability versus log-odds surrogates and number of perturbed points in SHILD, the three-model PISA importance summary across plausible values, and the controlled examples (`controlled_examples.R`, Supplement G); controller `run.R`; public results in `analysis/targeted/results/`. |
+| `analysis/simulation/criteria_simulation.R` | Simulation of the operating characteristics of the decision criteria (Supplement M); design and outputs in `analysis/simulation/README.md`. |
+| `analysis/sensitivity/` | Sensitivity of the model comparisons (Supplement I), Figure 2b, and numerical checks of statements in the article (`article_checks.R`). |
+| `analysis/render_*.R` | Figure rendering from stored aggregates. |
 | `analysis/shared/`, `analysis/tests/` | Shared helpers and tests. |
-| `final_docs/`, `baseline_evidence/` | Public aggregate result tables of the study runs. |
-| `supplement/` | Builder and content of the computational supplement. |
+| `baseline_evidence/`, `final_docs/` | Public aggregate result tables and figures of the primary study runs. |
+| `supplement/` | Computational supplement (`computational_supplement.pdf`, figures C1–C28), its components, source tables, and builder. |
 
 ## Package versions
 
-| Step | `mlr3autoiml` |
+The table lists the tagged `mlr3autoiml` release to install for each group of scripts.
+
+| Scripts | `mlr3autoiml` |
 |---|---|
-| Primary SHILD and PISA results of the article | produced with [`v0.1.0`](https://github.com/coorsaa/mlr3autoiml/releases/tag/v0.1.0) (recorded in the runs' session information) |
-| Study scripts as provided (`analysis/run_all.R`, `analysis/shild/`, `analysis/pisa/`; checked by `analysis/preflight.R`) | [`v0.1.1`](https://github.com/coorsaa/mlr3autoiml/releases/tag/v0.1.1) |
-| Targeted comparisons, PISA runners, figure rendering (`analysis/targeted/`, `analysis/render_*.R`) | [`v0.1.4`](https://github.com/coorsaa/mlr3autoiml/releases/tag/v0.1.4) |
+| Primary SHILD and PISA results (`baseline_evidence/`, `final_docs/`) | produced with [`v0.1.0`](https://github.com/coorsaa/mlr3autoiml/releases/tag/v0.1.0) (recorded in the runs' session information) |
+| Study scripts as provided (`analysis/run_all.R`, `analysis/shild/analysis.R`, `analysis/pisa/analysis.R`, `analysis/evidence_synthesis.R`; checked by `analysis/preflight.R`) | [`v0.1.1`](https://github.com/coorsaa/mlr3autoiml/releases/tag/v0.1.1) |
+| Targeted comparisons, PISA runners, and figure rendering (`analysis/targeted/` except `controlled_examples.R`, `analysis/pisa/run_*.R`, `analysis/render_*.R`) | [`v0.1.4`](https://github.com/coorsaa/mlr3autoiml/releases/tag/v0.1.4) |
 | Sensitivity summaries and article checks (`analysis/sensitivity/`) | [`v0.1.5`](https://github.com/coorsaa/mlr3autoiml/releases/tag/v0.1.5) |
+| PISA re-analysis and confirmatory stage (`analysis/pisa/ses_reanalysis.R`, `evaluate_confirmatory.R`, `render_ses_figure.R`, `tuning_check.R`), SHILD claim extensions (`analysis/shild/claim_extensions.R`), criteria simulation (`analysis/simulation/criteria_simulation.R`), and controlled examples (`analysis/targeted/controlled_examples.R`) | [`v0.1.6`](https://github.com/coorsaa/mlr3autoiml/releases/tag/v0.1.6) |
+
+The results of the last group were produced with the development version 0.1.5.9000 (recorded in their session
+information), which is identical to release 0.1.6 in the functions these scripts use. `evaluate_confirmatory.R`,
+`render_ses_figure.R` and `criteria_simulation.R` do not load `mlr3autoiml` (they need `data.table` and `ggplot2`);
+`controlled_examples.R` also uses `jsonlite` and is usually run through `analysis/targeted/run.R`, which loads
+`mlr3autoiml`. Running the scripts rewrites tracked PDF figures with identical content but different bytes; restore
+them with `git checkout -- '*.pdf'` if needed.
 
 ```sh
-Rscript -e 'remotes::install_github("coorsaa/mlr3autoiml@v0.1.5")'
+Rscript -e 'remotes::install_github("coorsaa/mlr3autoiml@v0.1.6")'   # replace the tag for other script groups
 ```
+
+The analyses were run with R 4.5.1. Further dependencies are listed in `DESCRIPTION` and loaded at the top of each
+script (for example `mlr3learners`, `mlr3tuning`, `xgboost`, `ranger`, and `glmnet`); the PISA extraction needs
+`haven`, `dplyr`, `stringr`, `readr`, `tibble`, and `vctrs`.
 
 ## Data
 
-- **PISA 2018** is public from the OECD. The 32-country extract used here is expected at `data/PISA/`.
-- **SHILD** is restricted third-party data (VIVE). Authorized users place the files at `data/SHILD/`.
-- Fitted models, predictions, and case-level results of the study runs are written to `paper_artifacts/`. The
-  protected SHILD extensions write to a directory outside the repository:
+- **PISA 2018** is public. The OECD PISA 2018 database is available at
+  <https://www.oecd.org/en/data/datasets/pisa-2018-database.html>. `analysis/pisa/preprocess_PISA_v2.R`, the
+  coauthors' extraction script, reads the student and school questionnaire files (SPSS format,
+  `CY07_MSU_STU_QQQ.sav` and `CY07_MSU_SCH_QQQ.sav`, placed in `data/PISA/raw/`) and writes the 32-country extract
+  (260,641 students) and its variable table to `data/PISA/`:
+
+  ```sh
+  Rscript analysis/pisa/preprocess_PISA_v2.R
+  ```
+
+  The PISA analyses read `data/PISA/pisa2018_reading_compactv2.csv` and
+  `data/PISA/pisa2018_reading_compactv2_manifest.csv` and draw the equal-country sample (1,500 students per country)
+  themselves. The SHA-256 checksums of the extract used in the article are listed in the header of the extraction
+  script. `analysis/pisa/analysis.R` additionally expects a copy of the extraction script and the OECD codebook,
+  student questionnaire, and scale manual in `data/PISA/` (see the file names in the script) and records their
+  checksums.
+- **SHILD**: the analyses use the SHILD 2012 survey data, which are publicly available under CC0 on Dryad
+  (<https://doi.org/10.5061/dryad.qd2nj>) and were used by Khan et al. (2024). [to be confirmed by the authors: the
+  analyzed file corresponds to this release] The scripts expect the data file and its dictionary at `data/SHILD/`
+  (`data/SHILD/archive/Danish_SHILD_draft_data.csv` and `data/SHILD/archive/Danish_SHILD_dictionnary.csv`).
+- Fitted models, predictions, and case-level results of the study runs are written to `paper_artifacts/`. Case-level
+  tables of `analysis/shild/claim_extensions.R` and the held-out predictions of `analysis/pisa/ses_reanalysis.R` are
+  written only to the directory given by `CSDG_PRIVATE_DIR`. The protected SHILD extensions write to a directory
+  outside the repository:
   `Rscript analysis/targeted/run.R --mode=protected_extension --authorized-workspace=<dir> --private-output=<dir outside the repository>`.
 
 `data/`, `paper_artifacts/`, `private/`, and all `.rds` files are excluded by `.gitignore` and must never be
-committed. All tables and figures in this repository are aggregates.
+committed.
 
-## Reproducing the article's numbers without restricted data
+## Reproducing the article
 
-Run from the repository root:
+Run all commands from the repository root.
+
+### From the stored aggregates (no data needed)
 
 ```sh
-Rscript analysis/sensitivity/run_sensitivities.R          # Supplement I tables
-Rscript analysis/sensitivity/render_paired_difference_figure.R   # Figure 2b
-Rscript analysis/sensitivity/article_checks.R             # numerical checks of statements in the article
-Rscript analysis/targeted/run.R --mode=synthetic       # controlled examples (Supplement G)
+Rscript analysis/pisa/render_ses_figure.R exploratory          # Figure 3a and 3b
+Rscript analysis/pisa/evaluate_confirmatory.R                   # PISA confirmatory assessment
+Rscript analysis/sensitivity/run_sensitivities.R                # Supplement I tables
+Rscript analysis/sensitivity/render_paired_difference_figure.R  # Figure 2b
+Rscript analysis/sensitivity/article_checks.R                   # numerical checks of statements in the article
+Rscript analysis/targeted/run.R --mode=aggregate                # three-model PISA summary, Supplementary Figures S1-S5 sources
+Rscript analysis/targeted/run.R --mode=synthetic                # controlled examples (Supplement G)
+Rscript analysis/simulation/criteria_simulation.R --workers=3   # criteria simulation (Supplement M)
+python3 supplement/build_supplement.py --verify                 # computational supplement: checksums and privacy checks
+python3 supplement/assemble_publication.py --output build/supplement   # computational supplement PDF (XeLaTeX)
 ```
 
+One installation of `mlr3autoiml` v0.1.6 suffices for all commands in this section. They were checked with the
+development version 0.1.5.9000 and reproduce the stored CSV and JSON outputs exactly. `run.R --mode=aggregate` renders
+three figures with leading zeros in the axis labels (`shild_common_probability_weighted_r2.pdf`,
+`shild_convergence_weighted_r2.pdf`, and `shild_g4_systematic_local_audit__relative_fidelity_by_prediction.pdf`); the
+stored versions carry the APA labels written by `analysis/render_decimal_figures.R` (see below).
 `article_checks.R` also re-derives the fold-level summary of the paired SHILD comparison when `CSDG_PRIVATE_DIR`
 points to the private case files; otherwise it keeps the stored aggregate
 `analysis/sensitivity/results/shild_scale_paired_by_fold.csv`.
 
-## Figures in the article
+### With the public PISA data
 
-The final figure files used in the manuscript are included at the locations below. `analysis/render_decimal_figures.R`
-writes the APA-labeled versions (for example ".75" instead of "0.75") into a manuscript folder:
-`Rscript analysis/render_decimal_figures.R <manuscript_dir> <qa_dir> [private_case_table]`.
+```sh
+Rscript analysis/pisa/ses_reanalysis.R --stage=exploratory --workers=12
+Rscript analysis/pisa/ses_reanalysis.R --stage=confirmatory --workers=12
+Rscript analysis/pisa/ses_reanalysis.R --stage=exploratory --learners=xgboost_tuned --designs=full \
+  --output-dir=analysis/pisa/results/ses_reanalysis/tuned_xgboost --workers=12
+Rscript analysis/pisa/tuning_check.R --workers=5
+Rscript analysis/pisa/evaluate_confirmatory.R
+Rscript analysis/pisa/render_ses_figure.R exploratory
+```
 
-| Figure | File | Generator |
+Add `--quick` to `ses_reanalysis.R` or `tuning_check.R` for a smoke test (written to a `_quick` folder). The primary
+PISA analysis is run with `analysis/pisa/analysis.R` (see `analysis/README.md`).
+
+### With the SHILD data
+
+```sh
+Rscript analysis/shild/claim_extensions.R --part=importance
+Rscript analysis/shild/claim_extensions.R --part=loco --workers=6
+Rscript analysis/shild/claim_extensions.R --part=selection --workers=6
+Rscript analysis/shild/claim_extensions.R --part=local --workers=6
+```
+
+All parts check the folds against the stored fold assignment of the primary SHILD run in `paper_artifacts/current/`;
+`importance` and `local` also read its stored PFI and local-fidelity results. The primary SHILD analysis and the
+evidence synthesis are run with `analysis/run_all.R` (see `analysis/README.md`).
+
+### Article elements, scripts, and outputs
+
+| Article element | Script | Output |
 |---|---|---|
-| Main Fig. 2a | `final_docs/EVIDENCE_FIGURES/figures/shild_g4_systematic_local_audit__apparent_vs_cross_fitted.pdf` | `analysis/render_decimal_figures.R` (needs the private case table) |
-| Main Fig. 2b | `analysis/sensitivity/results/shild_common_probability_paired_rmse_difference.pdf` | `analysis/sensitivity/render_paired_difference_figure.R` |
-| Main Fig. 3 | `analysis/targeted/results/pisa/pisa_model_pv_content.pdf` | `analysis/targeted/pisa_synthesis.R` |
-| Suppl. Fig. S1 | `final_docs/figures/pisa_pv1_loco_{size_matched_exclusion_penalty,training_size_contrast}.pdf` | `analysis/render_retained_figures.R` |
-| Suppl. Fig. S2 | `final_docs/EVIDENCE_FIGURES/figures/shild_g4_systematic_local_audit__{relative_fidelity_by_prediction,locality_curve}.pdf` | `analysis/render_decimal_figures.R`, `analysis/render_retained_figures.R` |
-| Suppl. Fig. S3 | `analysis/targeted/results/shild/shild_{common_probability_weighted_rmse,common_probability_weighted_r2,convergence_weighted_r2}.pdf` | `analysis/targeted/render_targeted_figures.R`, `analysis/render_decimal_figures.R` |
-| Suppl. Fig. S4 | `final_docs/EVIDENCE_FIGURES/figures/shild_g4_systematic_local_audit__absolute_fidelity_by_prediction.pdf`, `analysis/targeted/results/shild/shild_convergence_weighted_rmse.pdf` | `analysis/render_retained_figures.R`, `analysis/targeted/render_targeted_figures.R` |
-| Suppl. Fig. S5 | `final_docs/EVIDENCE_FIGURES/figures/performance_explanation_sensitivity__{shild,pisa}__{practical_pair_reversals,top_five_overlap}.pdf` | `analysis/render_retained_figures.R` |
+| Figure 1 (workflow) and the claim records of the numerical example | exact values in the text; Monte Carlo check by `analysis/targeted/controlled_examples.R` (`run.R --mode=synthetic`) | `analysis/targeted/results/controlled/controlled_pfi_results.csv` |
+| Figure 2a | `analysis/evidence_synthesis.R`; rendered by `analysis/render_decimal_figures.R` (needs the private case table) | `final_docs/EVIDENCE_FIGURES/figures/shild_g4_systematic_local_audit__apparent_vs_cross_fitted.pdf` |
+| Figure 2b | `analysis/sensitivity/render_paired_difference_figure.R` | `analysis/sensitivity/results/shild_common_probability_paired_rmse_difference.pdf` |
+| SHILD claim records (table) | `analysis/shild/analysis.R` (predictive performance), `analysis/evidence_synthesis.R` (fidelity), `analysis/targeted/run.R --mode=protected_extension` (scale comparison), `analysis/shild/claim_extensions.R` (global importance, LOCO, selection check, repeated local surrogates) | `baseline_evidence/STUDY_RESULTS/SHILD/tables/`, `baseline_evidence/EVIDENCE_SYNTHESIS/`, `analysis/targeted/results/shild/`, `analysis/shild/results/claim_extensions/` |
+| Figure 3a and 3b | `analysis/pisa/ses_reanalysis.R --stage=exploratory`, then `analysis/pisa/render_ses_figure.R exploratory` | `analysis/pisa/results/ses_reanalysis/exploratory/pisa_ses_figure_{a,b}.pdf`; plotted values in `pisa_ses_figure_source.csv` |
+| PISA claim records (table), exploratory and confirmatory claims | `analysis/pisa/ses_reanalysis.R` (both stages and `tuned_xgboost`), `analysis/pisa/evaluate_confirmatory.R`, `analysis/pisa/tuning_check.R` | `analysis/pisa/results/ses_reanalysis/{exploratory,confirmatory,tuned_xgboost,tuning_check}/`, `analysis/pisa/results/ses_reanalysis/confirmatory_{assessment,admission,detail_c2..c5}.csv` |
+| Three-model PISA importance across plausible values | `analysis/targeted/pisa_synthesis.R` (`run.R --mode=aggregate`) | `analysis/targeted/results/pisa/` |
+| Supplementary Figure S1 | `analysis/render_retained_figures.R` | `final_docs/figures/pisa_pv1_loco_{size_matched_exclusion_penalty,training_size_contrast}.pdf` |
+| Supplementary Figure S2 | `analysis/render_retained_figures.R`, `analysis/render_decimal_figures.R` | `final_docs/EVIDENCE_FIGURES/figures/shild_g4_systematic_local_audit__{relative_fidelity_by_prediction,locality_curve}.pdf` |
+| Supplementary Figure S3 | `analysis/targeted/render_targeted_figures.R`, `analysis/render_decimal_figures.R` | `analysis/targeted/results/shild/shild_{common_probability_weighted_rmse,common_probability_weighted_r2,convergence_weighted_r2}.pdf` |
+| Supplementary Figure S4 | `analysis/render_retained_figures.R`, `analysis/targeted/render_targeted_figures.R` | `final_docs/EVIDENCE_FIGURES/figures/shild_g4_systematic_local_audit__absolute_fidelity_by_prediction.pdf`, `analysis/targeted/results/shild/shild_convergence_weighted_rmse.pdf` |
+| Supplementary Figure S5 | `analysis/render_retained_figures.R` | `final_docs/EVIDENCE_FIGURES/figures/performance_explanation_sensitivity__{shild,pisa}__{practical_pair_reversals,top_five_overlap}.pdf` |
+| Supplement G (controlled examples) | `analysis/targeted/run.R --mode=synthetic` | `analysis/targeted/results/controlled/` |
+| Supplement I (sensitivity of the model comparisons) | `analysis/sensitivity/run_sensitivities.R` | `analysis/sensitivity/results/` |
+| Supplement M (simulation of the decision criteria) | `analysis/simulation/criteria_simulation.R` | `analysis/simulation/results/criteria_simulation.pdf`, `criteria_summary.csv` |
+| Supplements D and F (PISA matched controls and country calibration) | `analysis/pisa/run_pv1_matched_controls.R`, `analysis/pisa/run_loco_country_calibration_bootstrap.R` (need private model objects) | `analysis/pisa/results/`, `final_docs/PISA_*.csv` |
+| Computational supplement, Figures C1–C28 | `supplement/assemble_publication.py` (components: `analysis/render_supplement_figures.R` and the primary runs) | `supplement/computational_supplement.pdf` |
 
-The computational supplement is assembled by `supplement/assemble_publication.py`.
+`analysis/render_decimal_figures.R` writes APA-labeled versions of selected figures (for example ".75" instead of
+"0.75") into a manuscript folder:
+`Rscript analysis/render_decimal_figures.R <manuscript_dir> <reference_dir> [private_case_table]`, where
+`<reference_dir>` receives the unlabeled reference renderings.
+
+## Prespecification of the PISA confirmatory stage
+
+The claims and criteria of the PISA confirmatory stage are stated in `analysis/pisa/confirmatory_claims.md`. The file
+was committed in commit `893b053` (2026-09-28, 17:50 UTC), together with the exploratory results, before the
+confirmatory stage was run; its results and their assessment were committed afterward in commit `e5a554f`. The
+record can be checked with:
+
+```sh
+git log --format='%h %ad %s' --date=iso -- analysis/pisa/confirmatory_claims.md analysis/pisa/results/ses_reanalysis/confirmatory
+```
+
+## Tests
+
+```sh
+for f in analysis/tests/*.R; do Rscript "$f"; done
+Rscript analysis/targeted/test_targeted_extensions.R
+```
+
+The tests use synthetic data or public aggregates and do not require restricted data.
+
+## License
+
+The code is licensed under the GNU Lesser General Public License, version 3 (LGPL-3; see `LICENSE`), like the
+companion package `mlr3autoiml`. The aggregate result tables and figures (CSV, PDF, and PNG files, including the
+computational supplement) are released under the Creative Commons Attribution 4.0 International license (CC BY 4.0;
+see `LICENSE-CC-BY-4.0.txt`). The PISA and SHILD data are not part of the repository and remain under the terms of
+their providers.

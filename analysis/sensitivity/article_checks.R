@@ -1,4 +1,4 @@
-# Numerical checks for statements added to the article in the September 2026 revision.
+# Numerical checks of statements in the article against the stored aggregate results.
 # Run from the analysis repository root:
 #   Rscript analysis/sensitivity/article_checks.R
 # Public inputs only, except the optional SHILD case-level check, which reads private case files from

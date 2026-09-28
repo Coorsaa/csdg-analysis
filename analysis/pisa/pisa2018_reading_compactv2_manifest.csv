@@ -1,0 +1,55 @@
+variable_out,role,level,source_file,variable_source,label,fixed_or_auto,missing_rate
+SCH_EDUSHORT,covariate,School,SCH_QQQ,EDUSHORT,Shortage of educational material (WLE),fixed,0.04976193308036725
+SCH_STAFFSHORT,covariate,School,SCH_QQQ,STAFFSHORT,Shortage of educational staff (WLE),fixed,0.05209848028514317
+SCH_STUBEHA,covariate,School,SCH_QQQ,STUBEHA,Student behaviour hindering learning (WLE),fixed,0.04546483477273338
+SCH_TEACHBEHA,covariate,School,SCH_QQQ,TEACHBEHA,Teacher behaviour hindering learning (WLE),fixed,0.045906054688249355
+ADAPTIVITY,covariate,Student,STU_QQQ,ADAPTIVITY,Adaptation of instruction (WLE),fixed,0.05859400478052187
+AGE,covariate,Student,STU_QQQ,AGE,Age,fixed,0
+ATTLNACT,covariate,Student,STU_QQQ,ATTLNACT,Attitude towards school: learning activities (WLE),fixed,0.07243296334805345
+BELONG,covariate,Student,STU_QQQ,BELONG,Subjective well-being: Sense of belonging to school (WLE),fixed,0.0958214555653178
+CULTPOSS,covariate,Student,STU_QQQ,CULTPOSS,Cultural possessions at home (WLE),fixed,0.0367018235810943
+DIRINS,covariate,Student,STU_QQQ,DIRINS,Teacher-directed instruction (WLE),fixed,0.12740129143150924
+DISCLIMA,covariate,Student,STU_QQQ,DISCLIMA,Disciplinary climate in test language lessons (WLE),fixed,0.03459164137645267
+EFFORT1,covariate,Student,STU_QQQ,EFFORT1,How much effort did you put into this test?,fixed,0.11638230362836238
+EFFORT2,covariate,Student,STU_QQQ,EFFORT2,How much effort would you have invested?,fixed,0.12119351905494531
+ESCS,covariate,Student,STU_QQQ,ESCS,"Index of economic, social and cultural status",fixed,0.03461466154595785
+GFOFAIL,covariate,Student,STU_QQQ,GFOFAIL,General fear of failure (WLE),fixed,0.11735682413741506
+HEDRES,covariate,Student,STU_QQQ,HEDRES,Home educational resources (WLE),fixed,0.030294543068818798
+HISEI,covariate,Student,STU_QQQ,HISEI,Index highest parental occupational status,fixed,0.0839583948803143
+HOMEPOS,covariate,Student,STU_QQQ,HOMEPOS,Home possessions (WLE),fixed,0.02707171933809339
+ICTRES,covariate,Student,STU_QQQ,ICTRES,ICT resources (WLE),fixed,0.028836599000157306
+IMMIG,covariate,Student,STU_QQQ,IMMIG,Index Immigration status,fixed,0.06591441868316956
+ISCEDD,covariate,Student,STU_QQQ,ISCEDD,ISCED designation,fixed,0.026354257388515236
+ISCEDL,covariate,Student,STU_QQQ,ISCEDL,ISCED level,fixed,0.026354257388515236
+ISCEDO,covariate,Student,STU_QQQ,ISCEDO,ISCED orientation,fixed,0.026354257388515236
+JOYREAD,covariate,Student,STU_QQQ,JOYREAD,Joy/Like reading (WLE),fixed,0.04284437214406022
+LANGN,covariate,Student,STU_QQQ,LANGN,Language at home (3-digit code),fixed,0
+MASTGOAL,covariate,Student,STU_QQQ,MASTGOAL,Mastery goal orientation (WLE),fixed,0.09406041259817143
+METASPAM,covariate,Student,STU_QQQ,METASPAM,Meta-cognition: assess credibility,fixed,0.11361220989790555
+METASUM,covariate,Student,STU_QQQ,METASUM,Meta-cognition: summarising,fixed,0.1019601674333662
+PARED,covariate,Student,STU_QQQ,PARED,Index highest parental education in years of schooling,fixed,0.04393783019555634
+PERFEED,covariate,Student,STU_QQQ,PERFEED,Perceived feedback (WLE),fixed,0.1349442336393737
+RESILIENCE,covariate,Student,STU_QQQ,RESILIENCE,Resilience (WLE),fixed,0.12630015999017807
+SCREADCOMP,covariate,Student,STU_QQQ,SCREADCOMP,Self-concept of reading: Perception of competence (WLE),fixed,0.07166946105946494
+SCREADDIFF,covariate,Student,STU_QQQ,SCREADDIFF,Self-concept of reading: Perception of difficulty (WLE),fixed,0.07069110385549472
+ST001D01T,covariate,Student,STU_QQQ,ST001D01T,Student International Grade (Derived),fixed,0
+ST004D01T,covariate,Student,STU_QQQ,ST004D01T,Student (Standardized) Gender,fixed,7.673389835060486e-6
+STIMREAD,covariate,Student,STU_QQQ,STIMREAD,Teacher's stimulation of reading engagement perceived by student (WLE),fixed,0.05621141723673559
+TEACHINT,covariate,Student,STU_QQQ,TEACHINT,Perceived teacher's interest (WLE),fixed,0.13136076058640045
+TEACHSUP,covariate,Student,STU_QQQ,TEACHSUP,Teacher support in test language lessons (WLE),fixed,0.11831216117188009
+UNDREM,covariate,Student,STU_QQQ,UNDREM,Meta-cognition: understanding and remembering,fixed,0.10001112641526083
+WEALTH,covariate,Student,STU_QQQ,WEALTH,Family wealth (WLE),fixed,0.02765106027064046
+WORKMAST,covariate,Student,STU_QQQ,WORKMAST,Work mastery (WLE),fixed,0.11874570769756101
+CNT,id,ID,STU_QQQ,CNT,CNT,fixed,0
+CNTSCHID,id,ID,STU_QQQ,CNTSCHID,CNTSCHID,fixed,0
+CNTSTUID,id,ID,STU_QQQ,CNTSTUID,CNTSTUID,fixed,0
+PV10READ,outcome,Student,STU_QQQ,PV10READ,PV10READ,fixed,0
+PV1READ,outcome,Student,STU_QQQ,PV1READ,PV1READ,fixed,0
+PV2READ,outcome,Student,STU_QQQ,PV2READ,PV2READ,fixed,0
+PV3READ,outcome,Student,STU_QQQ,PV3READ,PV3READ,fixed,0
+PV4READ,outcome,Student,STU_QQQ,PV4READ,PV4READ,fixed,0
+PV5READ,outcome,Student,STU_QQQ,PV5READ,PV5READ,fixed,0
+PV6READ,outcome,Student,STU_QQQ,PV6READ,PV6READ,fixed,0
+PV7READ,outcome,Student,STU_QQQ,PV7READ,PV7READ,fixed,0
+PV8READ,outcome,Student,STU_QQQ,PV8READ,PV8READ,fixed,0
+PV9READ,outcome,Student,STU_QQQ,PV9READ,PV9READ,fixed,0

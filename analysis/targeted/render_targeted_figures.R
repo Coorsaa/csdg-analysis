@@ -62,7 +62,7 @@ render_targeted_figures = function(project_root = getwd()) {
     export(p, paste0("shild_convergence_", measure), "Fixed-evaluation neighborhood learning curve",
       paste("Thirty deterministically balanced cases; five training draws; one independent 1000-neighbor evaluation",
         "set held fixed per case. Nested training sizes 250/500/1000/2000; normalized standardized-ridge penalty",
-        "lambda=0.001; kernel width 0.75. Points and whiskers are across-case medians and interquartile ranges after",
+        "lambda=.001; kernel width .75. Points and whiskers are across-case medians and interquartile ranges after",
         "within-case seed aggregation, not confidence intervals. Both fits are scored on the probability scale."),
       "shild_convergence_summary.csv", height = 3.2)
   }

@@ -9,6 +9,7 @@ private/
 *.qs
 *.zip
 # Local run artifacts
+build/
 .Rhistory
 .RData
 .Rproj.user/

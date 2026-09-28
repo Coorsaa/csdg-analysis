@@ -18,6 +18,18 @@ test_that("redundant indicator PFI distinguishes three estimands", {
   expect_equal(controlled_conditional_draw(c(-2, 0, 2), 1, 1, c(10, 10, 10)), c(-2, 0, 2))
 })
 
+test_that("best single-predictor models have PFI 2 r_j and conditional PFI 2 r_j (1 - r_k)", {
+  for (intervention in c("marginal", "joint_block")) {
+    expect_equal(controlled_pfi_expectation(.9, .4, 1L, intervention, model_form = "optimal"), 2 * .9)
+    expect_equal(controlled_pfi_expectation(.9, .4, 2L, intervention, model_form = "optimal"), 2 * .4)
+  }
+  expect_equal(controlled_pfi_expectation(.9, .4, 1L, "conditional", model_form = "optimal"), 2 * .9 * .6)
+  expect_equal(controlled_pfi_expectation(.9, .4, 2L, "conditional", model_form = "optimal"), 2 * .4 * .1)
+  expect_equal(controlled_pfi_expectation(.9, .4, 1L, "marginal", 2L, model_form = "optimal"), 0)
+  expect_equal(controlled_pfi_expectation(1, 1, 1L, "marginal", model_form = "optimal"),
+    controlled_pfi_expectation(1, 1, 1L, "marginal"))
+})
+
 test_that("the conditional draw has the declared Gaussian law", {
   set.seed(32L)
   other = rnorm(100000L)
@@ -29,10 +41,22 @@ test_that("the conditional draw has the declared Gaussian law", {
 
 test_that("all completed controlled estimates agree with the analytical reference", {
   results = fread("analysis/targeted/results/controlled/controlled_pfi_results.csv")
-  expect_equal(nrow(results), 40L)
+  expect_equal(nrow(results), 80L)
+  expect_equal(results[, .N, by = model_form][order(model_form)]$N, c(40L, 40L))
+  expect_setequal(unique(results$model_form), c("identity", "optimal"))
+  expect_equal(results[, .N, by = scenario]$N, rep(20L, 4L))
   expect_true(all(abs(results$monte_carlo_pfi - results$analytical_population_pfi) <=
     6 * results$monte_carlo_se + 1e-12))
+  expect_true(all(results$passed_six_se_check))
   expect_true(all(results$n_monte_carlo == 200000L))
+  expected = mapply(function(r1, r2, model, intervention, feature, form) {
+    controlled_pfi_expectation(r1, r2, model, intervention,
+      if (feature == "X1 + X2") model else as.integer(sub("X", "", feature)), form)
+  }, results$r1, results$r2, results$model_index, results$intervention, results$queried_feature,
+    results$model_form)
+  expect_equal(results$analytical_population_pfi, unname(expected), tolerance = 1e-12)
+  metadata = jsonlite::read_json("analysis/targeted/results/controlled/controlled_run_metadata.json")
+  expect_equal(metadata$result_rows, nrow(results))
 })
 
 test_that("weighted probability scoring retains out-of-range predictions", {

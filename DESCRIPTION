@@ -11,8 +11,10 @@ Authors@R: c(
 Description: Research compendium with the SHILD and PISA analyses, public
     aggregate results, figure sources, and the computational supplement of the
     article. It is not an R package; the file marks the repository root for the
-    analysis scripts and records their dependencies.
-License: MIT
+    analysis scripts and records their dependencies. The code is licensed under
+    the LGPL-3 (file LICENSE); the aggregate result tables and figures are
+    released under CC BY 4.0 (file LICENSE-CC-BY-4.0.txt).
+License: LGPL-3 + file LICENSE
 Depends: R (>= 4.5.0)
 Imports: mlr3autoiml, mlr3, mlr3learners, mlr3misc, mlr3pipelines, data.table,
     ggplot2, digest, jsonlite

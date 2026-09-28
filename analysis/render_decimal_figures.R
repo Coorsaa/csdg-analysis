@@ -1,12 +1,12 @@
 #!/usr/bin/env Rscript
 
 # Reformat selected current figures from frozen plot inputs; no models or diagnostics are fitted.
-# Usage: Rscript analysis/render_decimal_figures.R article_dir qa_dir [private_case_table]
+# Usage: Rscript analysis/render_decimal_figures.R article_dir reference_dir [private_case_table]
 
 arguments = commandArgs(trailingOnly = TRUE)
 stopifnot(length(arguments) %in% c(2L, 3L))
 article_dir = normalizePath(arguments[[1L]], mustWork = TRUE)
-qa_dir = normalizePath(arguments[[2L]], mustWork = TRUE)
+reference_dir = normalizePath(arguments[[2L]], mustWork = TRUE)
 case_path = if (length(arguments) == 3L) normalizePath(arguments[[3L]], mustWork = TRUE) else NULL
 root = getwd()
 suppressPackageStartupMessages({ library(data.table); library(ggplot2) })
@@ -22,7 +22,7 @@ hash = function(path) digest::digest(file = path, algo = "sha256", serialize = F
 
 export = function(plot, path, width, height, axes, annotations = FALSE, inputs) {
   stem = tools::file_path_sans_ext(basename(path))
-  reference = file.path(qa_dir, paste0(stem, "__before.pdf"))
+  reference = file.path(reference_dir, paste0(stem, "__before.pdf"))
   # Building on the same Cairo device retains the original font metrics and panel spacing.
   grDevices::cairo_pdf(reference, width = width, height = height, bg = "white")
   result = .analysis_decimal_grob(plot, axes, annotations)
@@ -136,5 +136,5 @@ plot = csdg_plot_data(read_table(bins_input), type = "multiplicity", quantiles =
 save_supplement(plot, "shild_prediction_multiplicity", 8, 6, "x", TRUE, c(distribution_input, bins_input))
 
 stopifnot(length(records$values) == if (is.null(case_path)) 8L else 9L)
-jsonlite::write_json(records$values, file.path(qa_dir, "FIGURE_DECIMAL_AUDIT.json"), pretty = TRUE, auto_unbox = TRUE)
+jsonlite::write_json(records$values, file.path(reference_dir, "FIGURE_DECIMAL_AUDIT.json"), pretty = TRUE, auto_unbox = TRUE)
 message("Reformatted ", length(records$values), " figure components; numerical inputs and drawing instructions preserved.")

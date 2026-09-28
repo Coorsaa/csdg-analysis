@@ -16,6 +16,6 @@ Rscript analysis/targeted/test_targeted_extensions.R
 | `test_shild_preprocessing.R` | SHILD recoding rules on synthetic rows |
 | `test_targeted_controller.R` | Modes and safeguards of `analysis/targeted/run.R` |
 | `test_study_plots.R` | Study plot helpers |
-| `targeted/test_targeted_extensions.R` | Targeted SHILD comparisons on synthetic inputs |
+| `targeted/test_targeted_extensions.R` | Targeted SHILD comparisons on synthetic inputs; analytical values and stored results (80 rows, both model forms) of the controlled examples |
 
 The tests use synthetic data or public aggregates and do not require restricted data.
