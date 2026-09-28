@@ -1,0 +1,21 @@
+learner,fold,version,rmse,n_test,chosen
+xgboost,1,fixed,72.6819608378846,9601,
+xgboost,1,tuned,67.9952482442188,9601,colsample_bytree=0.607; eta=0.0301; max_depth=5; min_child_weight=8.54; nrounds=965; subsample=0.72
+xgboost,2,fixed,71.2559222576382,9598,
+xgboost,2,tuned,66.654532802286,9598,colsample_bytree=0.646; eta=0.035; max_depth=5; min_child_weight=34.9; nrounds=856; subsample=0.773
+xgboost,3,fixed,71.4398109088697,9600,
+xgboost,3,tuned,66.8384045882511,9600,colsample_bytree=0.902; eta=0.103; max_depth=3; min_child_weight=29.4; nrounds=771; subsample=0.713
+xgboost,4,fixed,72.8259445324894,9598,
+xgboost,4,tuned,68.4229950913052,9598,colsample_bytree=0.684; eta=0.139; max_depth=3; min_child_weight=1.38; nrounds=695; subsample=0.795
+xgboost,5,fixed,72.0271384512111,9603,
+xgboost,5,tuned,67.6845203289891,9603,colsample_bytree=0.729; eta=0.0828; max_depth=3; min_child_weight=16.4; nrounds=899; subsample=0.955
+random_forest,1,fixed,73.4259612156658,9601,
+random_forest,1,tuned,72.8575583171607,9601,size=5; mtry=38; fraction=0.844
+random_forest,2,fixed,71.71879463163,9598,
+random_forest,2,tuned,71.3619983067973,9598,size=5; mtry=24; fraction=0.874
+random_forest,3,fixed,72.4313126936708,9600,
+random_forest,3,tuned,71.8101497214575,9600,size=12; mtry=27; fraction=0.962
+random_forest,4,fixed,73.4424736603196,9598,
+random_forest,4,tuned,72.9195022614569,9598,size=6; mtry=37; fraction=0.955
+random_forest,5,fixed,72.8950496191137,9603,
+random_forest,5,tuned,72.3398776323197,9603,size=6; mtry=35; fraction=0.978
