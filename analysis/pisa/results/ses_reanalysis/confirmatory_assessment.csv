@@ -1,0 +1,11 @@
+stage,claim,met,observation
+exploratory,C1,TRUE,named top five in 10 of 10 plausible values
+exploratory,C2,TRUE,"random_forest: largest on average TRUE, largest in 10 of 10; xgboost: largest on average TRUE, largest in 10 of 10; ridge_fixed: largest on average TRUE, largest in 9 of 10; ridge_cv: largest on average TRUE, largest in 10 of 10"
+exploratory,C3,TRUE,ratio largest/smallest 1.78 on average; <= 2 in 10 of 10 plausible values (range 1.74-1.83)
+exploratory,C4,TRUE,ratio 4.27-4.66 across plausible values
+exploratory,C5,TRUE,minimum 40.0 points (range across learners and plausible values 40.0-61.4)
+confirmatory,C1,TRUE,named top five in 10 of 10 plausible values
+confirmatory,C2,FALSE,"random_forest: largest on average TRUE, largest in 10 of 10; xgboost: largest on average TRUE, largest in 10 of 10; ridge_fixed: largest on average TRUE, largest in 6 of 10; ridge_cv: largest on average TRUE, largest in 10 of 10"
+confirmatory,C3,TRUE,ratio largest/smallest 1.83 on average; <= 2 in 10 of 10 plausible values (range 1.80-1.87)
+confirmatory,C4,TRUE,ratio 4.34-4.66 across plausible values
+confirmatory,C5,TRUE,minimum 37.5 points (range across learners and plausible values 37.5-59.7)

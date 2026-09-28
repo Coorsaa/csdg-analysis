@@ -1,0 +1,11 @@
+stage,learner,mean_rmse,admitted,retained_share
+exploratory,random_forest,72.8048396504319,TRUE,0.975925407157195
+exploratory,xgboost,72.101729277776,TRUE,1
+exploratory,ridge_fixed,73.2516048863571,TRUE,0.960628105951712
+exploratory,ridge_cv,73.6035383322598,TRUE,0.948577857872068
+exploratory,featureless,101.307223104687,FALSE,0
+confirmatory,random_forest,73.0721763673018,TRUE,0.972833990045992
+confirmatory,xgboost,72.2914553127967,TRUE,1
+confirmatory,ridge_fixed,73.7567417278551,TRUE,0.949013818562662
+confirmatory,ridge_cv,74.1003726435301,TRUE,0.937056819552753
+confirmatory,featureless,101.030348356968,FALSE,0

@@ -1,0 +1,57 @@
+panel,learner,feature_group,label,mean,low,high
+a,random_forest,METASPAM,Assessing credibility (METASPAM),5.87698466390029,5.7754480621806,5.9695554478194
+a,random_forest,METASUM,Summarizing strategies (METASUM),3.25818671224945,3.14892011146776,3.31624659213711
+a,random_forest,JOYREAD,Enjoyment of reading (JOYREAD),2.19669551123407,2.15441798697634,2.28747200966514
+a,random_forest,SCREADCOMP,Perceived reading competence (SCREADCOMP),1.86262472260114,1.80189206036688,1.91598175946097
+a,random_forest,SCREADDIFF,Perceived reading difficulty (SCREADDIFF),1.53619812632918,1.4853167593585,1.55613638922215
+a,random_forest,UNDREM,Understanding and remembering (UNDREM),1.56692545381607,1.43701388147373,1.62514691272731
+a,random_forest,ESCS,"Economic, social, and cultural status (ESCS)",0.887684095676947,0.844723105038647,0.917961195340293
+a,random_forest,HOMEPOS,Home possessions (HOMEPOS),0.551610202504757,0.522464795996759,0.574625169249692
+a,random_forest,ST001D01T,Grade (ST001D01T),0.460586623036134,0.435955481126337,0.48942854656302
+a,random_forest,WEALTH,Family wealth (WEALTH),0.126479984594368,0.114397595999275,0.137317790008611
+a,xgboost,METASPAM,Assessing credibility (METASPAM),7.64508575272164,7.45613396660483,7.82419393106516
+a,xgboost,METASUM,Summarizing strategies (METASUM),3.4147894572091,3.29753620181398,3.5729904476839
+a,xgboost,SCREADCOMP,Perceived reading competence (SCREADCOMP),2.44874564560545,2.28496514548254,2.55509754040062
+a,xgboost,SCREADDIFF,Perceived reading difficulty (SCREADDIFF),1.81864223906434,1.73734147205192,1.88001967553067
+a,xgboost,JOYREAD,Enjoyment of reading (JOYREAD),1.92423104441511,1.86416088019207,1.98733492573598
+a,xgboost,UNDREM,Understanding and remembering (UNDREM),1.23623312539068,1.12824885372707,1.28757961106004
+a,xgboost,ST001D01T,Grade (ST001D01T),0.945882823731066,0.877117706120484,0.990915659161646
+a,xgboost,ESCS,"Economic, social, and cultural status (ESCS)",0.690711776926634,0.632640651988686,0.797865872973795
+a,xgboost,HOMEPOS,Home possessions (HOMEPOS),0.628343290053967,0.586345834596326,0.695269578706953
+a,xgboost,WEALTH,Family wealth (WEALTH),0.0354643587457622,0.0216384458685172,0.0550468145670732
+a,ridge_fixed,METASPAM,Assessing credibility (METASPAM),5.5315179071088,5.38514074253244,5.61058799145765
+a,ridge_fixed,ESCS,"Economic, social, and cultural status (ESCS)",5.19816561497127,4.59772567922044,5.9528736010022
+a,ridge_fixed,HOMEPOS,Home possessions (HOMEPOS),3.72663555757707,3.32565393638409,4.00626421344709
+a,ridge_fixed,WEALTH,Family wealth (WEALTH),3.5005963573708,3.1965871955384,3.65028829060611
+a,ridge_fixed,SCREADCOMP,Perceived reading competence (SCREADCOMP),2.14867177105908,2.03306364488466,2.24121760066948
+a,ridge_fixed,ST001D01T,Grade (ST001D01T),2.17148025181148,2.01988110992077,2.27799070630145
+a,ridge_fixed,METASUM,Summarizing strategies (METASUM),2.00384635844222,1.94716316358509,2.08964577596499
+a,ridge_fixed,SCREADDIFF,Perceived reading difficulty (SCREADDIFF),1.17567138143815,1.11034862352925,1.22475057767901
+a,ridge_fixed,JOYREAD,Enjoyment of reading (JOYREAD),0.818564780318009,0.773580249590866,0.858780555060644
+a,ridge_fixed,UNDREM,Understanding and remembering (UNDREM),0.706250203504135,0.647513339608554,0.73459156680581
+a,ridge_cv,METASPAM,Assessing credibility (METASPAM),5.36694152343729,5.25199126842861,5.47930085845489
+a,ridge_cv,METASUM,Summarizing strategies (METASUM),2.16878857928569,2.09750569340938,2.26275039128598
+a,ridge_cv,SCREADCOMP,Perceived reading competence (SCREADCOMP),2.10665131556906,2.00620949127351,2.20067563788935
+a,ridge_cv,ST001D01T,Grade (ST001D01T),1.72719378818881,1.65283575566271,1.8260525013717
+a,ridge_cv,SCREADDIFF,Perceived reading difficulty (SCREADDIFF),1.23130973494642,1.18987659323496,1.28317544338539
+a,ridge_cv,JOYREAD,Enjoyment of reading (JOYREAD),1.00170429614964,0.939802908162057,1.04308320314362
+a,ridge_cv,UNDREM,Understanding and remembering (UNDREM),0.889045725960811,0.830786311620924,0.927951007617154
+a,ridge_cv,ESCS,"Economic, social, and cultural status (ESCS)",0.882815443604681,0.807457632271634,0.953281334885993
+a,ridge_cv,HOMEPOS,Home possessions (HOMEPOS),0.508298156175194,0.462796679834846,0.546889462547948
+a,ridge_cv,WEALTH,Family wealth (WEALTH),0.440766107946337,0.398411768073745,0.497534880079672
+b,random_forest,socioeconomic_joint_block,"Block of ESCS, parental occupation, and home possessions (permuted jointly)",3.75620792890205,3.67978293156468,3.86087239830165
+b,xgboost,socioeconomic_joint_block,"Block of ESCS, parental occupation, and home possessions (permuted jointly)",3.52666163960121,3.39603791611856,3.65094484004115
+b,ridge_fixed,socioeconomic_joint_block,"Block of ESCS, parental occupation, and home possessions (permuted jointly)",14.4751736554631,13.8997597291132,14.8506425217959
+b,ridge_cv,socioeconomic_joint_block,"Block of ESCS, parental occupation, and home possessions (permuted jointly)",3.81006838136277,3.540583415335,3.95614566049659
+b,random_forest,ses_family,All eight socioeconomic indices (permuted jointly),5.26490317158157,5.19372411878466,5.38474510385678
+b,xgboost,ses_family,All eight socioeconomic indices (permuted jointly),3.621062608887,3.52486954927009,3.73112016230325
+b,ridge_fixed,ses_family,All eight socioeconomic indices (permuted jointly),3.22844947325616,3.14557509251403,3.31106964562783
+b,ridge_cv,ses_family,All eight socioeconomic indices (permuted jointly),2.96537653098425,2.89606687726901,3.01687921275862
+b,random_forest,ESCS,"ESCS, refitted without the other socioeconomic indices",2.35659824141097,2.31591456603994,2.41241688717045
+b,xgboost,ESCS,"ESCS, refitted without the other socioeconomic indices",2.809458359016,2.73847367311831,2.90246342147208
+b,ridge_fixed,ESCS,"ESCS, refitted without the other socioeconomic indices",2.13769288630413,2.06866581757033,2.18865150303677
+b,ridge_cv,ESCS,"ESCS, refitted without the other socioeconomic indices",2.22023828293248,2.16224796213022,2.25853977306732
+b,random_forest,ses_components,"Six component indices, refitted without ESCS and home possessions",3.88892797156421,3.84317757464876,3.95914272059365
+b,xgboost,ses_components,"Six component indices, refitted without ESCS and home possessions",3.30898864100771,3.23941119828542,3.40046960140434
+b,ridge_fixed,ses_components,"Six component indices, refitted without ESCS and home possessions",2.15937567121496,2.0827140974649,2.2086778425819
+b,ridge_cv,ses_components,"Six component indices, refitted without ESCS and home possessions",2.44066100886986,2.3914478720142,2.48312437976826

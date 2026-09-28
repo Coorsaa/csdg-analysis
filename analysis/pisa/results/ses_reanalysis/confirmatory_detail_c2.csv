@@ -1,0 +1,9 @@
+stage,learner,largest_on_average,gap_on_average,n_pv_largest
+exploratory,random_forest,TRUE,2.61879795165084,10
+exploratory,xgboost,TRUE,4.23029629551254,10
+exploratory,ridge_fixed,TRUE,0.333352292137531,9
+exploratory,ridge_cv,TRUE,3.1981529441516,10
+confirmatory,random_forest,TRUE,2.16546330094154,10
+confirmatory,xgboost,TRUE,3.68034588309914,10
+confirmatory,ridge_fixed,TRUE,0.223555789938246,6
+confirmatory,ridge_cv,TRUE,2.89787632465571,10
