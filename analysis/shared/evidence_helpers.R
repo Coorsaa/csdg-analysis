@@ -862,7 +862,7 @@
     geom_point(shape = 21, fill = "white", color = "black", stroke = 0.45, size = 2.3) +
     scale_x_continuous(breaks = seq_len(10L)) +
     labs(
-      x = "Within-fold prediction-score\ndecile",
+      x = "Decile of predicted\nprobability",
       y = "Case median weighted\nR-squared"
     ) +
     .analysis_theme(base_size = 12, line_base_size = 12) +
@@ -875,7 +875,7 @@
     geom_point(shape = 21, fill = "white", color = "black", stroke = 0.45, size = 2.3) +
     scale_x_continuous(breaks = seq_len(10L)) +
     labs(
-      x = "Within-fold prediction-score\ndecile",
+      x = "Decile of predicted\nprobability",
       y = "Case median weighted\nRMSE"
     ) +
     .analysis_theme(base_size = 12, line_base_size = 12) +

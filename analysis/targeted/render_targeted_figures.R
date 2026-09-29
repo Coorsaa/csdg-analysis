@@ -24,7 +24,7 @@ render_targeted_figures = function(project_root = getwd()) {
   for (measure in c("weighted_rmse", "weighted_r2")) {
     data = common[metric == measure]
     data[, model_label := factor(surrogate_scale, levels = c("response", "link"),
-      labels = c("Probability", "Logit"))]
+      labels = c("Probability", "Log-odds"))]
     label = if (measure == "weighted_rmse") "Weighted RMSE\n(probability scale)" else {
       "Weighted R-squared\n(probability scale)"
     }
@@ -33,7 +33,7 @@ render_targeted_figures = function(project_root = getwd()) {
       geom_point(shape = 21, fill = "white", color = "black", size = 2.6, stroke = .65) +
       scale_y_continuous(limits = c(0, if (measure == "weighted_rmse") .030 else 1),
         breaks = if (measure == "weighted_rmse") seq(0, .03, .01) else seq(0, 1, .25),
-        expand = expansion(mult = c(0, .04))) + labs(x = "Surrogate fit scale", y = label) + theme
+        expand = expansion(mult = c(0, .04))) + labs(x = "Scale of the surrogate", y = label) + theme
     export(p, paste0("shild_common_probability_", measure), "Shared probability-scale evaluation",
       paste("Identical held-out neighbors, weights, and five surrogate cross-fit folds for the 100 original",
         "method-sensitivity cases and five seeds. Logit-fit predictions were transformed pointwise to probability.",
@@ -45,7 +45,7 @@ render_targeted_figures = function(project_root = getwd()) {
     data = convergence[metric == measure & design_role == "size"]
     data[, n_label := factor(n_training, levels = c(250, 500, 1000, 2000))]
     data[, model_label := factor(surrogate_scale, levels = c("response", "link"),
-      labels = c("Probability fit", "Logit fit"))]
+      labels = c("Probability", "Log-odds"))]
     dodge = position_dodge(width = .16)
     p = ggplot(data, aes(n_label, median, group = model_label, shape = model_label, linetype = model_label)) +
       geom_errorbar(aes(ymin = q25, ymax = q75), width = .1, linewidth = .45, position = dodge,
@@ -56,7 +56,7 @@ render_targeted_figures = function(project_root = getwd()) {
       scale_y_continuous(limits = c(0, if (measure == "weighted_rmse") .04 else 1),
         breaks = if (measure == "weighted_rmse") seq(0, .04, .01) else seq(0, 1, .25),
         expand = expansion(mult = c(0, .04))) +
-      labs(x = "Training neighbors", y = if (measure == "weighted_rmse") {
+      labs(x = "Number of perturbed points", y = if (measure == "weighted_rmse") {
         "Weighted RMSE\n(probability scale)"
       } else "Weighted R-squared\n(probability scale)") + theme
     export(p, paste0("shild_convergence_", measure), "Fixed-evaluation neighborhood learning curve",

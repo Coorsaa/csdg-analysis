@@ -14,7 +14,7 @@ result_dir = file.path("analysis/pisa/results/ses_reanalysis", stage)
 pfi = fread(file.path(result_dir, "pfi_summary.csv"))
 
 learner_levels = c("xgboost", "random_forest", "ridge_fixed", "ridge_cv")
-learner_labels = c("XGBoost", "Random forest", "Ridge, fixed penalty", "Ridge, cross-validated penalty")
+learner_labels = c("XGBoost", "Random forest", "Fixed-penalty ridge", "Tuned-penalty ridge")
 labels = c(METASPAM = "Assessing credibility", METASUM = "Summarizing strategies",
   SCREADCOMP = "Perceived reading competence", SCREADDIFF = "Perceived reading difficulty",
   JOYREAD = "Enjoyment of reading", UNDREM = "Understanding and remembering",
