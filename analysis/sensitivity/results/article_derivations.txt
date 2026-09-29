@@ -1,0 +1,74 @@
+Derived numbers of the article (analysis/sensitivity/article_derivations.R); values rounded as in the text.
+
+SHILD admission: held-out log loss per fold (refits with all 27 items), comparison minus XGBoost
+  ridge_logistic loss 0.1260; difference 0.0038 (SE 0.0016), interval 0.0001 to 0.0075
+  random_forest  loss 0.1332; difference 0.0110 (SE 0.0031), interval 0.0040 to 0.0180
+PISA admission, exploratory: RMSE per fold averaged over plausible values, comparison minus XGBoost
+  random_forest  RMSE 72.80; retained 97.6%; difference 0.70 (SE 0.10), interval 0.44 to 0.97
+  ridge_fixed    RMSE 73.25; retained 96.1%; difference 1.15 (SE 0.22), interval 0.53 to 1.77
+  ridge_cv       RMSE 73.60; retained 94.9%; difference 1.50 (SE 0.20), interval 0.96 to 2.05
+PISA admission, confirmatory: RMSE per fold averaged over plausible values, comparison minus XGBoost
+  random_forest  RMSE 73.07; retained 97.3%; difference 0.78 (SE 0.14), interval 0.38 to 1.18
+  ridge_fixed    RMSE 73.76; retained 94.9%; difference 1.46 (SE 0.33), interval 0.54 to 2.38
+  ridge_cv       RMSE 74.10; retained 93.7%; difference 1.81 (SE 0.29), interval 1.00 to 2.62
+PISA exploratory: top K of the PFI averaged over plausible values
+  K =  3 xgboost        recurs in 10 of 10; margin over place 4: 0.525; METASPAM, METASUM, SCREADCOMP
+  K =  3 random_forest  recurs in 10 of 10; margin over place 4: 0.334; METASPAM, METASUM, JOYREAD
+  K =  3 ridge_fixed    recurs in 9 of 10; margin over place 4: 0.226; METASPAM, ESCS, HOMEPOS
+  K =  3 ridge_cv       recurs in 10 of 10; margin over place 4: 0.379; METASPAM, METASUM, SCREADCOMP
+  K =  3 random_forest  shares 2 of 3 with XGBoost
+  K =  3 ridge_fixed    shares 1 of 3 with XGBoost
+  K =  3 ridge_cv       shares 3 of 3 with XGBoost
+  K =  5 xgboost        recurs in 10 of 10; margin over place 6: 0.582; METASPAM, METASUM, SCREADCOMP, JOYREAD, SCREADDIFF
+  K =  5 random_forest  recurs in 6 of 10; margin over place 6: 0.031; METASPAM, METASUM, JOYREAD, SCREADCOMP, UNDREM
+  K =  5 ridge_fixed    recurs in 6 of 10; margin over place 6: 0.023; METASPAM, ESCS, HOMEPOS, WEALTH, ST001D01T
+  K =  5 ridge_cv       recurs in 10 of 10; margin over place 6: 0.076; METASPAM, METASUM, SCREADCOMP, ST001D01T, SCREADDIFF
+  K =  5 random_forest  shares 4 of 5 with XGBoost
+  K =  5 ridge_fixed    shares 1 of 5 with XGBoost
+  K =  5 ridge_cv       shares 4 of 5 with XGBoost
+  K = 10 xgboost        recurs in 10 of 10; margin over place 11: 0.113; METASPAM, METASUM, SCREADCOMP, JOYREAD, SCREADDIFF, UNDREM, ST001D01T, EFFORT2, HISEI, ISCEDO
+  K = 10 random_forest  recurs in 10 of 10; margin over place 11: 0.230; METASPAM, METASUM, JOYREAD, SCREADCOMP, UNDREM, SCREADDIFF, ESCS, HISEI, ISCEDO, EFFORT2
+  K = 10 ridge_fixed    recurs in 8 of 10; margin over place 11: 0.036; METASPAM, ESCS, HOMEPOS, WEALTH, ST001D01T, SCREADCOMP, METASUM, LANGN, SCREADDIFF, ISCEDO
+  K = 10 ridge_cv       recurs in 9 of 10; margin over place 11: 0.066; METASPAM, METASUM, SCREADCOMP, ST001D01T, SCREADDIFF, LANGN, JOYREAD, ISCEDO, UNDREM, ESCS
+  K = 10 random_forest  shares 9 of 10 with XGBoost
+  K = 10 ridge_fixed    shares 6 of 10 with XGBoost
+  K = 10 ridge_cv       shares 8 of 10 with XGBoost
+PISA exploratory: block PFI of linear regression over the larger of XGBoost and random forest, per PV: 3.71 to 3.97
+PISA exploratory: Rubin's total variance T = W + (1 + 1/M) B, 95% interval mean +- t(df) sqrt(T)
+  METASPAM                   xgboost        7.65 [7.27, 8.02]; W 0.0209, B 0.0127, T 0.0349, df 56
+  METASPAM                   random_forest  5.88 [5.59, 6.17]; W 0.0163, B 0.0049, T 0.0217, df 145
+  METASPAM                   ridge_fixed    5.53 [5.25, 5.81]; W 0.0142, B 0.0050, T 0.0196, df 116
+  METASPAM                   ridge_cv       5.37 [5.11, 5.63]; W 0.0119, B 0.0046, T 0.0170, df 101
+  socioeconomic_joint_block  xgboost        3.53 [3.31, 3.75]; W 0.0054, B 0.0056, T 0.0116, df 31
+  socioeconomic_joint_block  random_forest  3.76 [3.52, 4.00]; W 0.0106, B 0.0037, T 0.0146, df 118
+  socioeconomic_joint_block  ridge_fixed    14.48 [13.71, 15.24]; W 0.0578, B 0.0749, T 0.1403, df 26
+  socioeconomic_joint_block  ridge_cv       3.81 [3.30, 4.32]; W 0.0475, B 0.0164, T 0.0655, df 119
+  ses_family                 xgboost        3.62 [3.39, 3.85]; W 0.0069, B 0.0053, T 0.0126, df 43
+  ses_family                 random_forest  5.26 [5.00, 5.53]; W 0.0135, B 0.0045, T 0.0185, df 126
+  ses_family                 ridge_fixed    3.23 [3.00, 3.46]; W 0.0110, B 0.0021, T 0.0134, df 296
+  ses_family                 ridge_cv       2.97 [2.78, 3.15]; W 0.0065, B 0.0018, T 0.0085, df 165
+  half-widths 0.18 to 0.77 RMSE points
+PISA confirmatory, C2 in linear regression: assessing credibility minus home possessions per PV (mean over folds)
+  PV1READ  largest METASPAM  difference  0.1532; SE 0.0418; threshold 0.0946
+  PV2READ  largest METASPAM  difference  0.5548; SE 0.0411; threshold 0.0930
+  PV3READ  largest HOMEPOS   difference -0.0159; SE 0.0384; threshold 0.0868
+  PV4READ  largest HOMEPOS   difference -0.0011; SE 0.0411; threshold 0.0929
+  PV5READ  largest METASPAM  difference  0.4907; SE 0.0388; threshold 0.0877
+  PV6READ  largest HOMEPOS   difference -0.0984; SE 0.0425; threshold 0.0960
+  PV7READ  largest METASPAM  difference  0.3822; SE 0.0411; threshold 0.0931
+  PV8READ  largest HOMEPOS   difference -0.2126; SE 0.0433; threshold 0.0980
+  PV9READ  largest METASPAM  difference  0.3369; SE 0.0400; threshold 0.0905
+  PV10READ largest METASPAM  difference  0.6458; SE 0.0369; threshold 0.0835
+  largest in 6 of 10; reversals within Monte Carlo error: 2; counting them: 8 of 10
+PISA confirmatory, C3: ratio 1.83 on average; per PV 1.80 to 1.87 (10 of 10 at most 2)
+  per fold 1.80 to 1.86, corrected interval 1.79 to 1.88; per fold and PV 1.748 to 1.961
+SHILD LOCO: folds in which A2 and D2 both exceed every other item; largest Holm-adjusted p over 50 comparisons
+  xgboost        loco          10 of 10 folds; max Holm p 0.0001
+  ridge_logistic loco          10 of 10 folds; max Holm p 0.0001
+  random_forest  loco          3 of 10 folds; max Holm p 0.1766
+  xgboost        loco_weighted 10 of 10 folds; max Holm p 0.0002
+  ridge_logistic loco_weighted 10 of 10 folds; max Holm p 0.0002
+  random_forest  loco_weighted 4 of 10 folds; max Holm p 0.2321
+SHILD A2 - D2 (XGBoost): positive in 9 of 10 folds; fold 9: -0.0030, SE 0.0013
+  per-fold threshold t(.975, 19) x SE 0.0027; Holm-adjusted threshold t(.995, 19) x SE 0.0037
+  fold-to-fold SD 0.0088 = 6.8 times the SE in fold 9 (8.1 times the mean SE over folds)

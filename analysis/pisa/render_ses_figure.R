@@ -14,7 +14,7 @@ result_dir = file.path("analysis/pisa/results/ses_reanalysis", stage)
 pfi = fread(file.path(result_dir, "pfi_summary.csv"))
 
 learner_levels = c("xgboost", "random_forest", "ridge_fixed", "ridge_cv")
-learner_labels = c("XGBoost", "Random forest", "Fixed-penalty ridge", "Tuned-penalty ridge")
+learner_labels = c("XGBoost", "Random forest", "Linear regression", "Ridge regression")
 labels = c(METASPAM = "Assessing credibility", METASUM = "Summarizing strategies",
   SCREADCOMP = "Perceived reading competence", SCREADDIFF = "Perceived reading difficulty",
   JOYREAD = "Enjoyment of reading", UNDREM = "Understanding and remembering",
@@ -49,7 +49,7 @@ socio = rbindlist(list(
 socio[, label := factor(label, levels = rev(unique(label)))]
 
 style = function(plot, limit) {
-  plot + scale_shape_manual(values = c(21L, 22L, 24L, 25L), labels = learner_labels, drop = FALSE) +
+  plot + scale_shape_manual(values = c(16L, 22L, 17L, 25L), labels = learner_labels, drop = FALSE) +
     scale_x_continuous(limits = c(0, limit), expand = expansion(mult = c(0.015, 0.02))) +
     labs(x = "Increase in held-out RMSE (reading-score points)", y = NULL, shape = NULL) +
     theme_minimal(base_size = 11, base_family = "Arial") +

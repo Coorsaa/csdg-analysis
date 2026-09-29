@@ -1,4 +1,4 @@
-# Save the two PISA matched-control contrast panels (Supplementary Figure S1) as PDF and PNG.
+# Save the two PISA matched-control contrast panels (retained display, not in the current article) as PDF and PNG.
 
 .save_loco_contrast_plots = function(plots, figure_dir) {
   expected = c("size_matched_exclusion", "training_size_contrast")

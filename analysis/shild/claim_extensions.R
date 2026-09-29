@@ -11,6 +11,9 @@
 #   --part=local        individual explanations: the 300 sampled cases of the primary local evaluation, 20 repeated
 #                       local surrogates per case (same seeds), on the probability and the log-odds scale; recurrence
 #                       of the two items with the largest contributions and cross-fitted fidelity.
+#   --part=export       aggregate tables behind decisive statements, read from the frozen primary outputs in
+#                       paper_artifacts/current/ (no data, no refitting): local fidelity of the 300 evaluated cases,
+#                       item missingness, and the fold-level PFI of self-rated health and depressed mood per run.
 #
 # Aggregates are written to analysis/shild/results/claim_extensions/; case-level tables only to CSDG_PRIVATE_DIR.
 # Usage (from the repository root): Rscript analysis/shild/claim_extensions.R --part=loco --workers=6
@@ -30,7 +33,7 @@ arg_value = function(name, default = NULL) {
   if (length(hit)) sub(paste0("^--", name, "="), "", hit[[1L]]) else default
 }
 part = arg_value("part", "importance")
-stopifnot(part %in% c("importance", "loco", "selection", "local"))
+stopifnot(part %in% c("importance", "loco", "selection", "local", "export"))
 workers = as.integer(arg_value("workers", "1"))
 root = normalizePath(arg_value("root", "."), mustWork = TRUE)
 output_dir = file.path(root, "analysis/shild/results/claim_extensions")
@@ -55,6 +58,69 @@ corrected_interval = function(values, test_fraction = 1 / folds, level = 0.95) {
 }
 interval_row = function(values, ...) as.data.table(corrected_interval(values, ...))
 fwrite_out = function(table, name) fwrite(table, file.path(output_dir, name))
+write_session = function() {
+  writeLines(capture.output(sessionInfo()), file.path(output_dir, paste0("sessionInfo_", part, ".txt")))
+}
+
+# ---- Part: aggregate tables from the frozen primary outputs (no data, no refitting) ----
+
+if (part == "export") {
+  # Every exported row summarizes at least 10 cases or respondents.
+  minimum_n = 10L
+  # Local fidelity of the 300 evaluated cases: primary kernel width, probability scale, per case the median over the
+  # 20 repetitions (as in the stored case table); quartiles across cases are type-8 quantiles.
+  cases = fread(file.path(frozen, "evidence/private/tables/shild_g4_local_fidelity_cases.csv"))
+  stopifnot(nrow(cases) == 300L, uniqueN(cases$case_label) == 300L, all(cases$n_perturbation_replicates == 20L))
+  fidelity = function(x) {
+    list(n_cases = nrow(x),
+      median_apparent_r2 = median(x$median_apparent_weighted_r2),
+      q25_apparent_r2 = .evidence_quantile(x$median_apparent_weighted_r2, 0.25),
+      q75_apparent_r2 = .evidence_quantile(x$median_apparent_weighted_r2, 0.75),
+      median_crossfit_r2 = median(x$median_weighted_r2),
+      q25_crossfit_r2 = .evidence_quantile(x$median_weighted_r2, 0.25),
+      q75_crossfit_r2 = .evidence_quantile(x$median_weighted_r2, 0.75),
+      n_apparent_above_crossfit = sum(x$median_apparent_weighted_r2 > x$median_weighted_r2),
+      median_crossfit_rmse = median(x$median_weighted_rmse),
+      q25_crossfit_rmse = .evidence_quantile(x$median_weighted_rmse, 0.25),
+      q75_crossfit_rmse = .evidence_quantile(x$median_weighted_rmse, 0.75))
+  }
+  overall = as.data.table(fidelity(cases))
+  # Deciles and folds hold 30 cases each; a fold within a decile holds only 3 and is therefore not exported.
+  by_decile = cases[, fidelity(.SD), by = .(decile = prediction_score_decile)][order(decile)]
+  by_fold = cases[, fidelity(.SD), by = fold][order(fold)]
+  stopifnot(all(c(overall$n_cases, by_decile$n_cases, by_fold$n_cases) >= minimum_n))
+  fwrite_out(overall, "export_local_fidelity_summary.csv")
+  fwrite_out(by_decile, "export_local_fidelity_by_decile.csv")
+  fwrite_out(by_fold, "export_local_fidelity_by_fold.csv")
+  # Missingness of the 27 items in the analytic sample, before and after the documented recoding.
+  missingness = fread(file.path(frozen, "shild/private/tables/shild_missingness.csv"))
+  missingness[, stage := ifelse(startsWith(stage, "before"), "before_recoding", "after_recoding")]
+  stopifnot(nrow(missingness) == 54L, uniqueN(missingness$variable) == 27L, all(missingness$n >= minimum_n))
+  fwrite_out(missingness[order(stage, -missing_fraction, variable),
+    .(stage, item = variable, n, n_missing, missing_share = missing_fraction)], "export_item_missingness.csv")
+  # PFI of self-rated health (A2) and depressed mood (D2) per fold in each of the two stored runs of 10 permutations
+  # (the importance part pools them to 20); each fold holds about 1,700 respondents.
+  sources = c("shild_gate_g5__pfi__raw.csv", "shild_gate_g6a__model_generalization__pfi__xgboost__raw.csv")
+  runs = rbindlist(lapply(seq_along(sources), function(index) {
+    fread(file.path(frozen, "shild/private/tables", sources[[index]]))[, `:=`(run = index, source = sources[[index]])]
+  }), fill = TRUE)
+  pooled = runs[, .(pfi = mean(importance)), by = .(fold, item = feature_group)]
+  stored = fread(file.path(output_dir, "importance_fold_pfi.csv"))
+  check = merge(pooled, stored[, .(fold, item, stored_pfi = pfi)], by = c("fold", "item"))
+  stopifnot(nrow(check) == nrow(stored), max(abs(check$pfi - check$stored_pfi)) < 1e-12)
+  per_run = runs[feature_group %in% c("A2", "D2"), .(n_assessment = n_assessment[[1L]], pfi = mean(importance),
+    mc_se = stats::sd(importance) / sqrt(.N), n_permutations = .N), by = .(run, source, fold, item = feature_group)]
+  stopifnot(all(per_run$n_assessment >= minimum_n), all(per_run$n_permutations == 10L))
+  wide = dcast(per_run, run + source + fold + n_assessment + n_permutations ~ item, value.var = c("pfi", "mc_se"))
+  wide[, `:=`(difference_A2_minus_D2 = pfi_A2 - pfi_D2, mc_se_difference = sqrt(mc_se_A2^2 + mc_se_D2^2))]
+  fwrite_out(wide[order(run, fold), .(run, source, fold, n_assessment, n_permutations, pfi_A2, mc_se_A2, pfi_D2,
+    mc_se_D2, difference_A2_minus_D2, mc_se_difference)], "export_importance_fold_pfi_by_run.csv")
+  print(overall); print(by_decile[decile %in% c(1L, 10L)])
+  print(missingness[, .(max_share = max(missing_fraction)), by = stage])
+  print(wide[, .(run, fold, difference_A2_minus_D2, mc_se_difference)])
+  write_session()
+  quit(save = "no")
+}
 
 # ---- Analytic sample, task, and the primary folds ----
 
@@ -395,4 +461,4 @@ if (part == "local") {
   fwrite_out(top_decile, "local_top_items_top_decile.csv")
   print(identity_check); print(overall); print(top_decile); print(by_decile[order(scale, decile)])
 }
-writeLines(capture.output(sessionInfo()), file.path(output_dir, paste0("sessionInfo_", part, ".txt")))
+write_session()

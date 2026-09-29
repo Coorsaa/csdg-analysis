@@ -1,11 +1,11 @@
 # SHILD claim extensions: aggregate results
 
 Written by `analysis/shild/claim_extensions.R`. All tables are aggregates over folds (about 1,700 respondents each),
-deciles of predicted probability (30 cases each), or all 300 evaluated cases; none contains respondent- or case-level
-values. Intervals are corrected resampled t intervals over the 10 folds (Nadeau & Bengio, 2003): standard error
-`sqrt((1/10 + 1/9) * var)`, t quantile with 9 degrees of freedom; `p_greater` is the one-sided p value for an estimate
-above zero. The simulation in `analysis/simulation/` shows that these intervals are too lenient for K-fold
-cross-validation, so they are reported descriptively.
+deciles of predicted probability (30 cases each), all 300 evaluated cases, or the 16,971 respondents of the analytic
+sample; none contains respondent- or case-level values. Intervals are corrected resampled t intervals over the 10
+folds (Nadeau & Bengio, 2003): standard error `sqrt((1/10 + 1/9) * var)`, t quantile with 9 degrees of freedom;
+`p_greater` is the one-sided p value for an estimate above zero. The simulation in `analysis/simulation/` shows that
+these intervals are too lenient for K-fold cross-validation, so they are reported descriptively.
 
 ## Global importance of the XGBoost learner (`--part=importance`)
 
@@ -57,3 +57,18 @@ largest magnitudes form the top pair; per case, the most frequent pair and its c
 | `local_top_items_by_decile.csv` | per scale and decile: share of cases whose most frequent top pair occurs in at least 19 of 20 repetitions, median and minimum count, share of cases with median cross-fitted weighted R2 of at least .80, median R2 |
 | `local_top_items_overall.csv` | the same over all 300 cases |
 | `local_top_items_top_decile.csv` | the 30 cases of the highest decile, including the share meeting both criteria |
+
+## Aggregates from the frozen primary outputs (`--part=export`)
+
+Read from the private frozen outputs of the primary SHILD run and the evidence synthesis in `paper_artifacts/current/`
+without data access or refitting. Every row summarizes at least 10 cases or respondents. Local fidelity refers to the
+primary kernel width and the probability scale; each case enters with its median over the 20 repetitions, and
+quartiles across cases are type-8 quantiles. A fold within a decile holds only 3 cases and is not exported.
+
+| File | Columns |
+|---|---|
+| `export_local_fidelity_summary.csv` | over the 300 cases: `n_cases`, median and quartiles (`q25`, `q75`) of apparent and cross-fitted weighted R2 and of cross-fitted weighted RMSE, `n_apparent_above_crossfit` (cases whose apparent R2 exceeds the cross-fitted R2) |
+| `export_local_fidelity_by_decile.csv` | the same per decile of predicted probability (30 cases each) |
+| `export_local_fidelity_by_fold.csv` | the same per fold (30 cases each) |
+| `export_item_missingness.csv` | per `stage` (before and after the documented recoding) and `item`: analytic sample size `n`, `n_missing`, `missing_share` |
+| `export_importance_fold_pfi_by_run.csv` | per `run` (1 = `shild_gate_g5__pfi__raw.csv`, 2 = `shild_gate_g6a__model_generalization__pfi__xgboost__raw.csv`) and `fold`: held-out fold size `n_assessment`, `n_permutations` (10), PFI and Monte Carlo standard error of `A2` and `D2`, their difference and its standard error |

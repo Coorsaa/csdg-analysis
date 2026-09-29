@@ -18,9 +18,10 @@ C1–C28 so that they are distinct from the figures of the methods supplement (S
 - `computational_supplement.pdf`: the assembled supplement; `publication.tex` is its LaTeX source, written by
   `assemble_publication.py`.
 - `shild/`, `pisa/`: figure components (PDF and PNG) and their source tables.
-- `plot_data/`: SHILD decile and kernel-width summaries of the 300-case local-fidelity evaluation (Supplementary
-  Figures S2 and S4a of the article). Points are medians of within-case medians over 20 repetitions; whiskers are
-  25th and 75th percentiles across cases, not confidence intervals.
+- `plot_data/`: SHILD decile and kernel-width summaries of the 300-case local-fidelity evaluation (the decile summary
+  underlies Figure S1 of the methods supplement; the kernel-width summary is not shown as a figure in the article).
+  Points are medians of within-case medians over 20 repetitions; whiskers are 25th and 75th percentiles across cases,
+  not confidence intervals.
 - `FIGURE_MANIFEST.csv`: components, panel order, dimensions, source tables, and uncertainty semantics.
 - `SOURCE_TABLE_MANIFEST.csv`, `PUBLICATION_INDEX.csv`: table identities and the mapping of components to figures
   (C1–C28), pages, captions, and checksums.
@@ -28,8 +29,9 @@ C1–C28 so that they are distinct from the figures of the methods supplement (S
 - `SHA256SUMS`: checksums of all files.
 
 All tables are aggregates; the folder contains no respondent or student records, predictions, or fitted models. For
-medicine and supplement spending (SHILD M6), the metadata identify only the recorded survey amount; its currency and
-recall period are stated as author confirmations in the captions.
+medicine and supplement spending (SHILD M6), the metadata identify only the recorded survey amount; the captions of
+Figures C7 and C11 state that its currency and recall period have not been verified against the 2012 item
+documentation.
 
 ## Build and verify
 

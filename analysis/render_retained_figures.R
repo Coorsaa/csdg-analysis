@@ -33,7 +33,7 @@ for (study in c("SHILD", "PISA")) {
 }
 
 # Descriptive medians and type-8 quartiles across within-case replicate medians.
-# Only the absolute-fidelity panel is currently in Figure 3; the other summaries retain their original scope.
+# The decile panels form Figure S1 of the methods supplement; the locality curve (kernel width) is not in the article.
 deciles = fread("supplement/plot_data/shild_g4_decile_plot_summary.csv")
 bandwidths = fread("supplement/plot_data/shild_g4_bandwidth_plot_summary.csv")
 for (data in list(deciles, bandwidths)) {

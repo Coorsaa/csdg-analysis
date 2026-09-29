@@ -1,4 +1,4 @@
-# Paired probability-scale RMSE difference by prediction-score decile (main-text Figure 2b).
+# Paired probability-scale RMSE difference by prediction-score decile (Figure S2b of the methods supplement).
 # Reads the public aggregate table of the targeted SHILD extension; no respondent-level data are used.
 
 suppressPackageStartupMessages({ library(data.table); library(ggplot2) })

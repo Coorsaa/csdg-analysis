@@ -1,0 +1,255 @@
+quantity,stage,learner,detail,value
+mean_log_loss,shild,xgboost,,0.122188545027771
+mean_log_loss,shild,ridge_logistic,,0.125991901534229
+mean_log_loss,shild,random_forest,,0.133179311890711
+loss_difference_mean,shild,ridge_logistic,,0.0038033565064589
+loss_difference_se,shild,ridge_logistic,,0.00163041026513777
+loss_difference_lower,shild,ridge_logistic,,0.000115112246877769
+loss_difference_upper,shild,ridge_logistic,,0.00749160076604002
+loss_difference_mean,shild,random_forest,,0.01099076686294
+loss_difference_se,shild,random_forest,,0.00309084600864624
+loss_difference_lower,shild,random_forest,,0.00399878742537467
+loss_difference_upper,shild,random_forest,,0.0179827463005053
+mean_rmse,exploratory,random_forest,,72.8021121566588
+retained_share_percent,exploratory,random_forest,,97.5937068250004
+mean_rmse,exploratory,xgboost,,72.0993564371739
+retained_share_percent,exploratory,xgboost,,100
+mean_rmse,exploratory,ridge_fixed,,73.250193825941
+retained_share_percent,exploratory,ridge_fixed,,96.0594384686694
+mean_rmse,exploratory,ridge_cv,,73.6019350198295
+retained_share_percent,exploratory,ridge_cv,,94.8550477952781
+mean_rmse,exploratory,featureless,,101.304264915751
+retained_share_percent,exploratory,featureless,,0
+rmse_difference_mean,exploratory,random_forest,,0.702755719484901
+rmse_difference_se,exploratory,random_forest,,0.0956789836604278
+rmse_difference_lower,exploratory,random_forest,,0.437108273630607
+rmse_difference_upper,exploratory,random_forest,,0.968403165339195
+rmse_difference_mean,exploratory,ridge_fixed,,1.15083738876708
+rmse_difference_se,exploratory,ridge_fixed,,0.221882273363224
+rmse_difference_lower,exploratory,ridge_fixed,,0.534793436957598
+rmse_difference_upper,exploratory,ridge_fixed,,1.76688134057656
+rmse_difference_mean,exploratory,ridge_cv,,1.50257858265558
+rmse_difference_se,exploratory,ridge_cv,,0.197111906437643
+rmse_difference_lower,exploratory,ridge_cv,,0.955308194850577
+rmse_difference_upper,exploratory,ridge_cv,,2.04984897046058
+mean_rmse,confirmatory,random_forest,,73.0718831990951
+retained_share_percent,confirmatory,random_forest,,97.2831630165436
+mean_rmse,confirmatory,xgboost,,72.2911112175716
+retained_share_percent,confirmatory,xgboost,,100
+mean_rmse,confirmatory,ridge_fixed,,73.7551181751304
+retained_share_percent,confirmatory,ridge_fixed,,94.9057236421671
+mean_rmse,confirmatory,ridge_cv,,74.0991054346529
+retained_share_percent,confirmatory,ridge_cv,,93.708757907453
+mean_rmse,confirmatory,featureless,,101.029382460116
+retained_share_percent,confirmatory,featureless,,0
+rmse_difference_mean,confirmatory,random_forest,,0.780771981523449
+rmse_difference_se,confirmatory,random_forest,,0.143705415477885
+rmse_difference_lower,confirmatory,random_forest,,0.381781784129459
+rmse_difference_upper,confirmatory,random_forest,,1.17976217891744
+rmse_difference_mean,confirmatory,ridge_fixed,,1.46400695755881
+rmse_difference_se,confirmatory,ridge_fixed,,0.331682920039809
+rmse_difference_lower,confirmatory,ridge_fixed,,0.543107537736566
+rmse_difference_upper,confirmatory,ridge_fixed,,2.38490637738105
+rmse_difference_mean,confirmatory,ridge_cv,,1.80799421708127
+rmse_difference_se,confirmatory,ridge_cv,,0.292590844412397
+rmse_difference_lower,confirmatory,ridge_cv,,0.995631799286781
+rmse_difference_upper,confirmatory,ridge_cv,,2.62035663487576
+top_k_recurrence_n_pv,exploratory,xgboost,K=3,10
+top_k_margin_over_next,exploratory,xgboost,K=3,0.524514601190339
+top_k_recurrence_n_pv,exploratory,random_forest,K=3,10
+top_k_margin_over_next,exploratory,random_forest,K=3,0.334070788632922
+top_k_recurrence_n_pv,exploratory,ridge_fixed,K=3,9
+top_k_margin_over_next,exploratory,ridge_fixed,K=3,0.226039200206269
+top_k_recurrence_n_pv,exploratory,ridge_cv,K=3,10
+top_k_margin_over_next,exploratory,ridge_cv,K=3,0.379457527380245
+top_k_shared_with_xgboost,exploratory,random_forest,K=3,2
+top_k_shared_with_xgboost,exploratory,ridge_fixed,K=3,1
+top_k_shared_with_xgboost,exploratory,ridge_cv,K=3,3
+top_k_recurrence_n_pv,exploratory,xgboost,K=5,10
+top_k_margin_over_next,exploratory,xgboost,K=5,0.582409113673657
+top_k_recurrence_n_pv,exploratory,random_forest,K=5,6
+top_k_margin_over_next,exploratory,random_forest,K=5,0.0307273274868913
+top_k_recurrence_n_pv,exploratory,ridge_fixed,K=5,6
+top_k_margin_over_next,exploratory,ridge_fixed,K=5,0.0228084807523943
+top_k_recurrence_n_pv,exploratory,ridge_cv,K=5,10
+top_k_margin_over_next,exploratory,ridge_cv,K=5,0.076303724687274
+top_k_shared_with_xgboost,exploratory,random_forest,K=5,4
+top_k_shared_with_xgboost,exploratory,ridge_fixed,K=5,1
+top_k_shared_with_xgboost,exploratory,ridge_cv,K=5,4
+top_k_recurrence_n_pv,exploratory,xgboost,K=10,10
+top_k_margin_over_next,exploratory,xgboost,K=10,0.112788467170177
+top_k_recurrence_n_pv,exploratory,random_forest,K=10,10
+top_k_margin_over_next,exploratory,random_forest,K=10,0.229615656776068
+top_k_recurrence_n_pv,exploratory,ridge_fixed,K=10,8
+top_k_margin_over_next,exploratory,ridge_fixed,K=10,0.0363746487538743
+top_k_recurrence_n_pv,exploratory,ridge_cv,K=10,9
+top_k_margin_over_next,exploratory,ridge_cv,K=10,0.0659508059119677
+top_k_shared_with_xgboost,exploratory,random_forest,K=10,9
+top_k_shared_with_xgboost,exploratory,ridge_fixed,K=10,6
+top_k_shared_with_xgboost,exploratory,ridge_cv,K=10,8
+block_ratio_min,exploratory,ridge_fixed,"over max(xgboost, random_forest)",3.71347362453183
+block_ratio_max,exploratory,ridge_fixed,"over max(xgboost, random_forest)",3.96611440336226
+rubin_mean,exploratory,xgboost,METASPAM,7.64508575272164
+rubin_W,exploratory,xgboost,METASPAM,0.0209011318469737
+rubin_B,exploratory,xgboost,METASPAM,0.0126820964045511
+rubin_T,exploratory,xgboost,METASPAM,0.0348514378919799
+rubin_df,exploratory,xgboost,METASPAM,56.171554185716
+rubin_lower,exploratory,xgboost,METASPAM,7.27113516444913
+rubin_upper,exploratory,xgboost,METASPAM,8.01903634099415
+rubin_mean,exploratory,random_forest,METASPAM,5.87698466390029
+rubin_W,exploratory,random_forest,METASPAM,0.016328777450906
+rubin_B,exploratory,random_forest,METASPAM,0.00492462357995728
+rubin_T,exploratory,random_forest,METASPAM,0.021745863388859
+rubin_df,exploratory,random_forest,METASPAM,145.032178154815
+rubin_lower,exploratory,random_forest,METASPAM,5.58552701973708
+rubin_upper,exploratory,random_forest,METASPAM,6.1684423080635
+rubin_mean,exploratory,ridge_fixed,METASPAM,5.5315179071088
+rubin_W,exploratory,ridge_fixed,METASPAM,0.0141639871759858
+rubin_B,exploratory,ridge_fixed,METASPAM,0.00497000164599324
+rubin_T,exploratory,ridge_fixed,METASPAM,0.0196309889865784
+rubin_df,exploratory,ridge_fixed,METASPAM,116.045534392126
+rubin_lower,exploratory,ridge_fixed,METASPAM,5.25401229530068
+rubin_upper,exploratory,ridge_fixed,METASPAM,5.80902351891692
+rubin_mean,exploratory,ridge_cv,METASPAM,5.36694152343729
+rubin_W,exploratory,ridge_cv,METASPAM,0.0118853172455296
+rubin_B,exploratory,ridge_cv,METASPAM,0.00460595809666878
+rubin_T,exploratory,ridge_cv,METASPAM,0.0169518711518652
+rubin_df,exploratory,ridge_cv,METASPAM,100.75171776604
+rubin_lower,exploratory,ridge_cv,METASPAM,5.10865331688917
+rubin_upper,exploratory,ridge_cv,METASPAM,5.62522972998541
+rubin_mean,exploratory,xgboost,socioeconomic_joint_block,3.52666163960122
+rubin_W,exploratory,xgboost,socioeconomic_joint_block,0.0053917170174272
+rubin_B,exploratory,xgboost,socioeconomic_joint_block,0.00563742009001443
+rubin_T,exploratory,xgboost,socioeconomic_joint_block,0.0115928791164431
+rubin_df,exploratory,xgboost,socioeconomic_joint_block,31.4542226112354
+rubin_lower,exploratory,xgboost,socioeconomic_joint_block,3.30719520751185
+rubin_upper,exploratory,xgboost,socioeconomic_joint_block,3.74612807169058
+rubin_mean,exploratory,random_forest,socioeconomic_joint_block,3.75620792890205
+rubin_W,exploratory,random_forest,socioeconomic_joint_block,0.0105541227139196
+rubin_B,exploratory,random_forest,socioeconomic_joint_block,0.00366176324456432
+rubin_T,exploratory,random_forest,socioeconomic_joint_block,0.0145820622829403
+rubin_df,exploratory,random_forest,socioeconomic_joint_block,117.95450018951
+rubin_lower,exploratory,random_forest,socioeconomic_joint_block,3.51707680150878
+rubin_upper,exploratory,random_forest,socioeconomic_joint_block,3.99533905629532
+rubin_mean,exploratory,ridge_fixed,socioeconomic_joint_block,14.4751736554632
+rubin_W,exploratory,ridge_fixed,socioeconomic_joint_block,0.0578499174694113
+rubin_B,exploratory,ridge_fixed,socioeconomic_joint_block,0.0749204499502057
+rubin_T,exploratory,ridge_fixed,socioeconomic_joint_block,0.140262412414638
+rubin_df,exploratory,ridge_fixed,socioeconomic_joint_block,26.069877687298
+rubin_lower,exploratory,ridge_fixed,socioeconomic_joint_block,13.7054449185948
+rubin_upper,exploratory,ridge_fixed,socioeconomic_joint_block,15.2449023923315
+rubin_mean,exploratory,ridge_cv,socioeconomic_joint_block,3.81006838136277
+rubin_W,exploratory,ridge_cv,socioeconomic_joint_block,0.0474792204891337
+rubin_B,exploratory,ridge_cv,socioeconomic_joint_block,0.0163919295648171
+rubin_T,exploratory,ridge_cv,socioeconomic_joint_block,0.0655103430104325
+rubin_df,exploratory,ridge_cv,socioeconomic_joint_block,118.800078438348
+rubin_lower,exploratory,ridge_cv,socioeconomic_joint_block,3.303253287796
+rubin_upper,exploratory,ridge_cv,socioeconomic_joint_block,4.31688347492954
+rubin_mean,exploratory,xgboost,ses_family,3.621062608887
+rubin_W,exploratory,xgboost,ses_family,0.00686532004063117
+rubin_B,exploratory,xgboost,ses_family,0.00525223955384239
+rubin_T,exploratory,xgboost,ses_family,0.0126427835498578
+rubin_df,exploratory,xgboost,ses_family,43.0976403402568
+rubin_lower,exploratory,xgboost,ses_family,3.394320325026
+rubin_upper,exploratory,xgboost,ses_family,3.84780489274801
+rubin_mean,exploratory,random_forest,ses_family,5.26490317158157
+rubin_W,exploratory,random_forest,ses_family,0.0135444315482951
+rubin_B,exploratory,random_forest,ses_family,0.00448809727041592
+rubin_T,exploratory,random_forest,ses_family,0.0184813385457526
+rubin_df,exploratory,random_forest,ses_family,126.12450150894
+rubin_lower,exploratory,random_forest,ses_family,4.99587243693878
+rubin_upper,exploratory,random_forest,ses_family,5.53393390622435
+rubin_mean,exploratory,ridge_fixed,ses_family,3.22844947325617
+rubin_W,exploratory,ridge_fixed,ses_family,0.0110359474330857
+rubin_B,exploratory,ridge_fixed,ses_family,0.00211916339957186
+rubin_T,exploratory,ridge_fixed,ses_family,0.0133670271726148
+rubin_df,exploratory,ridge_fixed,ses_family,295.936076554547
+rubin_lower,exploratory,ridge_fixed,ses_family,3.00091601797802
+rubin_upper,exploratory,ridge_fixed,ses_family,3.45598292853431
+rubin_mean,exploratory,ridge_cv,ses_family,2.96537653098425
+rubin_W,exploratory,ridge_cv,ses_family,0.00652939905414619
+rubin_B,exploratory,ridge_cv,ses_family,0.00181212960651847
+rubin_T,exploratory,ridge_cv,ses_family,0.00852274162131652
+rubin_df,exploratory,ridge_cv,ses_family,164.527035342204
+rubin_lower,exploratory,ridge_cv,ses_family,2.78309441404545
+rubin_upper,exploratory,ridge_cv,ses_family,3.14765864792306
+rubin_half_width_min,exploratory,,all groups and learners,0.182282116938807
+rubin_half_width_max,exploratory,,all groups and learners,0.769728736868382
+c2_metaspam_minus_homepos,confirmatory,ridge_fixed,PV1READ,0.153164616979018
+c2_monte_carlo_se,confirmatory,ridge_fixed,PV1READ,0.0418084374133413
+c2_threshold_t975,confirmatory,ridge_fixed,PV1READ,0.0945772561599905
+c2_metaspam_largest,confirmatory,ridge_fixed,PV1READ,1
+c2_metaspam_minus_homepos,confirmatory,ridge_fixed,PV2READ,0.554842511082404
+c2_monte_carlo_se,confirmatory,ridge_fixed,PV2READ,0.0411209346930462
+c2_threshold_t975,confirmatory,ridge_fixed,PV2READ,0.0930220169568317
+c2_metaspam_largest,confirmatory,ridge_fixed,PV2READ,1
+c2_metaspam_minus_homepos,confirmatory,ridge_fixed,PV3READ,-0.0159058681389377
+c2_monte_carlo_se,confirmatory,ridge_fixed,PV3READ,0.0383824838130947
+c2_threshold_t975,confirmatory,ridge_fixed,PV3READ,0.0868272106837783
+c2_metaspam_largest,confirmatory,ridge_fixed,PV3READ,0
+c2_metaspam_minus_homepos,confirmatory,ridge_fixed,PV4READ,-0.00110077665243757
+c2_monte_carlo_se,confirmatory,ridge_fixed,PV4READ,0.0410584883112575
+c2_threshold_t975,confirmatory,ridge_fixed,PV4READ,0.0928807534269776
+c2_metaspam_largest,confirmatory,ridge_fixed,PV4READ,0
+c2_metaspam_minus_homepos,confirmatory,ridge_fixed,PV5READ,0.490694101250669
+c2_monte_carlo_se,confirmatory,ridge_fixed,PV5READ,0.0387804707551543
+c2_threshold_t975,confirmatory,ridge_fixed,PV5READ,0.0877275196954587
+c2_metaspam_largest,confirmatory,ridge_fixed,PV5READ,1
+c2_metaspam_minus_homepos,confirmatory,ridge_fixed,PV6READ,-0.0983571977439359
+c2_monte_carlo_se,confirmatory,ridge_fixed,PV6READ,0.0424591274814177
+c2_threshold_t975,confirmatory,ridge_fixed,PV6READ,0.0960492193582511
+c2_metaspam_largest,confirmatory,ridge_fixed,PV6READ,0
+c2_metaspam_minus_homepos,confirmatory,ridge_fixed,PV7READ,0.382176580093254
+c2_monte_carlo_se,confirmatory,ridge_fixed,PV7READ,0.0411413368935519
+c2_threshold_t975,confirmatory,ridge_fixed,PV7READ,0.0930681699408426
+c2_metaspam_largest,confirmatory,ridge_fixed,PV7READ,1
+c2_metaspam_minus_homepos,confirmatory,ridge_fixed,PV8READ,-0.212637004685527
+c2_monte_carlo_se,confirmatory,ridge_fixed,PV8READ,0.0433029652613308
+c2_threshold_t975,confirmatory,ridge_fixed,PV8READ,0.0979581130363213
+c2_metaspam_largest,confirmatory,ridge_fixed,PV8READ,0
+c2_metaspam_minus_homepos,confirmatory,ridge_fixed,PV9READ,0.336910307869045
+c2_monte_carlo_se,confirmatory,ridge_fixed,PV9READ,0.0400193033529337
+c2_threshold_t975,confirmatory,ridge_fixed,PV9READ,0.0905299537300333
+c2_metaspam_largest,confirmatory,ridge_fixed,PV9READ,1
+c2_metaspam_minus_homepos,confirmatory,ridge_fixed,PV10READ,0.645770629328911
+c2_monte_carlo_se,confirmatory,ridge_fixed,PV10READ,0.0369082368998099
+c2_threshold_t975,confirmatory,ridge_fixed,PV10READ,0.0834922324691579
+c2_metaspam_largest,confirmatory,ridge_fixed,PV10READ,1
+c2_n_pv_metaspam_largest,confirmatory,ridge_fixed,,6
+c2_n_pv_reversal_within_mc_error,confirmatory,ridge_fixed,,2
+c2_n_pv_if_within_mc_error_counted,confirmatory,ridge_fixed,,8
+c3_ratio_average,confirmatory,all four,,1.83148310587475
+c3_ratio_pv_min,confirmatory,all four,,1.79522484517024
+c3_ratio_pv_max,confirmatory,all four,,1.86938575073396
+c3_n_pv_ratio_at_most_2,confirmatory,all four,,10
+c3_ratio_fold,confirmatory,all four,fold 1,1.7965010903253
+c3_ratio_fold,confirmatory,all four,fold 2,1.82723974769783
+c3_ratio_fold,confirmatory,all four,fold 3,1.82417613452762
+c3_ratio_fold,confirmatory,all four,fold 4,1.85313096290926
+c3_ratio_fold,confirmatory,all four,fold 5,1.85779774645947
+c3_ratio_fold_mean,confirmatory,all four,,1.8317691363839
+c3_ratio_fold_se,confirmatory,all four,,0.0166216660496715
+c3_ratio_fold_lower,confirmatory,all four,,1.78561999304005
+c3_ratio_fold_upper,confirmatory,all four,,1.87791827972774
+c3_ratio_fold_pv_min,confirmatory,all four,,1.74840527798878
+c3_ratio_fold_pv_max,confirmatory,all four,,1.96068646014394
+loco_n_folds_both_items_lead,shild,xgboost,loco,10
+loco_max_holm_p,shild,xgboost,loco,6.83594312161244e-05
+loco_n_folds_both_items_lead,shild,ridge_logistic,loco,10
+loco_max_holm_p,shild,ridge_logistic,loco,8.6066827857497e-05
+loco_n_folds_both_items_lead,shild,random_forest,loco,3
+loco_max_holm_p,shild,random_forest,loco,0.176556221848644
+loco_n_folds_both_items_lead,shild,xgboost,loco_weighted,10
+loco_max_holm_p,shild,xgboost,loco_weighted,0.000184687624694643
+loco_n_folds_both_items_lead,shild,ridge_logistic,loco_weighted,10
+loco_max_holm_p,shild,ridge_logistic,loco_weighted,0.000186651048970061
+loco_n_folds_both_items_lead,shild,random_forest,loco_weighted,4
+loco_max_holm_p,shild,random_forest,loco_weighted,0.232050911624112
+a2_minus_d2_n_folds_positive,shild,xgboost,,9
+a2_minus_d2_reversal,shild,xgboost,fold 9,-0.00301543702893777
+a2_minus_d2_reversal_mc_se,shild,xgboost,fold 9,0.00129474530396249
+a2_minus_d2_threshold_t975,shild,xgboost,fold 9,0.00270993306552569
+a2_minus_d2_threshold_holm_t995,shild,xgboost,fold 9,0.00370418164666431
+a2_minus_d2_fold_sd,shild,xgboost,10 folds,0.00881724656037699
+a2_minus_d2_fold_sd_over_reversal_mc_se,shild,xgboost,fold 9,6.81002397413015
+a2_minus_d2_fold_sd_over_mean_mc_se,shild,xgboost,10 folds,8.13329781551621
