@@ -36,9 +36,9 @@ render_targeted_figures = function(project_root = getwd()) {
         expand = expansion(mult = c(0, .04))) + labs(x = "Scale of the surrogate", y = label) + theme
     export(p, paste0("shild_common_probability_", measure), "Shared probability-scale evaluation",
       paste("Identical held-out neighbors, weights, and five surrogate cross-fit folds for the 100 original",
-        "method-sensitivity cases and five seeds. Logit-fit predictions were transformed pointwise to probability.",
+        "method-sensitivity cases and five seeds. Log-odds surrogate predictions were transformed pointwise to probability.",
         "Points are across-case medians of within-case seed medians; whiskers are across-case 25th-75th percentiles,",
-        "not confidence intervals. Probability-fit predictions were not clipped."), "shild_common_scale_summary.csv")
+        "not confidence intervals. Probability surrogate predictions were not clipped."), "shild_common_scale_summary.csv")
   }
   convergence = fread(file.path(output, "shild_convergence_summary.csv"))
   for (measure in c("weighted_rmse", "weighted_r2")) {
