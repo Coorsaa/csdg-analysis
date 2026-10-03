@@ -41,10 +41,11 @@ The table lists the tagged `mlr3autoiml` release to install for each group of sc
 | Study scripts as provided (`analysis/run_all.R`, `analysis/shild/analysis.R`, `analysis/pisa/analysis.R`, `analysis/evidence_synthesis.R`; checked by `analysis/preflight.R`) | [`v0.1.1`](https://github.com/coorsaa/mlr3autoiml/releases/tag/v0.1.1) |
 | Targeted comparisons, PISA runners, and figure rendering (`analysis/targeted/` except `controlled_examples.R`, `analysis/pisa/run_*.R`, `analysis/render_*.R`) | [`v0.1.4`](https://github.com/coorsaa/mlr3autoiml/releases/tag/v0.1.4) |
 | Sensitivity summaries and article checks (`analysis/sensitivity/`) | [`v0.1.5`](https://github.com/coorsaa/mlr3autoiml/releases/tag/v0.1.5) |
-| PISA re-analysis and confirmatory stage (`analysis/pisa/ses_reanalysis.R`, `evaluate_confirmatory.R`, `render_ses_figure.R`, `tuning_check.R`), SHILD claim extensions (`analysis/shild/claim_extensions.R`), criteria simulation (`analysis/simulation/criteria_simulation.R`), and controlled examples (`analysis/targeted/controlled_examples.R`) | [`v0.1.7`](https://github.com/coorsaa/mlr3autoiml/releases/tag/v0.1.7) |
+| PISA re-analysis and confirmatory stage (`analysis/pisa/ses_reanalysis.R`, `evaluate_confirmatory.R`, `render_ses_figure.R`, `tuning_check.R`), SHILD claim extensions (`analysis/shild/claim_extensions.R`), criteria simulation (`analysis/simulation/criteria_simulation.R`), and controlled examples (`analysis/targeted/controlled_examples.R`) | [`v0.2.0`](https://github.com/coorsaa/mlr3autoiml/releases/tag/v0.2.0) |
 
 The results of the last group were produced with the development version 0.1.5.9000 (recorded in their session
-information), which is identical to releases 0.1.6 and 0.1.7 in the functions these scripts use. `evaluate_confirmatory.R`,
+information). In the functions these scripts use, it matches releases 0.1.6 to 0.2.0 except for an added squared-error
+loss option (0.1.6) and two error-message texts (0.1.7), which do not affect the results. `evaluate_confirmatory.R`,
 `render_ses_figure.R` and `criteria_simulation.R` do not load `mlr3autoiml` (they need `data.table` and `ggplot2`), and
 `analysis/sensitivity/article_derivations.R` needs only `data.table`;
 `controlled_examples.R` also uses `jsonlite` and is usually run through `analysis/targeted/run.R`, which loads
@@ -52,7 +53,7 @@ information), which is identical to releases 0.1.6 and 0.1.7 in the functions th
 them with `git checkout -- '*.pdf'` if needed.
 
 ```sh
-Rscript -e 'remotes::install_github("coorsaa/mlr3autoiml@v0.1.7")'   # replace the tag for other script groups
+Rscript -e 'remotes::install_github("coorsaa/mlr3autoiml@v0.2.0")'   # replace the tag for other script groups
 ```
 
 The analyses were run with R 4.5.1. Further dependencies are listed in `DESCRIPTION` and loaded at the top of each
@@ -110,7 +111,7 @@ python3 supplement/build_supplement.py --verify                 # computational 
 python3 supplement/assemble_publication.py --output build/supplement   # computational supplement PDF (XeLaTeX)
 ```
 
-One installation of `mlr3autoiml` v0.1.7 suffices for all commands in this section. They were checked with the
+One installation of `mlr3autoiml` v0.2.0 suffices for all commands in this section. They were checked with the
 development version 0.1.5.9000 and reproduce the stored CSV and JSON outputs exactly. `run.R --mode=aggregate` renders
 three figures with leading zeros in the axis labels (`shild_common_probability_weighted_r2.pdf`,
 `shild_convergence_weighted_r2.pdf`, and `shild_g4_systematic_local_audit__relative_fidelity_by_prediction.pdf`); the
