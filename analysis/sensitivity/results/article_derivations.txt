@@ -72,3 +72,15 @@ SHILD LOCO: folds in which A2 and D2 both exceed every other item; largest Holm-
 SHILD A2 - D2 (XGBoost): positive in 9 of 10 folds; fold 9: -0.0030, SE 0.0013
   per-fold threshold t(.975, 19) x SE 0.0027; Holm-adjusted threshold t(.995, 19) x SE 0.0037
   fold-to-fold SD 0.0088 = 6.8 times the SE in fold 9 (8.1 times the mean SE over folds)
+Relevance: PFI over XGBoost's improvement over the model without predictors
+  SHILD log loss 0.2285 -> 0.1222, improvement 0.1064
+  SHILD rank 1: A2   PFI 0.0458 = 43.1% of the improvement
+  SHILD rank 2: D2   PFI 0.0362 = 34.0% of the improvement
+  SHILD rank 3: M8   PFI 0.0055 = 5.2% of the improvement
+  PISA exploratory pooled RMSE 101.31 -> 72.10, improvement 29.21 (mean of fold RMSE: 29.20)
+  PISA  rank 1: METASPAM   PFI 7.65 = 26.2% of the improvement
+  PISA  rank 2: METASUM    PFI 3.41 = 11.7% of the improvement
+  PISA  rank 3: SCREADCOMP PFI 2.45 = 8.4% of the improvement
+  PISA  rank 4: JOYREAD    PFI 1.92 = 6.6% of the improvement
+  PISA  rank 5: SCREADDIFF PFI 1.82 = 6.2% of the improvement
+PISA exploratory, XGBoost top five selected anew in each fold and plausible value: 50 of 50; min margin 0.32

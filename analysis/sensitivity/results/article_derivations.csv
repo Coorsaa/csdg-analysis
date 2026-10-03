@@ -253,3 +253,28 @@ a2_minus_d2_threshold_holm_t995,shild,xgboost,fold 9,0.00370418164666431
 a2_minus_d2_fold_sd,shild,xgboost,10 folds,0.00881724656037699
 a2_minus_d2_fold_sd_over_reversal_mc_se,shild,xgboost,fold 9,6.81002397413015
 a2_minus_d2_fold_sd_over_mean_mc_se,shild,xgboost,10 folds,8.13329781551621
+relevance_loss_featureless,shild,featureless,log loss,0.228543688338502
+relevance_loss_reference,shild,xgboost,log loss,0.122188545027771
+relevance_reference_improvement,shild,xgboost,log loss,0.106355143310731
+relevance_pfi,shild,xgboost,rank 1: A2,0.0458441853283734
+relevance_share_percent,shild,xgboost,rank 1: A2,43.1048127070201
+relevance_pfi,shild,xgboost,rank 2: D2,0.0361875866540178
+relevance_share_percent,shild,xgboost,rank 2: D2,34.0252342552827
+relevance_pfi,shild,xgboost,rank 3: M8,0.00548734539849768
+relevance_share_percent,shild,xgboost,rank 3: M8,5.15945466075454
+relevance_loss_featureless,exploratory,featureless,pooled RMSE,101.307223104687
+relevance_loss_reference,exploratory,xgboost,pooled RMSE,72.101729277776
+relevance_reference_improvement,exploratory,xgboost,pooled RMSE,29.2054938269105
+relevance_reference_improvement,exploratory,xgboost,mean of fold RMSE,29.2049084785767
+relevance_pfi,exploratory,xgboost,rank 1: METASPAM,7.64508575272164
+relevance_share_percent,exploratory,xgboost,rank 1: METASPAM,26.1768754811374
+relevance_pfi,exploratory,xgboost,rank 2: METASUM,3.4147894572091
+relevance_share_percent,exploratory,xgboost,rank 2: METASUM,11.6922846004495
+relevance_pfi,exploratory,xgboost,rank 3: SCREADCOMP,2.44874564560545
+relevance_share_percent,exploratory,xgboost,rank 3: SCREADCOMP,8.38453771786297
+relevance_pfi,exploratory,xgboost,rank 4: JOYREAD,1.92423104441511
+relevance_share_percent,exploratory,xgboost,rank 4: JOYREAD,6.58859273470695
+relevance_pfi,exploratory,xgboost,rank 5: SCREADDIFF,1.81864223906434
+relevance_share_percent,exploratory,xgboost,rank 5: SCREADDIFF,6.22705525831106
+top_5_recurrence_n_fold_pv,exploratory,xgboost,of 50 fold-by-PV analyses,50
+top_5_min_margin_fold_pv,exploratory,xgboost,fifth minus sixth,0.32272457622192

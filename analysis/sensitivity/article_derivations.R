@@ -1,7 +1,8 @@
 # Derived numbers reported in the article, recomputed from stored fold-level aggregates (no data, no refitting).
 # Run from the analysis repository root:
 #   Rscript analysis/sensitivity/article_derivations.R
-# Inputs: analysis/shild/results/claim_extensions/ and analysis/pisa/results/ses_reanalysis/{exploratory,confirmatory}/.
+# Inputs: analysis/shild/results/claim_extensions/, analysis/pisa/results/ses_reanalysis/{exploratory,confirmatory}/,
+# and, for the SHILD model without predictors, baseline_evidence/STUDY_RESULTS/SHILD/tables/.
 # Outputs: analysis/sensitivity/results/article_derivations.csv (one row per number: quantity, stage, learner,
 # detail, value) and article_derivations.txt (the same, rounded as in the article). PISA learner codes: ridge_fixed is the
 # linear regression and ridge_cv the ridge regression of the article. Intervals are corrected resampled t intervals
@@ -227,6 +228,71 @@ say("SHILD A2 - D2 (XGBoost): positive in %d of 10 folds; %s: %.4f, SE %.4f", su
 say("  per-fold threshold t(.975, 19) x SE %.4f; Holm-adjusted threshold t(.995, 19) x SE %.4f", per_fold, holm)
 say("  fold-to-fold SD %.4f = %.1f times the SE in %s (%.1f times the mean SE over folds)", fold_sd,
   fold_sd / reversal$mc_se_difference, key, fold_sd / mean(differences$mc_se_difference))
+
+# ---- Relevance: PFI as a share of XGBoost's improvement over the model without predictors ----
+# Share = PFI / (L0 - Lr), with L0 and Lr the mean held-out losses of the model without predictors and of XGBoost.
+# SHILD: log loss of the G1 benchmark (source of the admission table in Supplement I) and the XGBoost PFI averaged over
+# folds (20 permutations per fold). PISA exploratory: RMSE pooled within each plausible value and averaged over the 10
+# values, and the XGBoost PFI averaged over plausible values (single predictors, as for the top K above).
+
+shild_tables = file.path(root, "baseline_evidence", "STUDY_RESULTS", "SHILD", "tables")
+benchmark = fread(file.path(shild_tables, "shild_g1_benchmark_summary.csv"))[measure_id == "classif.logloss"]
+admission = fread(file.path(shild_tables, "shild_near_equivalence_tolerance_sensitivity.csv"))
+stopifnot(all(abs(admission$mean_score - benchmark$mean[match(admission$learner_name, benchmark$learner_id)]) < 1e-12))
+shild_l0 = benchmark[learner_id == "featureless", mean]
+shild_lr = benchmark[learner_id == "xgboost", mean]
+stopifnot(abs(mean(losses$xgboost) - shild_lr) < 1e-4)
+item_means = fread(file.path(shild_dir, "importance_item_means.csv"))[order(-mean_pfi)]
+stopifnot(nrow(item_means) == 27L, identical(item_means$item[1:3], c("A2", "D2", "M8")))
+add("relevance_loss_featureless", "shild", "featureless", "log loss", shild_l0)
+add("relevance_loss_reference", "shild", "xgboost", "log loss", shild_lr)
+add("relevance_reference_improvement", "shild", "xgboost", "log loss", shild_l0 - shild_lr)
+say("Relevance: PFI over XGBoost's improvement over the model without predictors")
+say("  SHILD log loss %.4f -> %.4f, improvement %.4f", shild_l0, shild_lr, shild_l0 - shild_lr)
+for (i in 1:3) {
+  label = sprintf("rank %d: %s", i, item_means$item[i])
+  share = 100 * item_means$mean_pfi[i] / (shild_l0 - shild_lr)
+  add("relevance_pfi", "shild", "xgboost", label, item_means$mean_pfi[i])
+  add("relevance_share_percent", "shild", "xgboost", label, share)
+  say("  SHILD %-12s PFI %.4f = %.1f%% of the improvement", label, item_means$mean_pfi[i], share)
+}
+pooled = fread(file.path(pisa_dir, "exploratory", "pooled_rmse.csv"))[design == "full"]
+stopifnot(pooled[, .N, by = learner][, all(N == 10L)])
+pooled_means = pooled[, .(rmse = mean(pooled_rmse)), by = learner]
+pisa_l0 = pooled_means[learner == "featureless", rmse]
+pisa_lr = pooled_means[learner == "xgboost", rmse]
+fold_means = fread(file.path(pisa_dir, "exploratory", "fold_rmse.csv"))[design == "full", .(rmse = mean(rmse)), by = learner]
+fold_improvement = fold_means[learner == "featureless", rmse] - fold_means[learner == "xgboost", rmse]
+stopifnot(abs(fold_improvement - (pisa_l0 - pisa_lr)) < 0.01)
+xgb_average = single[learner == "xgboost", .(pfi = mean(mean_importance)), by = feature_group][order(-pfi)]
+stopifnot(identical(xgb_average$feature_group[1:5], tops[["xgboost 5"]]), xgb_average$feature_group[1] == "METASPAM")
+add("relevance_loss_featureless", "exploratory", "featureless", "pooled RMSE", pisa_l0)
+add("relevance_loss_reference", "exploratory", "xgboost", "pooled RMSE", pisa_lr)
+add("relevance_reference_improvement", "exploratory", "xgboost", "pooled RMSE", pisa_l0 - pisa_lr)
+add("relevance_reference_improvement", "exploratory", "xgboost", "mean of fold RMSE", fold_improvement)
+say("  PISA exploratory pooled RMSE %.2f -> %.2f, improvement %.2f (mean of fold RMSE: %.2f)", pisa_l0, pisa_lr,
+  pisa_l0 - pisa_lr, fold_improvement)
+for (i in 1:5) {
+  label = sprintf("rank %d: %s", i, xgb_average$feature_group[i])
+  share = 100 * xgb_average$pfi[i] / (pisa_l0 - pisa_lr)
+  add("relevance_pfi", "exploratory", "xgboost", label, xgb_average$pfi[i])
+  add("relevance_share_percent", "exploratory", "xgboost", label, share)
+  say("  PISA  %-18s PFI %.2f = %.1f%% of the improvement", label, xgb_average$pfi[i], share)
+}
+
+# ---- PISA exploratory: selection-aware stability of the XGBoost top five across single folds ----
+fold_pfi = fread(file.path(pisa_dir, "exploratory", "pfi_fold.csv"))[design == "full" & learner == "xgboost"]
+fold_pfi = fold_pfi[!grepl("|", features, fixed = TRUE)]
+stopifnot(uniqueN(fold_pfi$feature_group) == 41L, fold_pfi[, .N, by = .(outcome_id, fold)][, all(N == 41L)])
+fold_top = fold_pfi[, {
+  o = order(-importance)
+  .(same = setequal(feature_group[o][1:5], tops[["xgboost 5"]]), gap = importance[o][5] - importance[o][6])
+}, by = .(outcome_id, fold)]
+add("top_5_recurrence_n_fold_pv", "exploratory", "xgboost", sprintf("of %d fold-by-PV analyses", nrow(fold_top)),
+  sum(fold_top$same))
+add("top_5_min_margin_fold_pv", "exploratory", "xgboost", "fifth minus sixth", min(fold_top$gap))
+say("PISA exploratory, XGBoost top five selected anew in each fold and plausible value: %d of %d; min margin %.2f",
+  sum(fold_top$same), nrow(fold_top), min(fold_top$gap))
 
 derivations = rbindlist(rows)
 fwrite(derivations, file.path(out, "article_derivations.csv"))
