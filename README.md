@@ -78,9 +78,9 @@ script (for example `mlr3learners`, `mlr3tuning`, `xgboost`, `ranger`, and `glmn
   script. `analysis/pisa/analysis.R` additionally expects a copy of the extraction script and the OECD codebook,
   student questionnaire, and scale manual in `data/PISA/` (see the file names in the script) and records their
   checksums.
-- **SHILD**: the analyses use the SHILD 2012 survey data, which are publicly available under CC0 on Dryad
-  (<https://doi.org/10.5061/dryad.qd2nj>) and were used by Khan et al. (2024). [to be confirmed by the authors: the
-  analyzed file corresponds to this release] The scripts expect the data file and its dictionary at `data/SHILD/`
+- **SHILD**: the analyses use the public release of the SHILD 2012 survey data on Dryad (CC0;
+  <https://doi.org/10.5061/dryad.qd2nj>), which Khan et al. (2024) also used. The scripts expect the release file
+  (`SHILD2012_cens_eng_16-64.dta`) as CSV and its variable dictionary at `data/SHILD/`
   (`data/SHILD/archive/Danish_SHILD_draft_data.csv` and `data/SHILD/archive/Danish_SHILD_dictionnary.csv`).
 - Fitted models, predictions, and case-level results of the study runs are written to `paper_artifacts/`. Case-level
   tables of `analysis/shild/claim_extensions.R` and the held-out predictions of `analysis/pisa/ses_reanalysis.R` are

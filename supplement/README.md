@@ -22,10 +22,7 @@ C1–C28 so that they are distinct from the figures of the methods supplement (S
 - `PRIVATE_INPUT_PROVENANCE.csv`: basename, row count, and SHA-256 of restricted inputs, which are not distributed.
 - `SHA256SUMS`: checksums of all files.
 
-All tables are aggregates; the folder contains no respondent or student records, predictions, or fitted models. For
-medicine and supplement spending (SHILD M6), the metadata identify only the recorded survey amount; the captions of
-Figures C7 and C11 state that its currency and recall period have not been verified against the 2012 item
-documentation.
+All tables are aggregates; the folder contains no respondent or student records, predictions, or fitted models.
 
 ## Build and verify
 
