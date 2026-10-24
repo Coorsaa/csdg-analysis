@@ -50,7 +50,7 @@ renderer$ggsave = function(filename, plot, ...) {
 renderer$fwrite = function(...) invisible(NULL)
 sys.source("analysis/targeted/render_targeted_figures.R", envir = renderer)
 renderer$render_targeted_figures(root)
-main_figures = file.path(article_dir, "v4/analysis_figs")
+main_figures = file.path(article_dir, "v5/analysis_figs")
 for (id in c("shild_common_probability_weighted_r2", "shild_convergence_weighted_r2")) {
   input = if (grepl("convergence", id)) "shild_convergence_summary.csv" else "shild_common_scale_summary.csv"
   export(captured$plots[[id]], file.path(main_figures, paste0(id, ".pdf")), 4, 3.2, "y",

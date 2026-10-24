@@ -6,7 +6,7 @@ suppressPackageStartupMessages({ library(data.table); library(ggplot2) })
 # Run from the analysis repository root:
 #   Rscript analysis/sensitivity/render_paired_difference_figure.R [OUTPUT_PDF]
 # The default output is written to analysis/sensitivity/results/; copy it to the manuscript's
-# v4/analysis_figs/ folder.
+# v5/analysis_figs/ folder.
 args = commandArgs(trailingOnly = TRUE)
 root = getwd()
 stopifnot(file.exists(file.path(root, "analysis", "sensitivity", "render_paired_difference_figure.R")))
