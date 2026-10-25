@@ -805,8 +805,10 @@ run_simulation = function() {
 # ---- Figure ----
 
 # Rates conditional on the truth of the stated claim: (a) the share of false claims that each procedure declares
-# (reported or met), (b) the share of true claims that it declares (power). Rates based on fewer than `min_claims`
-# claims are not drawn; workflow_figure_data.csv lists every cell with its counts and whether it is drawn.
+# (reported or met), (b) the share of true claims that it declares (power). A panel shows a scenario only if it has
+# claims of that truth (in S2, every relies-mainly claim is false, so panel (b) has no relies-mainly facet for S2).
+# Rates based on fewer than `min_claims` claims are not drawn; workflow_figure_data.csv lists every cell with its
+# counts and whether it is drawn.
 make_figure = function(characteristics, min_claims = 10L) {
   procedures = c(standard_reported_among_false = "Point estimates", standard_both_among_false = "Point estimates, both samples",
     csdg_met_among_false = "CSDG, exploratory", both_met_among_false = "CSDG, both samples",
@@ -826,10 +828,10 @@ make_figure = function(characteristics, min_claims = 10L) {
   )]
   figure_data = rows[, .(panel = panel_letter, claim, scenario, n, measure, procedure = as.character(procedure),
     numerator, denominator, estimate, lower, upper, drawn)]
-  # Facets without any drawn rate carry a short explanation.
-  notes = rows[, .(drawn = any(drawn), any_claims = any(denominator > 0)), by = .(panel_letter, facet)][drawn == FALSE]
-  notes[, label := fifelse(any_claims, sprintf("Fewer than %d\nclaims per n", min_claims),
-    fifelse(panel_letter == "a", "No false claims", "No true claims"))]
+  # Facets with claims but without any drawn rate carry a short explanation.
+  shown = rows[, .(any_claims = any(denominator > 0), drawn = any(drawn)), by = .(panel_letter, facet)]
+  notes = shown[any_claims == TRUE & drawn == FALSE]
+  notes[, label := sprintf("Fewer than %d\nclaims per n", min_claims)]
   notes[, `:=`(n_label = factor(format(settings$n[[2L]], big.mark = ","), levels = format(settings$n, big.mark = ",")),
     estimate = 0.5)]
   dodge = position_dodge(width = 0.65)
@@ -839,11 +841,15 @@ make_figure = function(characteristics, min_claims = 10L) {
       legend.position = "bottom", legend.text = element_text(size = 9.5), panel.spacing = unit(0.8, "lines"),
       plot.title = element_text(size = 11, face = "bold"), plot.margin = margin(4, 6, 4, 4))
   draw_panel = function(letter, title, ylab) {
+    facets = intersect(panel_levels, as.character(shown[panel_letter == letter & any_claims == TRUE, facet]))
     d = rows[panel_letter == letter & drawn == TRUE]
+    d[, facet := factor(as.character(facet), levels = facets)]
+    panel_notes = notes[panel_letter == letter]
+    panel_notes[, facet := factor(as.character(facet), levels = facets)]
     ggplot(d, aes(x = n_label, y = estimate, shape = procedure, group = procedure)) +
       geom_errorbar(aes(ymin = lower, ymax = upper), position = dodge, width = 0, linewidth = 0.4) +
       geom_point(position = dodge, size = 2, fill = "white", stroke = 0.6) +
-      geom_text(data = notes[panel_letter == letter], aes(x = n_label, y = estimate, label = label),
+      geom_text(data = panel_notes, aes(x = n_label, y = estimate, label = label),
         inherit.aes = FALSE, family = "Arial", size = 2.9, lineheight = 0.95, color = "gray25") +
       scale_shape_manual(values = c(21, 24, 17, 15), drop = FALSE) +
       guides(shape = guide_legend(nrow = 2L, byrow = TRUE)) +
