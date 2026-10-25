@@ -26,10 +26,28 @@ folds with all 27 items and without each item in turn.
 
 | File | Columns |
 |---|---|
-| `loco_fold_losses.csv` | `learner`, `design` (`all_items` or the omitted item), `fold`, `n_test`, held-out `log_loss`, and `weighted_log_loss` weighted by the survey weight |
-| `loco_fold_importance.csv` | `loco` and `loco_weighted`: increase in held-out log loss after refitting without `item` |
-| `loco_summary.csv` | mean over folds with corrected interval and `rank` within learner and measure |
+| `loco_fold_losses.csv` | `learner`, `design` (`all_items` or the omitted item), `fold`, `n_test`, held-out `log_loss` and `weighted_log_loss` (weighted by the survey weight), `brier` and `weighted_brier`, and `n_outcome_at_bound`: held-out respondents whose observed outcome received probability 0 (their log loss is set by the clipping bound of 1e-15 alone) |
+| `loco_fold_importance.csv` | `loco` and `loco_weighted`: increase in held-out log loss after refitting without `item`; `loco_brier` and `loco_brier_weighted`: the same for the Brier score |
+| `loco_summary.csv` | mean over folds with corrected interval and `rank` within learner and measure (`loco`, `loco_weighted`, `loco_brier`, `loco_brier_weighted`) |
 | `loco_comparisons.csv` | for `focal` in A2, D2: difference to every `other` item with corrected interval; `p_holm` Holm-adjusted over the 50 comparisons of a learner and measure |
+
+Random forest predicts probability 0 for some held-out dissatisfied respondents (`n_outcome_at_bound`); each such
+respondent adds about 0.020 to a fold's mean log loss, which dominates its log-loss LOCO values. The Brier score is
+bounded and serves as a sensitivity analysis.
+
+## Conditional PFI on realistic inputs (`--part=conditional`)
+
+XGBoost refitted on the primary folds with the settings of the primary run. For each item, a regression or
+classification tree (rpart; maximum depth 4, at least 50 respondents per leaf, cp = 0.001) predicts the item from the
+other 26 items on the training fold; in the held-out fold, the item is permuted within the leaves of this tree, so that
+the permuted inputs stay close to realistic combinations (conditional subgroup approach, Molnar et al., 2024). Loss:
+log loss; 20 permutations per item and fold.
+
+| File | Columns |
+|---|---|
+| `conditional_fold_pfi.csv` | `fold`, `item`, `cpfi` (mean increase in held-out log loss), `mc_se`, `n_permutations`, `n_subgroups` (leaves) |
+| `conditional_item_means.csv` | `item`, `mean_cpfi` over folds, `min_fold`, `max_fold`, `median_subgroups` |
+| `conditional_summary.csv` | means of A2 and D2, the largest other item, the smallest per-fold ratios of A2 and D2 to the largest other item, and the number of folds in which A2 and D2 are the top two and each has at least twice the PFI of the third |
 
 ## Nested check of the predictor selection (`--part=selection`)
 

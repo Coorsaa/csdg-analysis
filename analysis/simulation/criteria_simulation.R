@@ -178,13 +178,17 @@ training_truth = rbindlist(lapply(settings$n, function(n) rbindlist(lapply(setti
 # ---- Replications ----
 
 # "interval_and_share" combines the corrected interval with the requirement that the comparison holds in at least
-# 90% of the folds (all folds when K = 5, 9 of 10 when K = 10).
-criteria = c("every_fold", "interval", "mean_only", "uncorrected_interval", "interval_and_share")
+# 90% of the folds (all folds when K = 5, 9 of 10 when K = 10). "interval_two_sided" and "interval_two_sided_and_share"
+# use the lower limit of the two-sided 95% corrected interval (a one-sided 97.5% bound), as the applications and
+# mlr3autoiml do.
+criteria = c("every_fold", "interval", "mean_only", "uncorrected_interval", "interval_and_share", "interval_two_sided",
+  "interval_two_sided_and_share")
 
 assess = function(pfi, k, n) {
   n_test = n / k
   correction = 1 / k + n_test / (n - n_test)
   critical = qt(1 - settings$alpha, df = k - 1L)
+  critical_two_sided = qt(1 - settings$alpha / 2, df = k - 1L)
   out = copy(grid)
   out[, (criteria) := TRUE]
   for (claim_name in unique(grid$claim)) {
@@ -200,6 +204,11 @@ assess = function(pfi, k, n) {
         mean_only = mean_only & (mean_difference > 0),
         uncorrected_interval = uncorrected_interval & (mean_difference - critical * sqrt(fold_variance / k) > 0),
         interval_and_share = interval_and_share & (mean_difference - critical * sqrt(correction * fold_variance) > 0) &
+          (rowMeans(difference >= 0) >= 0.9),
+        interval_two_sided = interval_two_sided &
+          (mean_difference - critical_two_sided * sqrt(correction * fold_variance) > 0),
+        interval_two_sided_and_share = interval_two_sided_and_share &
+          (mean_difference - critical_two_sided * sqrt(correction * fold_variance) > 0) &
           (rowMeans(difference >= 0) >= 0.9)
       )]
       if (cmp$first == "A" && cmp$second == binding[claim == claim_name]$second) {
@@ -276,7 +285,7 @@ fwrite(summary_table, file.path(output_dir, "criteria_summary.csv"))
 
 # ---- Figure ----
 
-plot_data = rates[criterion != "uncorrected_interval"]
+plot_data = rates[criterion %in% c("interval_and_share", "interval", "every_fold", "mean_only")]
 plot_data[, `:=`(
   criterion = factor(criterion, levels = c("interval_and_share", "interval", "every_fold", "mean_only"),
     labels = c("Corrected interval and 90% of folds", "Corrected interval", "Every fold", "Mean only")),

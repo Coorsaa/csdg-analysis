@@ -1,0 +1,15 @@
+{
+  "claim_id": "relies_mainly_A2_D2_xgboost",
+  "statement": "XGBoost relies mainly on self-rated health (A2) and depressed mood (D2).",
+  "assessment": "met",
+  "label": "met (exploratory)",
+  "origin": "retrospective_exploratory",
+  "decisive_gates": "",
+  "decisive_checks": "",
+  "decisive_property": null,
+  "decision_options": ["retain"],
+  "supported_gates": "G0a, G0b, G2, G5",
+  "contradicted_gates": "",
+  "open_gates": "",
+  "report": "XGBoost relies mainly on self-rated health (A2) and depressed mood (D2). Met (exploratory): on average, self-rated health (A2) and depressed mood (D2) have 8.25 and 6.37 times the PFI of the largest other predictor, M8; the result recurs in 10 of 10 folds. The claim was formulated after the explanation was inspected; it is established only after a test on new data (csdg_confirm())."
+}

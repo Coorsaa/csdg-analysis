@@ -69,8 +69,17 @@ SHILD LOCO: folds in which A2 and D2 both exceed every other item; largest Holm-
   xgboost        loco_weighted 10 of 10 folds; max Holm p 0.0002
   ridge_logistic loco_weighted 10 of 10 folds; max Holm p 0.0002
   random_forest  loco_weighted 4 of 10 folds; max Holm p 0.2321
+  xgboost        loco_brier    10 of 10 folds; max Holm p 0.0001
+  ridge_logistic loco_brier    10 of 10 folds; max Holm p 0.0004
+  random_forest  loco_brier    10 of 10 folds; max Holm p 0.0002
+  xgboost        loco_brier_weighted 10 of 10 folds; max Holm p 0.0004
+  ridge_logistic loco_brier_weighted 10 of 10 folds; max Holm p 0.0010
+  random_forest  loco_brier_weighted 10 of 10 folds; max Holm p 0.0002
+SHILD statement (a): A2 minus 2 x M8 (smallest lower limit of 25 comparisons): 0.035 [0.027, 0.043]
+SHILD statement (a): D2 minus 2 x M8 (smallest lower limit of 25 comparisons): 0.025 [0.021, 0.030]
+  lower limit above zero in 50 of 50 comparisons
 SHILD A2 - D2 (XGBoost): positive in 9 of 10 folds; fold 9: -0.0030, SE 0.0013
-  per-fold threshold t(.975, 19) x SE 0.0027; Holm-adjusted threshold t(.995, 19) x SE 0.0037
+  per-fold threshold t(.975, 19) x SE 0.0027; Holm-adjusted threshold t(.9975, 19) x SE 0.0041
   fold-to-fold SD 0.0088 = 6.8 times the SE in fold 9 (8.1 times the mean SE over folds)
 Relevance: PFI over XGBoost's improvement over the model without predictors
   SHILD log loss 0.2285 -> 0.1222, improvement 0.1064
@@ -84,3 +93,26 @@ Relevance: PFI over XGBoost's improvement over the model without predictors
   PISA  rank 4: JOYREAD    PFI 1.92 = 6.6% of the improvement
   PISA  rank 5: SCREADDIFF PFI 1.82 = 6.2% of the improvement
 PISA exploratory, XGBoost top five selected anew in each fold and plausible value: 50 of 50; min margin 0.32
+SHILD LOCO comparisons with inflated standard errors: largest Holm-adjusted p over the 50 comparisons
+  SE x 2.0 random_forest  loco          max Holm p 1.0000
+  SE x 2.0 ridge_logistic loco          max Holm p 0.0094
+  SE x 2.0 xgboost        loco          max Holm p 0.0097
+  SE x 2.0 random_forest  loco_weighted max Holm p 1.0000
+  SE x 2.0 ridge_logistic loco_weighted max Holm p 0.0162
+  SE x 2.0 xgboost        loco_weighted max Holm p 0.0248
+  SE x 2.1 random_forest  loco          max Holm p 1.0000
+  SE x 2.1 ridge_logistic loco          max Holm p 0.0123
+  SE x 2.1 xgboost        loco          max Holm p 0.0136
+  SE x 2.1 random_forest  loco_weighted max Holm p 1.0000
+  SE x 2.1 ridge_logistic loco_weighted max Holm p 0.0207
+  SE x 2.1 xgboost        loco_weighted max Holm p 0.0336
+SHILD random forest: 66 observed outcomes at probability 0 over 280 LOCO refits (57 refits affected); full design: 2 (folds 4, 9)
+  one such respondent adds 0.0204 to its fold's log loss; mean loss 0.1332 (retained 89.7%), with a floor of 0.001 0.1299 (retained 92.7%)
+SHILD conditional subgroup PFI (XGBoost): A2 0.0338, D2 0.0283, largest other M8 0.0052; per-fold ratios >= 3.5 and 3.4; margin in 10 of 10 folds
+SHILD statement (d): P(case passes | recurrence .95/.98/.99) = 0.736/0.940/0.983; all 30 pass 0.0001/0.157/0.600; P(<= 10 of 20 | .95) = 1.1e-08
+PISA exploratory, C2 in linear regression: METASPAM minus ESCS per fold (averaged over PVs) -0.38, 0.43, 0.63, 0.13, 0.86; mean 0.33, interval -0.56 to 1.23; 4 of 5 folds positive
+PISA confirmatory, C2 in linear regression: METASPAM minus HOMEPOS per fold (averaged over PVs) -0.16, 0.57, -0.54, 0.45, 0.80; mean 0.22, interval -0.81 to 1.26; 3 of 5 folds positive
+PISA exploratory, RMSE: C3 ratio largest/smallest 1.78 on average, up to 1.83 per PV (<= 2 in 10 of 10); C4 block/family 4.27 to 4.66
+PISA exploratory, MSE: C3 ratio largest/smallest 1.78 on average, up to 1.84 per PV (<= 2 in 10 of 10); C4 block/family 4.58 to 5.01
+PISA confirmatory, RMSE: C3 ratio largest/smallest 1.83 on average, up to 1.87 per PV (<= 2 in 10 of 10); C4 block/family 4.34 to 4.66
+PISA confirmatory, MSE: C3 ratio largest/smallest 1.84 on average, up to 1.87 per PV (<= 2 in 10 of 10); C4 block/family 4.64 to 5.02

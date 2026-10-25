@@ -4,8 +4,14 @@
 #                       fold means, ratios, corrected resampled t intervals (Nadeau & Bengio, 2003), and the
 #                       Monte Carlo comparison of self-rated health and depressed mood per fold.
 #   --part=loco         population importance: leave-one-covariate-out (LOCO) refits of XGBoost, ridge logistic
-#                       regression, and random forest on the primary folds; held-out log loss unweighted and weighted
-#                       with the survey weight; corrected intervals and Holm-adjusted comparisons.
+#                       regression, and random forest on the primary folds; held-out log loss and Brier score,
+#                       unweighted and weighted with the survey weight; the number of held-out respondents whose
+#                       observed outcome received probability 0 (log loss then depends on the clipping bound);
+#                       corrected intervals and Holm-adjusted comparisons.
+#   --part=conditional  conditional PFI of the XGBoost fits on realistic inputs: each item permuted within the
+#                       subgroups of a regression or classification tree that predicts it from the other items
+#                       on the training fold (conditional subgroup approach, Molnar et al., 2024); held-out
+#                       log loss, 20 permutations per item and fold.
 #   --part=selection    nested check of the predictor selection: recursive feature elimination (RFE) with XGBoost
 #                       inside each training fold, compared with the fixed 27 items on the same folds.
 #   --part=local        individual explanations: the 300 sampled cases of the primary local evaluation, 20 repeated
@@ -33,7 +39,7 @@ arg_value = function(name, default = NULL) {
   if (length(hit)) sub(paste0("^--", name, "="), "", hit[[1L]]) else default
 }
 part = arg_value("part", "importance")
-stopifnot(part %in% c("importance", "loco", "selection", "local", "export"))
+stopifnot(part %in% c("importance", "loco", "conditional", "selection", "local", "export"))
 workers = as.integer(arg_value("workers", "1"))
 root = normalizePath(arg_value("root", "."), mustWork = TRUE)
 output_dir = file.path(root, "analysis/shild/results/claim_extensions")
@@ -216,25 +222,36 @@ if (part == "loco") {
     rbindlist(lapply(seq_len(folds), function(fold) {
       probability = fit_predict(job$learner, features, fold)
       rows = test_rows[[fold]]
-      loss = log_loss(positive[rows], probability)
+      outcome = positive[rows]
+      weight = dt$survey_weight[rows]
+      loss = log_loss(outcome, probability)
+      squared = (probability - outcome)^2
+      # Observed outcome predicted with probability 0: its log loss is set by the clipping bound alone.
+      at_bound = (outcome == 1L & probability <= 1e-15) | (outcome == 0L & probability >= 1 - 1e-15)
       data.table(learner = job$learner, design = job$design, fold = fold, n_test = length(rows),
-        log_loss = mean(loss), weighted_log_loss = sum(loss * dt$survey_weight[rows]) / sum(dt$survey_weight[rows]))
+        log_loss = mean(loss), weighted_log_loss = sum(loss * weight) / sum(weight),
+        brier = mean(squared), weighted_brier = sum(squared * weight) / sum(weight),
+        n_outcome_at_bound = sum(at_bound))
     }))
   }, mc.cores = workers, mc.preschedule = FALSE)
   failed = vapply(results, inherits, logical(1L), what = "try-error")
   if (any(failed)) stop("LOCO jobs failed: ", paste(vapply(results[failed], as.character, ""), collapse = " | "))
   losses = rbindlist(results)
   fwrite_out(losses, "loco_fold_losses.csv")
-  full = losses[design == "all_items", .(learner, fold, full_log_loss = log_loss, full_weighted = weighted_log_loss)]
+  full = losses[design == "all_items", .(learner, fold, full_log_loss = log_loss, full_weighted = weighted_log_loss,
+    full_brier = brier, full_weighted_brier = weighted_brier)]
   loco = merge(losses[design != "all_items"], full, by = c("learner", "fold"))
-  loco[, `:=`(loco = log_loss - full_log_loss, loco_weighted = weighted_log_loss - full_weighted)]
-  fwrite_out(loco[, .(learner, item = design, fold, loco, loco_weighted)], "loco_fold_importance.csv")
-  summary = rbindlist(lapply(c("loco", "loco_weighted"), function(measure) {
+  loco[, `:=`(loco = log_loss - full_log_loss, loco_weighted = weighted_log_loss - full_weighted,
+    loco_brier = brier - full_brier, loco_brier_weighted = weighted_brier - full_weighted_brier)]
+  fwrite_out(loco[, .(learner, item = design, fold, loco, loco_weighted, loco_brier, loco_brier_weighted)],
+    "loco_fold_importance.csv")
+  loco_measures = c("loco", "loco_weighted", "loco_brier", "loco_brier_weighted")
+  summary = rbindlist(lapply(loco_measures, function(measure) {
     loco[, cbind(measure = measure, interval_row(get(measure))), by = .(learner, item = design)]
   }))
   summary[, rank := frank(-estimate), by = .(learner, measure)]
   fwrite_out(summary[order(measure, learner, rank)], "loco_summary.csv")
-  comparisons = rbindlist(lapply(c("loco", "loco_weighted"), function(measure) {
+  comparisons = rbindlist(lapply(loco_measures, function(measure) {
     wide = dcast(loco, learner + fold ~ design, value.var = measure)
     rbindlist(lapply(unique(wide$learner), function(model) {
       w = wide[learner == model]
@@ -251,6 +268,69 @@ if (part == "loco") {
   print(summary[rank <= 4][order(measure, learner, rank)])
   print(comparisons[, .(min_lower = min(lower), max_p_holm = max(p_holm), closest = other[which.min(estimate)]),
     by = .(learner, measure, focal)])
+}
+
+# ---- Part: conditional PFI on realistic inputs (conditional subgroup approach) ----
+
+if (part == "conditional") {
+  n_permutations = 20L
+  # Subgroups: leaves of a tree that predicts the item from the other 26 items on the training fold; within a leaf,
+  # the item is approximately independent of the others, so permuting it there keeps inputs realistic.
+  leaf_of = function(tree, newdata) {
+    # The predicted value of a tree whose node values are the node numbers is the leaf of each row.
+    tree$frame$yval = as.numeric(rownames(tree$frame))
+    as.integer(stats::predict(tree, newdata = newdata, type = "vector"))
+  }
+  results = parallel::mclapply(seq_len(folds), function(fold) {
+    task = make_task(items)
+    learner = make_learner("xgboost")
+    set.seed(seed + fold)
+    learner$train(task, row_ids = train_rows[[fold]])
+    train = dt[train_rows[[fold]], ..items]
+    test = dt[test_rows[[fold]], ..items]
+    outcome = positive[test_rows[[fold]]]
+    base = mean(log_loss(outcome, learner$predict_newdata(test)$prob[, "discontent"]))
+    set.seed(seed + 1000L + fold)
+    rbindlist(lapply(items, function(item) {
+      formula = stats::as.formula(paste0("`", item, "` ~ ."))
+      tree = rpart::rpart(formula, data = train, control = rpart::rpart.control(maxdepth = 4L, minbucket = 50L,
+        cp = 0.001, xval = 0L))
+      leaves = leaf_of(tree, test)
+      groups = split(seq_len(nrow(test)), leaves)
+      increases = vapply(seq_len(n_permutations), function(r) {
+        permuted = copy(test)
+        values = permuted[[item]]
+        for (rows in groups) if (length(rows) > 1L) values[rows] = values[rows][sample.int(length(rows))]
+        set(permuted, j = item, value = values)
+        mean(log_loss(outcome, learner$predict_newdata(permuted)$prob[, "discontent"])) - base
+      }, numeric(1L))
+      data.table(fold = fold, item = item, cpfi = mean(increases), mc_se = stats::sd(increases) / sqrt(n_permutations),
+        n_permutations = n_permutations, n_subgroups = length(groups))
+    }))
+  }, mc.cores = workers, mc.preschedule = FALSE)
+  failed = vapply(results, inherits, logical(1L), what = "try-error")
+  if (any(failed)) stop("Conditional PFI jobs failed: ", paste(vapply(results[failed], as.character, ""), collapse = " | "))
+  per_fold = rbindlist(results)
+  fwrite_out(per_fold[order(fold, -cpfi)], "conditional_fold_pfi.csv")
+  means = per_fold[, .(mean_cpfi = mean(cpfi), min_fold = min(cpfi), max_fold = max(cpfi),
+    median_subgroups = median(n_subgroups)), by = item][order(-mean_cpfi)]
+  wide = dcast(per_fold, fold ~ item, value.var = "cpfi")
+  others = setdiff(items, c("A2", "D2"))
+  max_other = wide[, do.call(pmax, .SD), .SDcols = others]
+  by_fold = per_fold[, {
+    ordered = .SD[order(-cpfi)]
+    list(top_two_are_A2_D2 = setequal(ordered$item[1:2], c("A2", "D2")),
+      margin_holds = setequal(ordered$item[1:2], c("A2", "D2")) && min(ordered$cpfi[1:2]) >= 2 * ordered$cpfi[3L])
+  }, by = fold]
+  summary = data.table(mean_A2 = means[item == "A2", mean_cpfi], mean_D2 = means[item == "D2", mean_cpfi],
+    largest_other_item = means[!item %in% c("A2", "D2")][1L, item],
+    largest_other_mean = means[!item %in% c("A2", "D2")][1L, mean_cpfi],
+    min_ratio_A2 = min(wide$A2 / max_other), min_ratio_D2 = min(wide$D2 / max_other),
+    folds_top_two_A2_D2 = sum(by_fold$top_two_are_A2_D2), folds_margin_holds = sum(by_fold$margin_holds))
+  fwrite_out(means, "conditional_item_means.csv")
+  fwrite_out(summary, "conditional_summary.csv")
+  print(means[1:5]); print(summary)
+  write_session()
 }
 
 # ---- Part: nested check of the predictor selection ----

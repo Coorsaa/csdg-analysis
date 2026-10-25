@@ -1,0 +1,15 @@
+{
+  "claim_id": "order_A2_D2_xgboost",
+  "statement": "XGBoost relies more on self-rated health (A2) than on depressed mood (D2).",
+  "assessment": "met",
+  "label": "met (exploratory)",
+  "origin": "retrospective_exploratory",
+  "decisive_gates": "",
+  "decisive_checks": "",
+  "decisive_property": null,
+  "decision_options": ["retain"],
+  "supported_gates": "G0a, G0b, G2, G5",
+  "contradicted_gates": "",
+  "open_gates": "",
+  "report": "XGBoost relies more on self-rated health (A2) than on depressed mood (D2). Met (exploratory): on average, self-rated health (A2) 0.0463 versus depressed mood (D2) 0.0358 (difference 0.0105 [0.0016, 0.0195]); self-rated health (A2) exceeds depressed mood (D2) in 9 of 10 folds; 1 other is within Monte Carlo error or below the smallest relevant difference. The claim was formulated after the explanation was inspected; it is established only after a test on new data (csdg_confirm())."
+}

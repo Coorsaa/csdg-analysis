@@ -1,0 +1,2 @@
+workers,replications_per_cell,replications_total,replications_from_cache,truth_fits_total,truth_minutes,replication_minutes,total_minutes,this_session_minutes,load_average_at_start,started
+6,500,3000,3000,600,1.14637126525243,13.9476608633995,15.0940321286519,1.15082931518555,{ 7.94 8.76 11.37 },2026-10-25 18:56:23 CET

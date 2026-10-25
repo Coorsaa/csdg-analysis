@@ -828,7 +828,7 @@
     coord_equal(xlim = equal_limits, ylim = equal_limits) +
     labs(
       x = "Apparent weighted\nR-squared",
-      y = "Cross-fitted weighted\nR-squared"
+      y = "Cross-validated weighted\nR-squared"
     ) +
     .analysis_theme(base_size = 12, line_base_size = 12) +
     .analysis_typography_theme(axis_text_size = 14, axis_title_size = 15.5) +

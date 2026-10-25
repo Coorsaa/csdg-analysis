@@ -1,0 +1,54 @@
+{
+  "id": "relies_mainly_A2_D2_xgboost",
+  "statement": "XGBoost relies mainly on self-rated health (A2) and depressed mood (D2).",
+  "claim_type": "global_explanation",
+  "target": "Learner PFI of each predictor under marginal permutation, which includes combinations absent from the data: the expected increase in held-out log loss for XGBoost fitted to training sets of 15,274 rows (9/10 of the sample).",
+  "semantics": "fitted_model_description",
+  "meaning": "model_description",
+  "unit": "row of the task",
+  "population": "the analyzed sample",
+  "analytic_distribution": "Task shild_life_satisfaction: 16,971 rows, 27 features, outcome life_satisfaction (positive class discontent); missing values in C1, D10, D11, D15, D16, D17, D2, D4, D6, D8, E1, E17, E2, E5_a, F15, G1, J17, J2, J4, M2, and M6, handled by the learners.",
+  "model_scope": "learner",
+  "setting_scope": "analytic_sample",
+  "scientific_use": "scientific description; no decision about individuals",
+  "explanation_design": "10 resampling iterations (custom) with the same splits for all learners: one fit per training set; each predictor permuted 20 times in the held-out fold; increases averaged over permutations and folds.",
+  "claim_level": "substantive",
+  "use_claim": false,
+  "claim_version": "C0",
+  "parent_claim_id": null,
+  "revision_relation": "original",
+  "intended_users": null,
+  "action": null,
+  "thresholds": null,
+  "consequences": null,
+  "subgroup_variables": null,
+  "confirmatory": false,
+  "notes": null,
+  "provenance": {
+    "origin": "retrospective_exploratory",
+    "date": "2026-10-25",
+    "time_basis": "date the claim was derived from the results",
+    "selection_basis": "Formulated after inspecting the held-out PFI of XGBoost; self-rated health (A2) and depressed mood (D2) are its two leading predictors on average.",
+    "evidence_ids": []
+  },
+  "scope": {
+    "quantity": "Learner PFI of each predictor under marginal permutation, which includes combinations absent from the data: the expected increase in held-out log loss for XGBoost fitted to training sets of 15,274 rows (9/10 of the sample).",
+    "model": "learner",
+    "procedure": "10 resampling iterations (custom) with the same splits for all learners: one fit per training set; each predictor permuted 20 times in the held-out fold; increases averaged over permutations and folds.",
+    "data": "Task shild_life_satisfaction: 16,971 rows, 27 features, outcome life_satisfaction (positive class discontent); missing values in C1, D10, D11, D15, D16, D17, D2, D4, D6, D8, E1, E17, E2, E5_a, F15, G1, J17, J2, J4, M2, and M6, handled by the learners.",
+    "meaning": "model_description",
+    "use": "scientific description; no decision about individuals"
+  },
+  "coordinates": {
+    "target": "Learner PFI of each predictor under marginal permutation, which includes combinations absent from the data: the expected increase in held-out log loss for XGBoost fitted to training sets of 15,274 rows (9/10 of the sample).",
+    "model_scope": "learner",
+    "semantics": "fitted_model_description",
+    "analytic_distribution": "Task shild_life_satisfaction: 16,971 rows, 27 features, outcome life_satisfaction (positive class discontent); missing values in C1, D10, D11, D15, D16, D17, D2, D4, D6, D8, E1, E17, E2, E5_a, F15, G1, J17, J2, J4, M2, and M6, handled by the learners.",
+    "scientific_use": "scientific description; no decision about individuals",
+    "explanation_design": "10 resampling iterations (custom) with the same splits for all learners: one fit per training set; each predictor permuted 20 times in the held-out fold; increases averaged over permutations and folds."
+  },
+  "completeness": {
+    "decision_fields_missing": []
+  },
+  "additional": []
+}

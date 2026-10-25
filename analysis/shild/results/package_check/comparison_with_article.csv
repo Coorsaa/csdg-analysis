@@ -1,0 +1,25 @@
+quantity,article,package
+respondents (rows of the task),"16,971","16,971"
+items,27,27
+"held-out log loss, XGBoost",0.122,0.1222
+"held-out log loss, model without predictors",0.229,0.2285
+minimum importance and smallest relevant difference (1% of the improvement),0.001,0.001064
+statement (a): mean PFI of self-rated health (A2),0.046,0.04635
+statement (a): mean PFI of depressed mood (D2),0.036,0.03580
+statement (a): mean PFI of the largest other item,0.0055 (M8),0.005621 (M8)
+"statement (a): weakest comparison A2 - 2 x other item (of 25), corrected 95% interval","[0.027, 0.043] (M8)","[0.02803, 0.04218] (M8)"
+"statement (a): weakest comparison D2 - 2 x other item (of 25), corrected 95% interval","[0.021, 0.030] (M8)","[0.02042, 0.02870] (M8)"
+"statement (a): smallest ratio to the largest other item of the fold, A2",5.0,5.120
+"statement (a): smallest ratio to the largest other item of the fold, D2",4.0,4.097
+"statement (a): folds that reproduce the claim (stability, G5)",10 of 10 (supported),10 of 10 (supported)
+statement (a): assessment,met (exploratory),met (exploratory)
+"stronger claim: mean difference A2 - D2, corrected 95% interval","0.0097 [0.0005, 0.0188]","0.01055 [0.001584, 0.01951]"
+stronger claim: content (G2),depends on the permutation draw (lower bound 0.0005 in the stored draw),"supported (lower bound 0.001584, above 0.001064)"
+"stronger claim: folds with A2 > D2 (stability, G5)",9 of 10 (supported),9 of 10 (supported)
+stronger claim: assessment,"with 20 permutations, depends on the draw",met (exploratory)
+stronger claim: assessment by the same rule from the stored permutations of the primary run,unresolved (exploratory),"unresolved; difference 0.009657 [0.0004920, 0.01882]; 9 of 10 folds"
+stronger claim: further sets of 20 permutations per fold with the claim met,17 of 21 (lower bound 0.0004 to 0.0022),16 of 20 (lower bound from 0.0004202 to 0.002188)
+"stronger claim, 500 permutations per fold: mean difference A2 - D2, corrected 95% interval","0.0103 [0.0014, 0.0192]","0.01032 [0.001389, 0.01925]"
+"stronger claim, 500 permutations per fold: folds with A2 > D2; failing folds",9 of 10; fold 9 fails,9 of 10; 1 failing
+"stronger claim, 500 permutations per fold: assessment",met (exploratory),"met (content supported, stability supported)"
+"stronger claim, every fitted model: uncertainty of the reversal in fold 9","0.0024, 0.32 bootstrap standard errors (SE 0.0075)",0.002388 (500 permutations) versus a held-out bootstrap SE of 0.007484: 0.319 SEs

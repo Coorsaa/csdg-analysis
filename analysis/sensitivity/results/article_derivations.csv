@@ -245,11 +245,30 @@ loco_n_folds_both_items_lead,shild,ridge_logistic,loco_weighted,10
 loco_max_holm_p,shild,ridge_logistic,loco_weighted,0.000186651048970061
 loco_n_folds_both_items_lead,shild,random_forest,loco_weighted,4
 loco_max_holm_p,shild,random_forest,loco_weighted,0.232050911624112
+loco_n_folds_both_items_lead,shild,xgboost,loco_brier,10
+loco_max_holm_p,shild,xgboost,loco_brier,0.000112802672932298
+loco_n_folds_both_items_lead,shild,ridge_logistic,loco_brier,10
+loco_max_holm_p,shild,ridge_logistic,loco_brier,0.000373558877490145
+loco_n_folds_both_items_lead,shild,random_forest,loco_brier,10
+loco_max_holm_p,shild,random_forest,loco_brier,0.00021952864284785
+loco_n_folds_both_items_lead,shild,xgboost,loco_brier_weighted,10
+loco_max_holm_p,shild,xgboost,loco_brier_weighted,0.000430866666568823
+loco_n_folds_both_items_lead,shild,ridge_logistic,loco_brier_weighted,10
+loco_max_holm_p,shild,ridge_logistic,loco_brier_weighted,0.00101499147207981
+loco_n_folds_both_items_lead,shild,random_forest,loco_brier_weighted,10
+loco_max_holm_p,shild,random_forest,loco_brier_weighted,0.000193656375315527
+statement_a_excess_mean,shild,xgboost,A2 minus 2 x M8 (smallest lower limit of 25 comparisons),0.0348694945313781
+statement_a_excess_lower,shild,xgboost,A2 minus 2 x M8 (smallest lower limit of 25 comparisons),0.0272081647099193
+statement_a_excess_upper,shild,xgboost,A2 minus 2 x M8 (smallest lower limit of 25 comparisons),0.0425308243528368
+statement_a_excess_mean,shild,xgboost,D2 minus 2 x M8 (smallest lower limit of 25 comparisons),0.0252128958570225
+statement_a_excess_lower,shild,xgboost,D2 minus 2 x M8 (smallest lower limit of 25 comparisons),0.0206693404331485
+statement_a_excess_upper,shild,xgboost,D2 minus 2 x M8 (smallest lower limit of 25 comparisons),0.0297564512808964
+statement_a_comparisons_lower_above_zero,shild,xgboost,of 50,50
 a2_minus_d2_n_folds_positive,shild,xgboost,,9
 a2_minus_d2_reversal,shild,xgboost,fold 9,-0.00301543702893777
 a2_minus_d2_reversal_mc_se,shild,xgboost,fold 9,0.00129474530396249
 a2_minus_d2_threshold_t975,shild,xgboost,fold 9,0.00270993306552569
-a2_minus_d2_threshold_holm_t995,shild,xgboost,fold 9,0.00370418164666431
+a2_minus_d2_threshold_holm_t9975,shild,xgboost,fold 9,0.00410916493231392
 a2_minus_d2_fold_sd,shild,xgboost,10 folds,0.00881724656037699
 a2_minus_d2_fold_sd_over_reversal_mc_se,shild,xgboost,fold 9,6.81002397413015
 a2_minus_d2_fold_sd_over_mean_mc_se,shild,xgboost,10 folds,8.13329781551621
@@ -278,3 +297,71 @@ relevance_pfi,exploratory,xgboost,rank 5: SCREADDIFF,1.81864223906434
 relevance_share_percent,exploratory,xgboost,rank 5: SCREADDIFF,6.22705525831106
 top_5_recurrence_n_fold_pv,exploratory,xgboost,of 50 fold-by-PV analyses,50
 top_5_min_margin_fold_pv,exploratory,xgboost,fifth minus sixth,0.32272457622192
+loco_max_holm_p_inflated_se,shild,random_forest,loco; SE x 2.0,1
+loco_max_holm_p_inflated_se,shild,ridge_logistic,loco; SE x 2.0,0.00940728849306367
+loco_max_holm_p_inflated_se,shild,xgboost,loco; SE x 2.0,0.00974099219214881
+loco_max_holm_p_inflated_se,shild,random_forest,loco_weighted; SE x 2.0,1
+loco_max_holm_p_inflated_se,shild,ridge_logistic,loco_weighted; SE x 2.0,0.0161725948741001
+loco_max_holm_p_inflated_se,shild,xgboost,loco_weighted; SE x 2.0,0.0248355627191759
+loco_max_holm_p_inflated_se,shild,random_forest,loco; SE x 2.1,1
+loco_max_holm_p_inflated_se,shild,ridge_logistic,loco; SE x 2.1,0.012277072640925
+loco_max_holm_p_inflated_se,shild,xgboost,loco; SE x 2.1,0.0136069578359901
+loco_max_holm_p_inflated_se,shild,random_forest,loco_weighted; SE x 2.1,1
+loco_max_holm_p_inflated_se,shild,ridge_logistic,loco_weighted; SE x 2.1,0.0206779221983961
+loco_max_holm_p_inflated_se,shild,xgboost,loco_weighted; SE x 2.1,0.033635287630939
+outcomes_at_probability_zero_total,shild,random_forest,over 280 refits,66
+refits_with_outcome_at_probability_zero,shild,random_forest,of 280 refits,57
+outcomes_at_probability_zero_total,shild,xgboost,over 280 refits,0
+refits_with_outcome_at_probability_zero,shild,xgboost,of 280 refits,0
+outcomes_at_probability_zero_total,shild,ridge_logistic,over 280 refits,0
+refits_with_outcome_at_probability_zero,shild,ridge_logistic,of 280 refits,0
+rf_full_design_outcomes_at_probability_zero,shild,random_forest,"folds 4, 9",2
+rf_increase_per_clipped_respondent,shild,random_forest,log loss of one fold,0.0203516448028464
+rf_mean_log_loss,shild,random_forest,clipping at 1e-15,0.133179311890711
+rf_mean_log_loss,shild,random_forest,probabilities floored at 0.001,0.12992189679893
+retained_share_percent,shild,random_forest,clipping at 1e-15,89.6659752215005
+retained_share_percent,shild,random_forest,probabilities floored at 0.001,92.7287467907734
+conditional_pfi_mean_A2,shild,xgboost,,0.0337722496735025
+conditional_pfi_mean_D2,shild,xgboost,,0.0282973313612437
+conditional_pfi_largest_other_mean,shild,xgboost,,0.00515292655245754
+conditional_pfi_min_ratio_A2,shild,xgboost,,3.52627855719707
+conditional_pfi_min_ratio_D2,shild,xgboost,,3.36611374846715
+conditional_pfi_folds_top_two_A2_D2,shild,xgboost,,10
+conditional_pfi_folds_margin_holds,shild,xgboost,,10
+stability_case_pass_probability,shild,local surrogate,recurrence 0.95,0.73583952494385
+stability_all_30_pass_probability,shild,local surrogate,recurrence 0.95,0.000100807618620138
+stability_case_pass_probability,shild,local surrogate,recurrence 0.98,0.940101021451051
+stability_all_30_pass_probability,shild,local surrogate,recurrence 0.98,0.156760173962628
+stability_case_pass_probability,shild,local surrogate,recurrence 0.99,0.983140662364348
+stability_all_30_pass_probability,shild,local surrogate,recurrence 0.99,0.600440201986536
+stability_p_at_most_10_of_20_given_95,shild,local surrogate,binomial,1.13407180609304e-08
+c2_gap_mean,exploratory,ridge_fixed,METASPAM minus ESCS,0.333352292137533
+c2_gap_se,exploratory,ridge_fixed,METASPAM minus ESCS,0.321211381219744
+c2_gap_lower,exploratory,ridge_fixed,METASPAM minus ESCS,-0.558473474983848
+c2_gap_upper,exploratory,ridge_fixed,METASPAM minus ESCS,1.22517805925891
+c2_gap_n_folds_positive,exploratory,ridge_fixed,METASPAM minus ESCS,4
+c2_gap_mean,confirmatory,ridge_fixed,METASPAM minus HOMEPOS,0.223555789938245
+c2_gap_se,confirmatory,ridge_fixed,METASPAM minus HOMEPOS,0.371836853001444
+c2_gap_lower,confirmatory,ridge_fixed,METASPAM minus HOMEPOS,-0.808828820509765
+c2_gap_upper,confirmatory,ridge_fixed,METASPAM minus HOMEPOS,1.25594040038626
+c2_gap_n_folds_positive,confirmatory,ridge_fixed,METASPAM minus HOMEPOS,3
+c3_ratio_average,exploratory,,rmse,1.77545856877543
+c3_ratio_pv_max,exploratory,,rmse,1.83181272479486
+c3_n_pv_at_most_2,exploratory,,rmse,10
+c4_ratio_pv_min,exploratory,ridge_fixed,rmse,4.27288044084858
+c4_ratio_pv_max,exploratory,ridge_fixed,rmse,4.65592769888377
+c3_ratio_average,exploratory,,mse,1.7837960243316
+c3_ratio_pv_max,exploratory,,mse,1.84188269546057
+c3_n_pv_at_most_2,exploratory,,mse,10
+c4_ratio_pv_min,exploratory,ridge_fixed,mse,4.57537594938313
+c4_ratio_pv_max,exploratory,ridge_fixed,mse,5.01382459555756
+c3_ratio_average,confirmatory,,rmse,1.83148310587475
+c3_ratio_pv_max,confirmatory,,rmse,1.86938575073396
+c3_n_pv_at_most_2,confirmatory,,rmse,10
+c4_ratio_pv_min,confirmatory,ridge_fixed,rmse,4.33547869313809
+c4_ratio_pv_max,confirmatory,ridge_fixed,rmse,4.65830490343751
+c3_ratio_average,confirmatory,,mse,1.8360728118654
+c3_ratio_pv_max,confirmatory,,mse,1.87401907374274
+c3_n_pv_at_most_2,confirmatory,,mse,10
+c4_ratio_pv_min,confirmatory,ridge_fixed,mse,4.64403694887228
+c4_ratio_pv_max,confirmatory,ridge_fixed,mse,5.02225982805198

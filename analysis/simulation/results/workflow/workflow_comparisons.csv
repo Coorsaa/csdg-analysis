@@ -1,0 +1,7 @@
+scenario,n,analyses,decisive_not_largest_other,explore_changed,confirm_changed,changed_replications
+S1,300,500,132,0,0,""
+S1,1000,500,82,0,1,"416 (exploratory unresolved, largest other only unresolved; new data unresolved, largest other only met)"
+S1,5000,500,10,0,0,""
+S2,300,500,153,0,0,""
+S2,1000,500,112,0,0,""
+S2,5000,500,79,0,0,""

@@ -1,0 +1,97 @@
+panel,claim,scenario,n,measure,procedure,numerator,denominator,estimate,lower,upper,drawn
+b,R,S1,300,standard_power,Point estimates,230,362,0.6353591160221,0.584594954092683,0.683280645124277,TRUE
+a,R,S1,300,standard_reported_among_false,Point estimates,33,138,0.239130434782609,0.175643786286928,0.316747221260327,TRUE
+b,R,S1,300,standard_both_power,"Point estimates, both samples",102,362,0.281767955801105,0.237904786066799,0.330214145807899,TRUE
+a,R,S1,300,standard_both_among_false,"Point estimates, both samples",0,138,0,0,0.0270827644655729,TRUE
+b,R,S1,300,csdg_power,"CSDG, exploratory",2,362,0.00552486187845304,0.00151642624509905,0.0199176092684576,TRUE
+a,R,S1,300,csdg_met_among_false,"CSDG, exploratory",0,138,0,0,0.0270827644655729,TRUE
+b,R,S1,300,both_power,"CSDG, both samples",0,362,0,0,0.0105003375863338,TRUE
+a,R,S1,300,both_met_among_false,"CSDG, both samples",0,138,0,0,0.0270827644655729,TRUE
+b,R,S1,1000,standard_power,Point estimates,437,496,0.881048387096774,0.849588902098665,0.906650888197718,TRUE
+a,R,S1,1000,standard_reported_among_false,Point estimates,0,4,0,0,0.489890836454597,FALSE
+b,R,S1,1000,standard_both_power,"Point estimates, both samples",382,496,0.770161290322581,0.731142919558257,0.805027090493147,TRUE
+a,R,S1,1000,standard_both_among_false,"Point estimates, both samples",0,4,0,0,0.489890836454597,FALSE
+b,R,S1,1000,csdg_power,"CSDG, exploratory",98,496,0.19758064516129,0.164921170553513,0.234888519687452,TRUE
+a,R,S1,1000,csdg_met_among_false,"CSDG, exploratory",0,4,0,0,0.489890836454597,FALSE
+b,R,S1,1000,both_power,"CSDG, both samples",15,496,0.030241935483871,0.0184111719665534,0.04929321354108,TRUE
+a,R,S1,1000,both_met_among_false,"CSDG, both samples",0,4,0,0,0.489890836454597,FALSE
+b,R,S1,5000,standard_power,Point estimates,499,500,0.998,0.988759293294853,0.999646863605441,TRUE
+a,R,S1,5000,standard_reported_among_false,Point estimates,0,0,,,,FALSE
+b,R,S1,5000,standard_both_power,"Point estimates, both samples",498,500,0.996,0.985534284784823,0.998902369477317,TRUE
+a,R,S1,5000,standard_both_among_false,"Point estimates, both samples",0,0,,,,FALSE
+b,R,S1,5000,csdg_power,"CSDG, exploratory",461,500,0.922,0.895146450126612,0.942418606523838,TRUE
+a,R,S1,5000,csdg_met_among_false,"CSDG, exploratory",0,0,,,,FALSE
+b,R,S1,5000,both_power,"CSDG, both samples",419,500,0.838,0.80314773423783,0.867698211610161,TRUE
+a,R,S1,5000,both_met_among_false,"CSDG, both samples",0,0,,,,FALSE
+b,R,S2,300,standard_power,Point estimates,0,0,,,,FALSE
+a,R,S2,300,standard_reported_among_false,Point estimates,156,500,0.312,0.272952948725285,0.353913803288259,TRUE
+b,R,S2,300,standard_both_power,"Point estimates, both samples",0,0,,,,FALSE
+a,R,S2,300,standard_both_among_false,"Point estimates, both samples",20,500,0.04,0.0260407973897773,0.0609735958348508,TRUE
+b,R,S2,300,csdg_power,"CSDG, exploratory",0,0,,,,FALSE
+a,R,S2,300,csdg_met_among_false,"CSDG, exploratory",0,500,0,0,0.00762434046155224,TRUE
+b,R,S2,300,both_power,"CSDG, both samples",0,0,,,,FALSE
+a,R,S2,300,both_met_among_false,"CSDG, both samples",0,500,0,0,0.00762434046155224,TRUE
+b,R,S2,1000,standard_power,Point estimates,0,0,,,,FALSE
+a,R,S2,1000,standard_reported_among_false,Point estimates,153,500,0.306,0.267213463731136,0.347744780367946,TRUE
+b,R,S2,1000,standard_both_power,"Point estimates, both samples",0,0,,,,FALSE
+a,R,S2,1000,standard_both_among_false,"Point estimates, both samples",22,500,0.044,0.0292339556286072,0.0657194428723285,TRUE
+b,R,S2,1000,csdg_power,"CSDG, exploratory",0,0,,,,FALSE
+a,R,S2,1000,csdg_met_among_false,"CSDG, exploratory",0,500,0,0,0.00762434046155224,TRUE
+b,R,S2,1000,both_power,"CSDG, both samples",0,0,,,,FALSE
+a,R,S2,1000,both_met_among_false,"CSDG, both samples",0,500,0,0,0.00762434046155224,TRUE
+b,R,S2,5000,standard_power,Point estimates,0,0,,,,FALSE
+a,R,S2,5000,standard_reported_among_false,Point estimates,36,500,0.072,0.0524580314181262,0.0980684040169625,TRUE
+b,R,S2,5000,standard_both_power,"Point estimates, both samples",0,0,,,,FALSE
+a,R,S2,5000,standard_both_among_false,"Point estimates, both samples",0,500,0,0,0.00762434046155224,TRUE
+b,R,S2,5000,csdg_power,"CSDG, exploratory",0,0,,,,FALSE
+a,R,S2,5000,csdg_met_among_false,"CSDG, exploratory",2,500,0.004,0.00109763052268279,0.014465715215177,TRUE
+b,R,S2,5000,both_power,"CSDG, both samples",0,0,,,,FALSE
+a,R,S2,5000,both_met_among_false,"CSDG, both samples",0,500,0,0,0.00762434046155224,TRUE
+b,O,S1,300,standard_power,Point estimates,339,339,1,0.98879523254303,1,TRUE
+a,O,S1,300,standard_reported_among_false,Point estimates,161,161,1,0.976696039648177,1,TRUE
+b,O,S1,300,standard_both_power,"Point estimates, both samples",245,339,0.722713864306785,0.672766892147062,0.767669922348506,TRUE
+a,O,S1,300,standard_both_among_false,"Point estimates, both samples",60,161,0.372670807453416,0.301766746836556,0.449509416979747,TRUE
+b,O,S1,300,csdg_power,"CSDG, exploratory",38,339,0.112094395280236,0.0827644880830548,0.150117086669698,TRUE
+a,O,S1,300,csdg_met_among_false,"CSDG, exploratory",11,161,0.0683229813664596,0.0385755836717973,0.11818994731518,TRUE
+b,O,S1,300,both_power,"CSDG, both samples",4,339,0.0117994100294985,0.00459786543698229,0.0299413027879645,TRUE
+a,O,S1,300,both_met_among_false,"CSDG, both samples",1,161,0.0062111801242236,0.00109726853276099,0.0343395618768034,TRUE
+b,O,S1,1000,standard_power,Point estimates,387,387,1,0.990171311835021,1,TRUE
+a,O,S1,1000,standard_reported_among_false,Point estimates,113,113,1,0.967122467834048,1,TRUE
+b,O,S1,1000,standard_both_power,"Point estimates, both samples",291,387,0.751937984496124,0.706572956526478,0.792350572692718,TRUE
+a,O,S1,1000,standard_both_among_false,"Point estimates, both samples",35,113,0.309734513274336,0.231916696917637,0.400063248950822,TRUE
+b,O,S1,1000,csdg_power,"CSDG, exploratory",109,387,0.281653746770026,0.239154602175213,0.328445005834816,TRUE
+a,O,S1,1000,csdg_met_among_false,"CSDG, exploratory",13,113,0.115044247787611,0.0684772077453628,0.18692407808152,TRUE
+b,O,S1,1000,both_power,"CSDG, both samples",25,387,0.0645994832041344,0.0441357072290002,0.0936220909921832,TRUE
+a,O,S1,1000,both_met_among_false,"CSDG, both samples",0,113,0,0,0.032877532165952,TRUE
+b,O,S1,5000,standard_power,Point estimates,468,468,1,0.991858581417802,1,TRUE
+a,O,S1,5000,standard_reported_among_false,Point estimates,32,32,1,0.89282080174493,1,TRUE
+b,O,S1,5000,standard_both_power,"Point estimates, both samples",433,468,0.925213675213675,0.897766082352451,0.945737583041321,TRUE
+a,O,S1,5000,standard_both_among_false,"Point estimates, both samples",5,32,0.15625,0.0686442028250571,0.317541495975304,TRUE
+b,O,S1,5000,csdg_power,"CSDG, exploratory",264,468,0.564102564102564,0.518835032787474,0.608326323804552,TRUE
+a,O,S1,5000,csdg_met_among_false,"CSDG, exploratory",1,32,0.03125,0.00553786016400314,0.157442638200126,TRUE
+b,O,S1,5000,both_power,"CSDG, both samples",129,468,0.275641025641026,0.237108278356826,0.317826973571083,TRUE
+a,O,S1,5000,both_met_among_false,"CSDG, both samples",0,32,0,0,0.107179198255071,TRUE
+b,O,S2,300,standard_power,Point estimates,352,352,1,0.989204577697537,1,TRUE
+a,O,S2,300,standard_reported_among_false,Point estimates,148,148,1,0.974700856732215,1,TRUE
+b,O,S2,300,standard_both_power,"Point estimates, both samples",293,352,0.832386363636364,0.789823179938046,0.867773045008612,TRUE
+a,O,S2,300,standard_both_among_false,"Point estimates, both samples",30,148,0.202702702702703,0.145840261712309,0.274607877527995,TRUE
+b,O,S2,300,csdg_power,"CSDG, exploratory",17,352,0.0482954545454545,0.0303689728199971,0.0759746189191604,TRUE
+a,O,S2,300,csdg_met_among_false,"CSDG, exploratory",2,148,0.0135135135135135,0.00371374962448039,0.047928660041472,TRUE
+b,O,S2,300,both_power,"CSDG, both samples",1,352,0.00284090909090909,0.000501666363647569,0.0159142364939157,TRUE
+a,O,S2,300,both_met_among_false,"CSDG, both samples",0,148,0,0,0.0252991432677844,TRUE
+b,O,S2,1000,standard_power,Point estimates,449,449,1,0.99151698956474,1,TRUE
+a,O,S2,1000,standard_reported_among_false,Point estimates,51,51,1,0.929953380101468,1,TRUE
+b,O,S2,1000,standard_both_power,"Point estimates, both samples",414,449,0.922048997772828,0.893518170315331,0.94341933312573,TRUE
+a,O,S2,1000,standard_both_among_false,"Point estimates, both samples",3,51,0.0588235294117647,0.0202066394224647,0.159246260488004,TRUE
+b,O,S2,1000,csdg_power,"CSDG, exploratory",167,449,0.371937639198218,0.328495220003967,0.417552767078561,TRUE
+a,O,S2,1000,csdg_met_among_false,"CSDG, exploratory",3,51,0.0588235294117647,0.0202066394224647,0.159246260488004,TRUE
+b,O,S2,1000,both_power,"CSDG, both samples",107,449,0.238307349665924,0.201224131243854,0.279830451055224,TRUE
+a,O,S2,1000,both_met_among_false,"CSDG, both samples",0,51,0,0,0.0700466198985314,TRUE
+b,O,S2,5000,standard_power,Point estimates,500,500,1,0.992375659538448,1,TRUE
+a,O,S2,5000,standard_reported_among_false,Point estimates,0,0,,,,FALSE
+b,O,S2,5000,standard_both_power,"Point estimates, both samples",500,500,1,0.992375659538448,1,TRUE
+a,O,S2,5000,standard_both_among_false,"Point estimates, both samples",0,0,,,,FALSE
+b,O,S2,5000,csdg_power,"CSDG, exploratory",490,500,0.98,0.963579816753121,0.989100816403789,TRUE
+a,O,S2,5000,csdg_met_among_false,"CSDG, exploratory",0,0,,,,FALSE
+b,O,S2,5000,both_power,"CSDG, both samples",487,500,0.974,0.956028509165776,0.984743616076673,TRUE
+a,O,S2,5000,both_met_among_false,"CSDG, both samples",0,0,,,,FALSE

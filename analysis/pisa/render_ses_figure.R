@@ -18,7 +18,7 @@ learner_labels = c("XGBoost", "Random forest", "Linear regression", "Ridge regre
 labels = c(METASPAM = "Assessing credibility", METASUM = "Summarizing strategies",
   SCREADCOMP = "Perceived reading competence", SCREADDIFF = "Perceived reading difficulty",
   JOYREAD = "Enjoyment of reading", UNDREM = "Understanding and remembering",
-  ESCS = "Economic, social, and cultural status", HOMEPOS = "Home possessions", WEALTH = "Family wealth",
+  ESCS = "Index of economic, social, and cultural status", HOMEPOS = "Home possessions", WEALTH = "Family wealth",
   ST001D01T = "Grade", LANGN = "Language at home")
 
 summarize = function(table) {
@@ -59,10 +59,10 @@ style = function(plot, limit) {
 }
 panel = function(data, limit) {
   data[, learner := factor(learner, levels = learner_levels)]
-  dodge = position_dodge(width = 0.7)
+  dodge = position_dodge(width = 0.8)
   style(ggplot(data, aes(x = mean, y = label, shape = learner, group = learner)) +
-    geom_errorbar(aes(xmin = low, xmax = high), position = dodge, width = 0, linewidth = 0.4) +
-    geom_point(position = dodge, size = 1.9, stroke = 0.5, fill = "white"), limit)
+    geom_errorbar(aes(xmin = low, xmax = high), position = dodge, width = 0, linewidth = 0.45) +
+    geom_point(position = dodge, size = 2.5, stroke = 0.6, fill = "white"), limit)
 }
 limit_a = ceiling(max(individual$high)) + 0.5
 limit_b = ceiling(max(socio$high)) + 0.5

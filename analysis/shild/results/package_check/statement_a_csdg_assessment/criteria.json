@@ -1,0 +1,29 @@
+{
+  "min_importance": 0.01,
+  "stability": 0.9,
+  "min_difference_supplied": false,
+  "min_difference_value": null,
+  "min_change": null,
+  "max_r2": 0.5,
+  "dependent_groups": null,
+  "factor": 2,
+  "level": 0.95,
+  "interval_rule": "open_if_inconclusive",
+  "fixed": "2026-10-25",
+  "sources": {
+    "min_importance": "article convention",
+    "stability": "article convention",
+    "factor": "article convention",
+    "min_difference": "article recommendation (equal to the minimum importance)",
+    "interval_rule": "article recommendation",
+    "min_change": null,
+    "max_r2": "package default"
+  },
+  "need": 9,
+  "min_difference": {
+    "xgboost": 0.00106355143310732
+  },
+  "tau": {
+    "xgboost": 0.00106355143310732
+  }
+}
