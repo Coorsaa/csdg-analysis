@@ -16,8 +16,8 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-ARTICLE_TITLE = ("From Interpretation Claims to Diagnostic Evidence: A Practical Framework for Interpretable "
-                 "Machine Learning in Psychological Research")
+ARTICLE_TITLE = ("Which Conclusions Does an Explanation Support? Claim-Scoped Diagnostic Gates for Interpretable "
+                 "Machine Learning in Psychology")
 REPOSITORY_URL = "https://github.com/coorsaa/csdg-analysis"
 PDF_NAME = "computational_supplement.pdf"
 # Fixed PDF creation date so that rebuilding with the same TeX installation reproduces the same bytes.

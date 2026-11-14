@@ -1,8 +1,8 @@
 # CSDG analyses
 
 Analysis code, public aggregate results, figure sources, and the computational supplement of the article
-*From Interpretation Claims to Diagnostic Evidence: A Practical Framework for Interpretable Machine Learning in
-Psychological Research*. The repository reproduces the SHILD and PISA applications, the controlled examples, and the
+*Which Conclusions Does an Explanation Support? Claim-Scoped Diagnostic Gates for Interpretable Machine Learning
+in Psychology*. The repository reproduces the SHILD and PISA applications, the controlled examples, and the
 simulation of the decision criteria. The workflow itself is implemented in the R package
 [`mlr3autoiml`](https://github.com/coorsaa/mlr3autoiml).
 
@@ -24,7 +24,7 @@ results are not included (see [Data](#data)).
 | `analysis/shild/tuning_check.R` | Nested tuning of XGBoost and random forest on the 10 primary SHILD folds compared with the fixed settings, and statement (a) for the tuned XGBoost; results in `analysis/shild/results/tuning_check/`. |
 | `analysis/shild/package_check.R` | Statement (a) and the stronger claim that XGBoost relies more on self-rated health than on depressed mood, rederived with the analysis-first interface of `mlr3autoiml` 0.3.0 (`csdg_fit()`, `csdg_importance()`, `claim_relies_mainly()`, `claim_order()`, `csdg_check()`, `csdg_assess()`) on the 10 primary SHILD folds, with the stronger claim also from 500 permutations per fold, under neighboring criteria, and with a bootstrap of each fold's held-out respondents; results in `analysis/shild/results/package_check/`. |
 | `analysis/pisa/preprocess_PISA_v2.R`, `analysis/pisa/pisa2018_reading_compactv2_manifest.csv` | Extraction of the 32-country analytic extract from the public OECD PISA 2018 files, and the variable table of the extract used in the article. |
-| `analysis/pisa/run_pv1_matched_controls.R`, `analysis/pisa/run_loco_country_calibration_bootstrap.R`, `analysis/pisa/results/` | PISA matched-control and country-calibration summaries of the primary run (retained; not reported in the current article). |
+| `analysis/pisa/run_pv1_matched_controls.R`, `analysis/pisa/run_loco_country_calibration_bootstrap.R`, `analysis/pisa/results/` | PISA matched-control and country-calibration summaries of the primary run (retained; not reported in the article). |
 | `analysis/targeted/` | Probability versus log-odds surrogates and number of perturbed points in SHILD, the three-model PISA importance summary across plausible values, and the controlled examples (`controlled_examples.R`, Supplement G); controller `run.R`; public results in `analysis/targeted/results/`. |
 | `analysis/simulation/criteria_simulation.R` | Simulation of the operating characteristics of the decision criteria (Supplement M); design and outputs in `analysis/simulation/README.md`. |
 | `analysis/simulation/workflow_simulation.R` | Simulation of the workflow from the exploratory claim to its test on new data, compared with reporting from point estimates and with each component of the default rule alone (Figure 2 of the article, Supplement M); design, verification against `mlr3autoiml` 0.3.0, and outputs in `analysis/simulation/README.md`. |
@@ -183,7 +183,7 @@ cases or respondents per row. The primary SHILD analysis and the evidence synthe
 | Supplement G (controlled examples) | `analysis/targeted/run.R --mode=synthetic` | `analysis/targeted/results/controlled/` |
 | Supplement I (sensitivity of the model comparisons; the three-model PISA importance across plausible values behind Table S31) | `analysis/sensitivity/run_sensitivities.R`; `analysis/targeted/pisa_synthesis.R` (`run.R --mode=aggregate`) | `analysis/sensitivity/results/`, `analysis/targeted/results/pisa/` |
 | Computational supplement, Figures C1–C28 | `supplement/assemble_publication.py` (components: `analysis/render_supplement_figures.R` and the primary runs) | `supplement/computational_supplement.pdf` |
-| Retained displays and summaries not reported in the current article (PISA matched controls and country calibration, locality curve, performance-explanation sensitivity) | `analysis/render_retained_figures.R`; `analysis/pisa/run_pv1_matched_controls.R` and `analysis/pisa/run_loco_country_calibration_bootstrap.R` (need private model objects) | `final_docs/figures/pisa_pv1_loco_*.pdf`, `final_docs/EVIDENCE_FIGURES/figures/shild_g4_systematic_local_audit__locality_curve.pdf`, `final_docs/EVIDENCE_FIGURES/figures/performance_explanation_sensitivity__*.pdf`, `analysis/pisa/results/`, `final_docs/PISA_*.csv` |
+| Retained displays and summaries not reported in the article (PISA matched controls and country calibration, locality curve, performance-explanation sensitivity) | `analysis/render_retained_figures.R`; `analysis/pisa/run_pv1_matched_controls.R` and `analysis/pisa/run_loco_country_calibration_bootstrap.R` (need private model objects) | `final_docs/figures/pisa_pv1_loco_*.pdf`, `final_docs/EVIDENCE_FIGURES/figures/shild_g4_systematic_local_audit__locality_curve.pdf`, `final_docs/EVIDENCE_FIGURES/figures/performance_explanation_sensitivity__*.pdf`, `analysis/pisa/results/`, `final_docs/PISA_*.csv` |
 
 `analysis/render_decimal_figures.R` writes APA-labeled versions of selected figures (for example ".75" instead of
 "0.75") into a manuscript folder:

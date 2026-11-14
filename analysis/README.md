@@ -17,8 +17,7 @@ by section in an interactive R session.
   records, a ZIP archive, and its SHA-256 checksum.
 - `shared/` contains only reusable workflow, diagnostic, output, and study-support functions.
 - `protocol.yml` records all publication settings, estimands, thresholds, and interpretation boundaries.
-- `preprocessing_review.md` records the responsible co-authors' group-level verification dated 2026-09-09 and the
-  boundary that this is not an independent protected-source rerun or compact-source reconstruction.
+- `preprocessing_review.md` records the coauthors' verification of the analytic cuts and preprocessing (2026-09-09).
 
 The main study scripts contain the complete sequence of substantive choices. Learned preprocessing is fitted inside
 training folds. Performance, calibration, permutation importance, local fidelity, subgroup estimates, and setting

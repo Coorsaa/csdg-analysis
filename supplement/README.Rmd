@@ -6,8 +6,8 @@ output:
 
 # Computational supplement
 
-This folder contains the computational supplement of the article *From Interpretation Claims to Diagnostic Evidence:
-A Practical Framework for Interpretable Machine Learning in Psychological Research*: 30 monochrome figure components
+This folder contains the computational supplement of the article *Which Conclusions Does an Explanation Support?
+Claim-Scoped Diagnostic Gates for Interpretable Machine Learning in Psychology*: 30 monochrome figure components
 and 27 aggregate diagnostic tables on calibration, subgroup comparisons, one- and two-dimensional ALE, aggregate ICE,
 and prediction multiplicity for SHILD and PISA (15 components per study). `computational_supplement.pdf` (also
 distributed as `publication.pdf`) assembles the components into a captioned reading copy with 28 figures, numbered

@@ -1,6 +1,6 @@
 Type: Project
 Package: csdganalysis
-Title: Analyses for "From Interpretation Claims to Diagnostic Evidence" (CSDG)
+Title: Analyses for "Which Conclusions Does an Explanation Support?" (CSDG)
 Version: 1.0.0
 Authors@R: c(
     person("Stefan", "Coors", role = c("aut", "cre")),
