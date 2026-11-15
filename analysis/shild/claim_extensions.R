@@ -2,7 +2,7 @@
 #
 #   --part=importance   learner-level global importance from the stored PFI of the primary run (no refitting):
 #                       fold means, ratios, corrected resampled t intervals (Nadeau & Bengio, 2003), and the
-#                       Monte Carlo comparison of self-rated health and depressed mood per fold.
+#                       Monte Carlo comparison of self-rated health and depressiveness per fold.
 #   --part=loco         population importance: leave-one-covariate-out (LOCO) refits of XGBoost, ridge logistic
 #                       regression, and random forest on the primary folds; held-out log loss and Brier score,
 #                       unweighted and weighted with the survey weight; the number of held-out respondents whose
@@ -19,7 +19,7 @@
 #                       of the two items with the largest contributions and cross-fitted fidelity.
 #   --part=export       aggregate tables behind decisive statements, read from the frozen primary outputs in
 #                       paper_artifacts/current/ (no data, no refitting): local fidelity of the 300 evaluated cases,
-#                       item missingness, and the fold-level PFI of self-rated health and depressed mood per run.
+#                       item missingness, and the fold-level PFI of self-rated health and depressiveness per run.
 #
 # Aggregates are written to analysis/shild/results/claim_extensions/; case-level tables only to CSDG_PRIVATE_DIR.
 # Usage (from the repository root): Rscript analysis/shild/claim_extensions.R --part=loco --workers=6
@@ -104,7 +104,7 @@ if (part == "export") {
   stopifnot(nrow(missingness) == 54L, uniqueN(missingness$variable) == 27L, all(missingness$n >= minimum_n))
   fwrite_out(missingness[order(stage, -missing_fraction, variable),
     .(stage, item = variable, n, n_missing, missing_share = missing_fraction)], "export_item_missingness.csv")
-  # PFI of self-rated health (A2) and depressed mood (D2) per fold in each of the two stored runs of 10 permutations
+  # PFI of self-rated health (A2) and depressiveness (D2) per fold in each of the two stored runs of 10 permutations
   # (the importance part pools them to 20); each fold holds about 1,700 respondents.
   sources = c("shild_gate_g5__pfi__raw.csv", "shild_gate_g6a__model_generalization__pfi__xgboost__raw.csv")
   runs = rbindlist(lapply(seq_along(sources), function(index) {

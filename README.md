@@ -32,7 +32,7 @@ results are not included (see [Data](#data)).
 | `analysis/render_*.R` | Figure rendering from stored aggregates. |
 | `analysis/shared/`, `analysis/tests/` | Shared helpers and tests. |
 | `baseline_evidence/`, `final_docs/` | Public aggregate result tables and figures of the primary study runs. |
-| `supplement/` | Computational supplement (`computational_supplement.pdf`, figures C1–C28), its components, source tables, and builder. |
+| `supplement/` | Computational supplement (`computational_supplement.pdf`, figures CS1–CS28), its components, source tables, and builder. |
 
 ## Package versions
 
@@ -85,7 +85,8 @@ script (for example `mlr3learners`, `mlr3tuning`, `xgboost`, `ranger`, and `glmn
   checksums.
 - **SHILD**: the analyses use the public release of the SHILD 2012 survey data on Dryad (CC0;
   <https://doi.org/10.5061/dryad.qd2nj>), which Khan et al. (2024) also used. Download `SHILD2012_cens_eng_16-64.dta`
-  from Dryad (the site may ask you to sign in) and convert it into the input files of the SHILD scripts:
+  from Dryad (the site may ask you to sign in; MD5 of the file: `78fa4126cdfaf49616856c1e74b94a06`) and convert it into
+  the input files of the SHILD scripts (needs the R package haven):
   `Rscript analysis/shild/prepare_dryad_input.R <path to SHILD2012_cens_eng_16-64.dta>`. The script writes
   `data/SHILD/archive/Danish_SHILD_draft_data.csv` (SHA-256 `31b5d7352d50f4f5364f1ba89971ed8edc8871250d5c2ca8fca7baab0972d71c`
   for the file the analyses used) and copies the variable dictionary `analysis/shild/inputs/Danish_SHILD_dictionnary.csv`
@@ -184,6 +185,11 @@ cases or respondents per row. The primary SHILD analysis and the evidence synthe
 | Figure S4, Table S42, and Supplement M (simulation of the decision criteria) | `analysis/simulation/criteria_simulation.R` | `analysis/simulation/results/criteria_simulation.pdf`, `criteria_summary.csv` |
 | Figure 2, Tables S43 and S44, and Supplement M (simulation of the workflow) | `analysis/simulation/workflow_simulation.R` (`--mode=verify` with `mlr3autoiml` 0.3.0; `--mode=figure` redraws the figure) | `analysis/simulation/results/workflow/` |
 | Stronger SHILD claim with 500 permutations per fold, its neighboring criteria, and the bootstrap of the held-out folds (Supplements D and I; Table 5) | `analysis/shild/package_check.R` | `analysis/shild/results/package_check/stronger_claim_{precise_folds,precise_summary,fold_bootstrap,permutations}.csv` |
+| Table S13 (SHILD sample) | primary SHILD run (`analysis/run_all.R`; `analysis/shild/analysis.R`) | sample flow, class balance, and missingness tables of the run |
+| Tables S15 and S16 (PISA predictors and countries) | `analysis/pisa/preprocess_PISA_v2.R` (extraction) and `analysis/pisa/prepare_data.R` | `analysis/pisa/pisa2018_reading_compactv2_manifest.csv` and the prepared data |
+| Table S20 (PISA permutation and refit designs) | `analysis/pisa/ses_reanalysis.R` | `analysis/pisa/results/ses_reanalysis/` |
+| Table S21 (tuning checks) | `analysis/shild/tuning_check.R`, `analysis/pisa/tuning_check.R` | `analysis/shild/results/`, `analysis/pisa/results/` |
+| Tables S27 and S28 (diagnostics on which no claim depends) | primary runs (`analysis/run_all.R`) | `supplement/shild/tables/`, `supplement/pisa/tables/` |
 | Table S22 (claims and criteria of the PISA confirmatory stage as fixed in advance) | `analysis/pisa/confirmatory_claims.md`, quoted word for word | — |
 | Supplement G (controlled examples) | `analysis/targeted/run.R --mode=synthetic` | `analysis/targeted/results/controlled/` |
 | Supplement I (sensitivity of the model comparisons; the three-model PISA importance across plausible values behind Table S34) | `analysis/sensitivity/run_sensitivities.R`; `analysis/targeted/pisa_synthesis.R` (`run.R --mode=aggregate`) | `analysis/sensitivity/results/`, `analysis/targeted/results/pisa/` |
@@ -223,7 +229,7 @@ If you use this code, please cite the article and the repository (see `CITATION.
   support? Claim-scoped diagnostic gates for interpretable machine learning in psychology* [Manuscript submitted for
   publication].
 - Coors, S., Vetter, C. S., Hauck, J., Bischl, B., & Hilbert, S. (2026). *Analyses for "Which Conclusions Does an
-  Explanation Support?" (CSDG)* (Version 1.0.1) [Computer software]. GitHub. <https://github.com/coorsaa/csdg-analysis>
+  Explanation Support?" (CSDG)* (Version 1.0.2) [Computer software]. GitHub. <https://github.com/coorsaa/csdg-analysis>
 
 ## License
 

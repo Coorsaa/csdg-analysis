@@ -1947,7 +1947,7 @@ if (length(missing_public_sources)) {
 
 .assert_package_source_snapshot(package_source, project_root, "the SHILD core analysis")
 input_records = rbindlist(list(
-  .input_record(data_path, "Raw SHILD questionnaire export used to construct the analytic data"),
+  .input_record(data_path, "SHILD 2012 release (Dryad) as CSV, used to construct the analytic data"),
   .input_record(dictionary_path, "SHILD variable dictionary without value labels"),
   .input_record(review_path, "preprocessing review record"),
   .input_record(protocol_path, "analysis protocol")

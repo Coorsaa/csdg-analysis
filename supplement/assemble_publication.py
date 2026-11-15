@@ -28,8 +28,38 @@ AUTHORS = "Stefan Coors, Clara S. Vetter, Jonas Hauck, Bernd Bischl, and Sven Hi
 TERMS = [("log-loss-near-equivalent models", "similarly accurate learners"), ("near-equivalent models", "similarly accurate learners"),
          ("prediction multiplicity", "differences in individual predictions"), ("out-of-fold", "held-out"), ("OOF", "held-out"),
          ("ROC AUC", "AUC"), ("not CIs", "not confidence intervals"), ("p50, p90, and p95", "median, 90th, and 95th percentile"),
-         ("PISA PV1 ", "PISA, first plausible value: "), ("conditional on PV1", "conditional on the first plausible value"),
-         ("64-84", "64\u201384")]
+         ("PISA PV1 ", "PISA: "), ("conditional on PV1", "conditional on the first plausible value"),
+         ("64-84", "64\u201384"), ("350-650", "350\u2013650"), ("raw-probability dispersion", "differences in individual predictions"),
+         ("technical subgroup boundary diagnostic", "subgroup RMSE"), ("technical subgroup RMSE contrasts", "subgroup RMSE contrasts"),
+         ("Row-bootstrap", "Respondent-bootstrap"), ("the supplied held-out predictions", "the held-out predictions"),
+         ("from shareable fixed-width bin counts", "from fixed-width bin counts"),
+         ("continuous or row-level resolution; row-level ranges remain private.", "continuous or individual-level resolution."),
+         ("continuous or row-level resolution", "continuous or individual-level resolution"), ("row-level ICE curves", "individual ICE curves"),
+         ("all ten plausible-value summaries are reported in the accompanying tables",
+          "Table S28 of the online supplement reports all ten plausible values"),
+         ("q05-q95", "5th\u201395th percentiles"), ("q25-q75", "25th\u201375th percentiles"),
+         ("; this is not a population subgroup claim.", "."), (" This is a technical boundary diagnostic, not a population subgroup claim.", ""),
+         ("The curve is centered accumulated local prediction differences", "The curve shows centered accumulated local differences in prediction")]
+SMALL = {"a", "an", "the", "and", "but", "or", "nor", "for", "so", "yet", "as", "at", "by", "in", "of", "off", "on", "per", "to", "up", "via"}
+
+
+def title_case(heading):
+    """APA title case; keeps acronyms and mixed-case names; capitalizes after a colon."""
+    words, out, start = heading.split(" "), [], True
+    for word in words:
+        parts = []
+        for k, part in enumerate(word.split("-")):
+            core = part.strip("(),:;")
+            if core and (any(c.isupper() for c in core) or any(c.isdigit() for c in core)):
+                parts.append(part)
+            elif core.lower() in SMALL and not (start and k == 0):
+                parts.append(part.lower())
+            else:
+                i = part.find(core[:1]) if core else 0
+                parts.append(part[:i] + part[i:i + 1].upper() + part[i + 1:])
+        out.append("-".join(parts))
+        start = word.endswith(":")
+    return " ".join(out)
 VARIABLES = {
     "age": ("Age", "years"),
     "e1": ("Height (E1)", "centimeters"),
@@ -85,12 +115,15 @@ def caption(row):
     if ident == "shild_rich_ale_2d":
         detail += " Age is measured in years and height in centimeters." + ("" if "first-order" in detail.lower() else " First-order effects are removed.")
     if "multiplicity" in ident:
+        unit = "respondent" if study == "SHILD" else "student"
         detail += (" Range means the largest minus the smallest held-out prediction of the similarly accurate learners "
-                   "for the same respondent or student. The cumulative step curve summarizes fixed-width bins; "
+                   f"for the same {unit}. The cumulative step curve summarizes fixed-width bins; "
                    "separately labeled quantile anchors retain exact aggregate values.")
     for old, new in TERMS:
         heading, detail = heading.replace(old, new), detail.replace(old, new)
-    return heading, detail
+    if heading.startswith("SHILD ") and not heading.startswith("SHILD:"):
+        heading = "SHILD: " + heading[6:]
+    return title_case(heading), detail
 
 
 def assemble(output):
@@ -112,11 +145,12 @@ def assemble(output):
              r"\renewcommand{\thefigure}{" + FIGURE_PREFIX + r"\arabic{figure}}", r"\setlength{\parindent}{0pt}",
              r"\setlength{\emergencystretch}{2em}", r"\begin{document}",
              r"\section*{Computational Supplement}",
-             r"\textbf{" + ARTICLE_TITLE + r"}\par", AUTHORS + r"\par",
+             r"{\raggedright\hyphenpenalty=10000\textbf{" + ARTICLE_TITLE + r"}\par}", AUTHORS + r"\par",
+             r"Manuscript submitted to \emph{Psychological Methods}\par",
              r"\medskip",
-             "This supplement shows the diagnostic displays of the applications to the Survey of Health, Impairment "
-             "and Living Conditions in Denmark (SHILD) and the Programme for International Student Assessment (PISA) "
-             "that Supplement F of the online supplement lists: calibration, subgroup comparisons, accumulated local "
+             "This supplement shows the diagnostic displays that Supplement F of the online supplement lists for the "
+             "applications to the Survey of Health, Impairment and Living Conditions in Denmark (SHILD) and the "
+             "Programme for International Student Assessment (PISA): calibration, subgroup comparisons, accumulated local "
              "effects (ALE), individual conditional expectation (ICE) curves, interaction surfaces, and differences in "
              "individual predictions across similarly accurate learners. No claim of the article depends on them. The "
              "figures are numbered " + FIGURE_PREFIX + "1 to " + FIGURE_PREFIX + "28 to distinguish them from the "
@@ -124,21 +158,22 @@ def assemble(output):
              r"\medskip",
              "The SHILD displays describe the unweighted analytic sample of respondents who reported being satisfied "
              "or dissatisfied with their lives. The PISA displays describe the first plausible value of reading "
-             "proficiency in the unweighted sample of 48,000 students from 32 countries, without design weights. None "
-             "of the displays establishes causal effects, transport to other settings, or adequacy for decisions about "
-             "individuals." + r"\par",
+             "proficiency in the unweighted sample of 48,000 students from 32 countries. None of the displays establishes "
+             "causal effects, transport to other settings, differences between population subgroups, or adequacy for "
+             "decisions about individuals." + r"\par",
              r"\medskip",
-             r"Some labels inside the figures word things differently from the article: ``discontent'' denotes "
-             r"dissatisfaction with life, ``OOF'' (out of fold) denotes held-out predictions, ``PV1'' the first "
-             r"plausible value, ``p50'' the median, and ``ROC AUC'' the AUC.\par",
+             r"Some labels inside the figures differ from the article's terms: ``discontent'' denotes dissatisfaction "
+             r"with life, ``OOF'' (out of fold) denotes held-out predictions, ``PV1'' the first plausible value, "
+             r"``p50'' the median, ``ROC AUC'' the AUC, ``Joy/like reading'' the index of enjoyment of reading, and "
+             r"``rows'' respondents or students.\par",
              r"\medskip",
              "Abbreviations: ALE = accumulated local effects; AUC = area under the receiver operating characteristic "
              "curve; ICE = individual conditional expectation; PISA = Programme for International Student Assessment; "
              "RMSE = root mean squared error; SHILD = Survey of Health, Impairment and Living Conditions in Denmark; "
              "WLE = weighted likelihood estimate." + r"\par",
              r"\medskip",
-             "The figure components and their aggregate source tables are in the analysis repository "
-             r"(\url{" + REPOSITORY_URL + "})."]
+             "The figure components and their aggregate source tables are in the analysis repository:" + r"\\",
+             r"\url{" + REPOSITORY_URL + "}"]
     index = []
     for number, row in enumerate((r for r in rows if r["panel_id"] != "shared_legend"), 1):
         title, text = caption(row)

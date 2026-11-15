@@ -28,7 +28,7 @@ principles:
 SHILD:
   estimand: "Unweighted respondent-level behavior among respondents aged 16-64 with substantive extreme A1 responses."
   predictors: 27
-  source: "The supplied raw SHILD questionnaire export, prepared directly by the documented workflow."
+  source: "The public SHILD 2012 release on Dryad as CSV (analysis/shild/prepare_dryad_input.R), prepared directly by the documented workflow."
   outcome: "A1 codes 1/2 are content, codes 4/5 are discontent, and codes 3/8/9 are excluded."
   resampling: "One prespecified target-stratified 10-fold split; fold variation is descriptive."
   focal_model: "XGBoost; 200 rounds, depth 3, eta 0.05, unit subsampling, and unit column sampling."
@@ -86,7 +86,7 @@ SHILD:
       missing as implausible adult entries; alternative units are neither inferred nor converted.
     limitation: >-
       The dictionary has no value labels. Mappings were cross-checked mechanically, and the analytic cut and
-      preprocessing were verified by the responsible co-authors; no independent protected-source rerun is claimed.
+      preprocessing were verified by the responsible co-authors; no independent rerun from the source data is claimed.
   audit_only:
     - audit_age_group
     - audit_gender

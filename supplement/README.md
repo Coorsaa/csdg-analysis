@@ -5,7 +5,7 @@ Claim-Scoped Diagnostic Gates for Interpretable Machine Learning in Psychology*:
 and 27 aggregate diagnostic tables on calibration, subgroup comparisons, one- and two-dimensional ALE, aggregate ICE,
 and prediction multiplicity for SHILD and PISA (15 components per study). `computational_supplement.pdf` (also
 distributed as `publication.pdf`) assembles the components into a captioned reading copy with 28 figures, numbered
-C1–C28 so that they are distinct from the figures of the methods supplement (S1, S2, ...).
+CS1–CS28 so that they are distinct from the figures of the online supplement (S1, S2, ...).
 
 ## Files
 
@@ -13,12 +13,12 @@ C1–C28 so that they are distinct from the figures of the methods supplement (S
   `assemble_publication.py`.
 - `shild/`, `pisa/`: figure components (PDF and PNG) and their source tables.
 - `plot_data/`: SHILD decile and kernel-width summaries of the 300-case local-fidelity evaluation (the decile summary
-  underlies Figure S1 of the methods supplement; the kernel-width summary is not shown as a figure in the article).
+  underlies Figure S1 of the online supplement; the kernel-width summary is not shown as a figure in the article).
   Points are medians of within-case medians over 20 repetitions; whiskers are 25th and 75th percentiles across cases,
   not confidence intervals.
 - `FIGURE_MANIFEST.csv`: components, panel order, dimensions, source tables, and uncertainty semantics.
 - `SOURCE_TABLE_MANIFEST.csv`, `PUBLICATION_INDEX.csv`: table identities and the mapping of components to figures
-  (C1–C28), pages, captions, and checksums.
+  (CS1–CS28), pages, captions, and checksums.
 - `PRIVATE_INPUT_PROVENANCE.csv`: basename, row count, and SHA-256 of restricted inputs, which are not distributed.
 - `SHA256SUMS`: checksums of all files.
 

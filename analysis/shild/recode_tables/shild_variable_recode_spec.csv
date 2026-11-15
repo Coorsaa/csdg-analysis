@@ -1,29 +1,29 @@
 variable,role,transformation,verification_status
-A1,outcome source,"1/2 = content; 4/5 = discontent; exclude 3, 8, and 9",mechanically verified; responsible-analyst sign-off pending
-gender,predictor,map codes to factor levels: 1=Man | 2=Woman; non-substantive/missing codes: none,mechanically verified; responsible-analyst sign-off pending
-age,predictor,retain numeric years; restrict analytic sample to 16-64,mechanically verified; responsible-analyst sign-off pending
-A2,predictor,map codes to factor levels: 1=Very well | 2=Well | 3=Average | 4=Poor | 5=Very poor; non-substantive/missing codes: none,mechanically verified; responsible-analyst sign-off pending
-C1,predictor,map codes to factor levels: 1=Yes | 2=No; non-substantive/missing codes: 9,mechanically verified; responsible-analyst sign-off pending
-D2,predictor,"map codes to factor levels: 1=Always | 2=Often | 3=Sometimes | 4=Rarely | 5=Never; non-substantive/missing codes: 8, 9",mechanically verified; responsible-analyst sign-off pending
-D4,predictor,"map codes to factor levels: 1=Always | 2=Often | 3=Sometimes | 4=Rarely | 5=Never; non-substantive/missing codes: 8, 9",mechanically verified; responsible-analyst sign-off pending
-D6,predictor,"map codes to factor levels: 1=Always | 2=Often | 3=Sometimes | 4=Rarely | 5=Never; non-substantive/missing codes: 8, 9",mechanically verified; responsible-analyst sign-off pending
-D8,predictor,"map codes to factor levels: 1=Always | 2=Often | 3=Sometimes | 4=Rarely | 5=Never; non-substantive/missing codes: 8, 9",mechanically verified; responsible-analyst sign-off pending
-D10,predictor,"map codes to factor levels: 1=Always | 2=Often | 3=Sometimes | 4=Rarely | 5=Never; non-substantive/missing codes: 8, 9",mechanically verified; responsible-analyst sign-off pending
-D11,predictor,"map codes to factor levels: 1=Always | 2=Often | 3=Sometimes | 4=Rarely | 5=Never; non-substantive/missing codes: 8, 9",mechanically verified; responsible-analyst sign-off pending
-D15,predictor,"map codes to factor levels: 1=Always | 2=Often | 3=Sometimes | 4=Rarely | 5=Never; non-substantive/missing codes: 8, 9",mechanically verified; responsible-analyst sign-off pending
-D16,predictor,"map codes to factor levels: 1=Always | 2=Often | 3=Sometimes | 4=Rarely | 5=Never; non-substantive/missing codes: 8, 9",mechanically verified; responsible-analyst sign-off pending
-D17,predictor,"map codes to factor levels: 1=Always | 2=Often | 3=Sometimes | 4=Rarely | 5=Never; non-substantive/missing codes: 8, 9",mechanically verified; responsible-analyst sign-off pending
-E1,predictor,retain centimeters; recode 999 and values below 100 to missing; do not infer or convert alternative units,mechanically verified; responsible-analyst sign-off pending
-E2,predictor,"retain kilograms; recode 998, 999, and values below 20 to missing; do not infer or convert alternative units",mechanically verified; responsible-analyst sign-off pending
-E5_a,predictor,map codes to factor levels: 1=Yes | 2=No; non-substantive/missing codes: 9,mechanically verified; responsible-analyst sign-off pending
-E17,predictor,"map codes to factor levels: 1=Partner/spouse/boyfriend/girlfriend | 2=Children | 3=Parents | 4=Siblings | 5=Other family | 6=Friends/colleagues | 7=Staff | 8=I do not share this with anyone | 9=Others; non-substantive/missing codes: 98, 99",mechanically verified; responsible-analyst sign-off pending
-F15,predictor,retain the documented 0-10 numeric rating; recode 98 and 99 to missing,mechanically verified; responsible-analyst sign-off pending
-G1,predictor,"map codes to factor levels: 1=Yes | 2=No; non-substantive/missing codes: 8, 9",mechanically verified; responsible-analyst sign-off pending
-J2,predictor,"map codes to factor levels: 1=Daily | 2=Several times a week | 3=Once a week | 4=Several times a month | 5=Once a month | 6=Less frequently | 7=Never; non-substantive/missing codes: 8, 99",mechanically verified; responsible-analyst sign-off pending
-J4,predictor,"map codes to factor levels: 1=Daily | 2=Several times a week | 3=Once a week | 4=Several times a month | 5=Once a month | 6=Less frequently | 7=Never; non-substantive/missing codes: 8, 99",mechanically verified; responsible-analyst sign-off pending
-J9,predictor,"map codes to factor levels: 1=Daily | 2=Several times a week | 3=Once a week | 4=Several times a month | 5=Once a month | 6=Less frequently | 7=Never; non-substantive/missing codes: 8, 99",mechanically verified; responsible-analyst sign-off pending
-J14,predictor,"map codes to factor levels: 1=Daily | 2=Several times a week | 3=Once a week | 4=Several times a month | 5=Once a month | 6=Less frequently | 7=Never | 9=Don't know; non-substantive/missing codes: 8, 99",mechanically verified; responsible-analyst sign-off pending
-J17,predictor,retain numeric count; recode 999 to missing,mechanically verified; responsible-analyst sign-off pending
-M2,predictor,"map codes to factor levels: 1=Salary or fee income | 2=Self-employment income | 3=Incapacity benefit | 4=Early retirement or retirement pension | 5=Pension schemes | 6=Social security | 7=Unemployment benefits | 8=Other welfare | 9=Black money | 10=Interest income | 11=Trading bonds, shares, or real estate | 12=Inheritance | 13=Other | 99=Don't know; non-substantive/missing codes: none",mechanically verified; responsible-analyst sign-off pending
-M6,predictor,retain numeric amount; recode 99998 and 99999 to missing,mechanically verified; responsible-analyst sign-off pending
-M8,predictor,map codes to factor levels: 1=Very good | 2=Good | 3=Average | 4=Bad | 5=Very bad | 9=Don't know; non-substantive/missing codes: none,mechanically verified; responsible-analyst sign-off pending
+A1,outcome source,"1/2 = content; 4/5 = discontent; exclude 3, 8, and 9",verified_by_responsible_coauthors on 2026-09-09
+gender,predictor,map codes to factor levels: 1=Man | 2=Woman; non-substantive/missing codes: none,verified_by_responsible_coauthors on 2026-09-09
+age,predictor,retain numeric years; restrict analytic sample to 16-64,verified_by_responsible_coauthors on 2026-09-09
+A2,predictor,map codes to factor levels: 1=Very well | 2=Well | 3=Average | 4=Poor | 5=Very poor; non-substantive/missing codes: none,verified_by_responsible_coauthors on 2026-09-09
+C1,predictor,map codes to factor levels: 1=Yes | 2=No; non-substantive/missing codes: 9,verified_by_responsible_coauthors on 2026-09-09
+D2,predictor,"map codes to factor levels: 1=Always | 2=Often | 3=Sometimes | 4=Rarely | 5=Never; non-substantive/missing codes: 8, 9",verified_by_responsible_coauthors on 2026-09-09
+D4,predictor,"map codes to factor levels: 1=Always | 2=Often | 3=Sometimes | 4=Rarely | 5=Never; non-substantive/missing codes: 8, 9",verified_by_responsible_coauthors on 2026-09-09
+D6,predictor,"map codes to factor levels: 1=Always | 2=Often | 3=Sometimes | 4=Rarely | 5=Never; non-substantive/missing codes: 8, 9",verified_by_responsible_coauthors on 2026-09-09
+D8,predictor,"map codes to factor levels: 1=Always | 2=Often | 3=Sometimes | 4=Rarely | 5=Never; non-substantive/missing codes: 8, 9",verified_by_responsible_coauthors on 2026-09-09
+D10,predictor,"map codes to factor levels: 1=Always | 2=Often | 3=Sometimes | 4=Rarely | 5=Never; non-substantive/missing codes: 8, 9",verified_by_responsible_coauthors on 2026-09-09
+D11,predictor,"map codes to factor levels: 1=Always | 2=Often | 3=Sometimes | 4=Rarely | 5=Never; non-substantive/missing codes: 8, 9",verified_by_responsible_coauthors on 2026-09-09
+D15,predictor,"map codes to factor levels: 1=Always | 2=Often | 3=Sometimes | 4=Rarely | 5=Never; non-substantive/missing codes: 8, 9",verified_by_responsible_coauthors on 2026-09-09
+D16,predictor,"map codes to factor levels: 1=Always | 2=Often | 3=Sometimes | 4=Rarely | 5=Never; non-substantive/missing codes: 8, 9",verified_by_responsible_coauthors on 2026-09-09
+D17,predictor,"map codes to factor levels: 1=Always | 2=Often | 3=Sometimes | 4=Rarely | 5=Never; non-substantive/missing codes: 8, 9",verified_by_responsible_coauthors on 2026-09-09
+E1,predictor,retain centimeters; recode 999 and values below 100 to missing; do not infer or convert alternative units,verified_by_responsible_coauthors on 2026-09-09
+E2,predictor,"retain kilograms; recode 998, 999, and values below 20 to missing; do not infer or convert alternative units",verified_by_responsible_coauthors on 2026-09-09
+E5_a,predictor,map codes to factor levels: 1=Yes | 2=No; non-substantive/missing codes: 9,verified_by_responsible_coauthors on 2026-09-09
+E17,predictor,"map codes to factor levels: 1=Partner/spouse/boyfriend/girlfriend | 2=Children | 3=Parents | 4=Siblings | 5=Other family | 6=Friends/colleagues | 7=Staff | 8=I do not share this with anyone | 9=Others; non-substantive/missing codes: 98, 99",verified_by_responsible_coauthors on 2026-09-09
+F15,predictor,retain the documented 0-10 numeric rating; recode 98 and 99 to missing,verified_by_responsible_coauthors on 2026-09-09
+G1,predictor,"map codes to factor levels: 1=Yes | 2=No; non-substantive/missing codes: 8, 9",verified_by_responsible_coauthors on 2026-09-09
+J2,predictor,"map codes to factor levels: 1=Daily | 2=Several times a week | 3=Once a week | 4=Several times a month | 5=Once a month | 6=Less frequently | 7=Never; non-substantive/missing codes: 8, 99",verified_by_responsible_coauthors on 2026-09-09
+J4,predictor,"map codes to factor levels: 1=Daily | 2=Several times a week | 3=Once a week | 4=Several times a month | 5=Once a month | 6=Less frequently | 7=Never; non-substantive/missing codes: 8, 99",verified_by_responsible_coauthors on 2026-09-09
+J9,predictor,"map codes to factor levels: 1=Daily | 2=Several times a week | 3=Once a week | 4=Several times a month | 5=Once a month | 6=Less frequently | 7=Never; non-substantive/missing codes: 8, 99",verified_by_responsible_coauthors on 2026-09-09
+J14,predictor,"map codes to factor levels: 1=Daily | 2=Several times a week | 3=Once a week | 4=Several times a month | 5=Once a month | 6=Less frequently | 7=Never | 9=Don't know; non-substantive/missing codes: 8, 99",verified_by_responsible_coauthors on 2026-09-09
+J17,predictor,retain numeric count; recode 999 to missing,verified_by_responsible_coauthors on 2026-09-09
+M2,predictor,"map codes to factor levels: 1=Salary or fee income | 2=Self-employment income | 3=Incapacity benefit | 4=Early retirement or retirement pension | 5=Pension schemes | 6=Social security | 7=Unemployment benefits | 8=Other welfare | 9=Black money | 10=Interest income | 11=Trading bonds, shares, or real estate | 12=Inheritance | 13=Other | 99=Don't know; non-substantive/missing codes: none",verified_by_responsible_coauthors on 2026-09-09
+M6,predictor,retain numeric amount; recode 99998 and 99999 to missing,verified_by_responsible_coauthors on 2026-09-09
+M8,predictor,map codes to factor levels: 1=Very good | 2=Good | 3=Average | 4=Bad | 5=Very bad | 9=Don't know; non-substantive/missing codes: none,verified_by_responsible_coauthors on 2026-09-09

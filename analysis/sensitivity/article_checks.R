@@ -40,7 +40,7 @@ stopifnot(
   min(per_pv[learner_name != "ridge", block_ratio_ridge_to_model]) >= 2
 )
 
-# PISA: fifth-place changes between plausible values relative to Monte Carlo error (Table S2, G5 row).
+# PISA: fifth-place changes between plausible values relative to Monte Carlo error (Table S7, G5 row).
 pairs = list(random_forest = c("SCREADDIFF", "UNDREM"), ridge = c("SCREADCOMP", "ST001D01T"))
 fifth = rbindlist(lapply(names(pairs), function(m) {
   x = single[learner_name == m & feature_group %in% pairs[[m]]]

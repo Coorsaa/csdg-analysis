@@ -225,7 +225,7 @@ for (j in c("A2", "D2")) {
 add("statement_a_comparisons_lower_above_zero", "shild", "xgboost", sprintf("of %d", nrow(excess)), sum(excess$lower > 0))
 say("  lower limit above zero in %d of %d comparisons", sum(excess$lower > 0), nrow(excess))
 
-# ---- SHILD stronger claim: self-rated health minus depressed mood per fold (XGBoost, 20 permutations) ----
+# ---- SHILD stronger claim: self-rated health minus depressiveness per fold (XGBoost, 20 permutations) ----
 
 differences = fread(file.path(shild_dir, "importance_fold_A2_vs_D2.csv"))
 n_permutations = min(fread(file.path(shild_dir, "importance_fold_pfi.csv"))[item %in% c("A2", "D2"), n_permutations])

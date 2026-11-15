@@ -26,7 +26,7 @@ out_dir = file.path("data", "SHILD", "archive")
 dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
 out_csv = file.path(out_dir, "Danish_SHILD_draft_data.csv")
 utils::write.csv(release, out_csv, row.names = FALSE)
-file.copy(dictionary_path, file.path(out_dir, "Danish_SHILD_dictionnary.csv"), overwrite = TRUE)
+invisible(file.copy(dictionary_path, file.path(out_dir, "Danish_SHILD_dictionnary.csv"), overwrite = TRUE))
 message(sprintf("Wrote %s (%d respondents, %d variables).", out_csv, nrow(release), ncol(release)))
 if (length(args) == 2) {
   reference = utils::read.csv(args[[2]], check.names = FALSE)
