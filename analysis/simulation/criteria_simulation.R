@@ -293,7 +293,7 @@ plot_data[, `:=`(
     levels = CJ(n = settings$n, k = settings$folds)[,
       sprintf("paste(italic(n), ' = %s, ', italic(K), ' = %d')", format(n, big.mark = ","), k)]),
   claim_label = factor(claim, levels = c("dominance", "ordering"),
-    labels = c("A and B dominate:\nPFI(A) / [2 PFI(C)]", "A before B:\nPFI(A) / PFI(B)"))
+    labels = c("Relies-mainly claim:\nPFI(A) / [2 PFI(C)]", "Order claim:\nPFI(A) / PFI(B)"))
 )]
 plot = ggplot(plot_data, aes(x = margin, y = met, linetype = criterion)) +
   geom_hline(yintercept = c(settings$alpha, 0.5), linewidth = 0.3, color = "gray70") +

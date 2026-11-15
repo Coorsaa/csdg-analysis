@@ -39,7 +39,11 @@ TERMS = [("log-loss-near-equivalent models", "similarly accurate learners"), ("n
           "Table S28 of the online supplement reports all ten plausible values"),
          ("q05-q95", "5th\u201395th percentiles"), ("q25-q75", "25th\u201375th percentiles"),
          ("; this is not a population subgroup claim.", "."), (" This is a technical boundary diagnostic, not a population subgroup claim.", ""),
-         ("The curve is centered accumulated local prediction differences", "The curve shows centered accumulated local differences in prediction")]
+         ("The curve is centered accumulated local prediction differences", "The curve shows centered accumulated local differences in prediction"),
+         ("and gray cells have n < 20.", "and cells without a sign have fewer than 20 sampled observations and are suppressed."),
+         ("gray cells have fewer than 20 sampled observations.", "cells without a sign have fewer than 20 sampled observations and are suppressed."),
+         ("accumulated local interaction surface", "second-order ALE interaction surface"), ("calibration illustration", "calibration"),
+         ("All panels use the same labeled 350\u2013650 reading-score scale", "Figures CS23\u2013CS26 use the same 350\u2013650 reading-score axis")]
 SMALL = {"a", "an", "the", "and", "but", "or", "nor", "for", "so", "yet", "as", "at", "by", "in", "of", "off", "on", "per", "to", "up", "via"}
 
 
@@ -67,8 +71,8 @@ VARIABLES = {
     "m6": ("Spending on medicine and nutritional supplements in the past year (M6)", "Danish kroner"),
     "effort2": ("Hypothetical test effort (EFFORT2)",
                 "reported effort-rating points, not actual effort (EFFORT1)"),
-    "pared": ("Highest parental education (PARED)", "years of schooling"),
-    "hisei": ("Highest parental occupational status (HISEI)", "occupational-status index points"),
+    "pared": ("Parental education (PARED)", "years of schooling"),
+    "hisei": ("Parental occupation (HISEI)", "occupational-status index points"),
     "joyread": ("Enjoyment of reading (JOYREAD)", "standardized weighted-likelihood index units"),
 }
 
@@ -106,8 +110,8 @@ def caption(row):
                        "leave empirical support and are not causal effects or feasible changes for individuals.")
         else:
             detail += (" The curve is centered accumulated local prediction differences from the XGBoost fit to the full "
-                       "analytic sample over supported empirical intervals. Cells below 20 reference observations "
-                       "are suppressed. Bands use 500 complete fixed-pipeline refits on common boundaries; "
+                       "analytic sample over supported empirical intervals. Intervals with fewer than 20 reference observations "
+                       "are suppressed. The ribbons use 500 complete refits of the learner on common interval boundaries; "
                        "they omit model-selection variation.")
     if ident == "pisa_rich_ale_2d":
         detail += (" The variables are the standardized JOYREAD index and hypothetical test effort EFFORT2 "
@@ -115,10 +119,13 @@ def caption(row):
     if ident == "shild_rich_ale_2d":
         detail += " Age is measured in years and height in centimeters." + ("" if "first-order" in detail.lower() else " First-order effects are removed.")
     if "multiplicity" in ident:
-        unit = "respondent" if study == "SHILD" else "student"
-        detail += (" Range means the largest minus the smallest held-out prediction of the similarly accurate learners "
-                   f"for the same {unit}. The cumulative step curve summarizes fixed-width bins; "
-                   "separately labeled quantile anchors retain exact aggregate values.")
+        if study == "SHILD":
+            detail += (" Range means the largest minus the smallest held-out prediction of the similarly accurate learners "
+                       "for the same respondent.")
+        else:
+            heading = "PISA: differences in individual predictions across the learners of the initial analysis"
+            detail += (" Range means the largest minus the smallest held-out prediction of XGBoost, random forest, and "
+                       "linear regression, the learners of the initial analysis, for the same student.")
     for old, new in TERMS:
         heading, detail = heading.replace(old, new), detail.replace(old, new)
     if heading.startswith("SHILD ") and not heading.startswith("SHILD:"):
@@ -152,9 +159,11 @@ def assemble(output):
              "applications to the Survey of Health, Impairment and Living Conditions in Denmark (SHILD) and the "
              "Programme for International Student Assessment (PISA): calibration, subgroup comparisons, accumulated local "
              "effects (ALE), individual conditional expectation (ICE) curves, interaction surfaces, and differences in "
-             "individual predictions across similarly accurate learners. No claim of the article depends on them. The "
+             "individual predictions across learners. No claim of the article depends on them. The "
              "figures are numbered " + FIGURE_PREFIX + "1 to " + FIGURE_PREFIX + "28 to distinguish them from the "
-             "figures of the online supplement (S1 to S4)." + r"\par",
+             "figures of the online supplement (S1 to S4). Figures " + FIGURE_PREFIX + "1 to " + FIGURE_PREFIX + "14 show SHILD and "
+             "Figures " + FIGURE_PREFIX + "15 to " + FIGURE_PREFIX + "28 PISA, each in the same order: calibration, subgroup "
+             "comparisons, ALE, ICE curves, the interaction surface, and differences in individual predictions." + r"\par",
              r"\medskip",
              "The SHILD displays describe the unweighted analytic sample of respondents who reported being satisfied "
              "or dissatisfied with their lives. The PISA displays describe the first plausible value of reading "

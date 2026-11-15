@@ -21,10 +21,10 @@ results are not included (see [Data](#data)).
 | `analysis/pisa/evaluate_confirmatory.R` | Applies the prespecified criteria to the confirmatory stage (and, for comparison, to the exploratory stage); writes `analysis/pisa/results/ses_reanalysis/confirmatory_*.csv`. |
 | `analysis/pisa/render_ses_figure.R` | Figure 3 of the article (panels a and b) from the aggregates of `ses_reanalysis.R`. |
 | `analysis/pisa/tuning_check.R` | Nested tuning of XGBoost and random forest (PV1) compared with the fixed learner settings; results in `analysis/pisa/results/ses_reanalysis/tuning_check/`. |
-| `analysis/shild/tuning_check.R` | Nested tuning of XGBoost and random forest on the 10 primary SHILD folds compared with the fixed settings, and statement (a) for the tuned XGBoost; results in `analysis/shild/results/tuning_check/`. |
-| `analysis/shild/package_check.R` | Statement (a) and the stronger claim that XGBoost relies more on self-rated health than on depressiveness, rederived with the analysis-first interface of `mlr3autoiml` 0.3.0 (`csdg_fit()`, `csdg_importance()`, `claim_relies_mainly()`, `claim_order()`, `csdg_check()`, `csdg_assess()`) on the 10 primary SHILD folds, with the stronger claim also from 500 permutations per fold, under neighboring criteria, and with a bootstrap of each fold's held-out respondents; results in `analysis/shild/results/package_check/`. |
+| `analysis/shild/tuning_check.R` | Nested tuning of XGBoost and random forest on the 10 primary SHILD folds compared with the fixed settings, and Statement (a) for the tuned XGBoost; results in `analysis/shild/results/tuning_check/`. |
+| `analysis/shild/package_check.R` | Statement (a) and the stronger claim “Self-rated health is the most important item,” checked as the order claim that XGBoost relies more on self-rated health than on depressiveness, the second-ranked item, rederived with the analysis-first interface of `mlr3autoiml` 0.3.0 (`csdg_fit()`, `csdg_importance()`, `claim_relies_mainly()`, `claim_order()`, `csdg_check()`, `csdg_assess()`) on the 10 primary SHILD folds, with the stronger claim also from 500 permutations per fold, under neighboring criteria, and with a bootstrap of each fold's held-out respondents; results in `analysis/shild/results/package_check/`. |
 | `analysis/pisa/preprocess_PISA_v2.R`, `analysis/pisa/pisa2018_reading_compactv2_manifest.csv` | Extraction of the 32-country analytic extract from the public OECD PISA 2018 files, and the variable table of the extract used in the article. |
-| `analysis/pisa/run_pv1_matched_controls.R`, `analysis/pisa/run_loco_country_calibration_bootstrap.R`, `analysis/pisa/results/` | PISA matched-control and country-calibration summaries of the primary run (retained; not reported in the article). |
+| `analysis/pisa/run_pv1_matched_controls.R`, `analysis/pisa/run_loco_country_calibration_bootstrap.R`, `analysis/pisa/results/` | PISA matched-control summaries of the primary run (Table S28, country exclusion; `analysis/pisa/results/pisa_matched_control_50/`) and country-calibration summaries (retained; not reported in the article). |
 | `analysis/targeted/` | Probability versus log-odds surrogates and number of perturbed points in SHILD, the three-model PISA importance summary across plausible values, and the controlled examples (`controlled_examples.R`, Supplement G); controller `run.R`; public results in `analysis/targeted/results/`. |
 | `analysis/simulation/criteria_simulation.R` | Simulation of the operating characteristics of the decision criteria (Supplement M); design and outputs in `analysis/simulation/README.md`. |
 | `analysis/simulation/workflow_simulation.R` | Simulation of the workflow from the exploratory claim to its test on new data, compared with reporting from point estimates and with each component of the default rule alone (Figure 2 of the article, Supplement M); design, verification against `mlr3autoiml` 0.3.0, and outputs in `analysis/simulation/README.md`. |
@@ -61,8 +61,8 @@ them with `git checkout -- '*.pdf'` if needed.
 Rscript -e 'remotes::install_github("coorsaa/mlr3autoiml@v0.2.0")'   # replace the tag for other script groups
 ```
 
-The analyses were run with R 4.5.1. Further dependencies are listed in `DESCRIPTION` and loaded at the top of each
-script (for example `mlr3learners`, `mlr3tuning`, `xgboost`, `ranger`, and `glmnet`); the PISA extraction needs
+The analyses were run with R 4.5.1. `DESCRIPTION` lists the dependencies of the analyses, including the learner
+back ends `xgboost`, `ranger`, and `glmnet` and `mlr3tuning` for the tuning checks; the PISA extraction also needs
 `haven`, `dplyr`, `stringr`, `readr`, `tibble`, and `vctrs`.
 
 ## Data
@@ -170,7 +170,7 @@ cases or respondents per row. The primary SHILD analysis and the evidence synthe
 
 | Article element | Script | Output |
 |---|---|---|
-| Figure 1 (workflow; panel b applies it to statement (a)) | values from `analysis/shild/claim_extensions.R --part=importance` | `analysis/shild/results/claim_extensions/importance_{item_means,fold_ratios}.csv` |
+| Figure 1 (workflow; panel b applies it to Statement (a)) | values from `analysis/shild/claim_extensions.R --part=importance` | `analysis/shild/results/claim_extensions/importance_{item_means,fold_ratios}.csv` |
 | Numerical example (main text; claim records in Table S29) | exact values in the text; Monte Carlo check by `analysis/targeted/controlled_examples.R` (`run.R --mode=synthetic`) | `analysis/targeted/results/controlled/controlled_pfi_results.csv` |
 | Figure 3a and 3b | `analysis/pisa/ses_reanalysis.R --stage=exploratory`, then `analysis/pisa/render_ses_figure.R exploratory` | `analysis/pisa/results/ses_reanalysis/exploratory/pisa_ses_figure_{a,b}.pdf`; plotted values in `pisa_ses_figure_source.csv` |
 | Table 5 (SHILD claim records) | `analysis/shild/analysis.R` (predictive performance), `analysis/evidence_synthesis.R` (fidelity), `analysis/targeted/run.R --mode=protected_extension` (scale comparison), `analysis/shild/claim_extensions.R` (global importance, conditional PFI, LOCO with Brier score and clipped predictions, selection check, repeated local surrogates), `analysis/shild/tuning_check.R` (tuned learners) | `baseline_evidence/STUDY_RESULTS/SHILD/tables/`, `baseline_evidence/EVIDENCE_SYNTHESIS/`, `analysis/targeted/results/shild/`, `analysis/shild/results/claim_extensions/` |
@@ -188,13 +188,13 @@ cases or respondents per row. The primary SHILD analysis and the evidence synthe
 | Table S13 (SHILD sample) | primary SHILD run (`analysis/run_all.R`; `analysis/shild/analysis.R`) | sample flow, class balance, and missingness tables of the run |
 | Tables S15 and S16 (PISA predictors and countries) | `analysis/pisa/preprocess_PISA_v2.R` (extraction) and `analysis/pisa/prepare_data.R` | `analysis/pisa/pisa2018_reading_compactv2_manifest.csv` and the prepared data |
 | Table S20 (PISA permutation and refit designs) | `analysis/pisa/ses_reanalysis.R` | `analysis/pisa/results/ses_reanalysis/` |
-| Table S21 (tuning checks) | `analysis/shild/tuning_check.R`, `analysis/pisa/tuning_check.R` | `analysis/shild/results/`, `analysis/pisa/results/` |
-| Tables S27 and S28 (diagnostics on which no claim depends) | primary runs (`analysis/run_all.R`) | `supplement/shild/tables/`, `supplement/pisa/tables/` |
+| Supplement D.12 and Table S21 (tuning checks; Table S21 lists the configurations chosen in PISA) | `analysis/shild/tuning_check.R`, `analysis/pisa/tuning_check.R` | `analysis/shild/results/tuning_check/`, `analysis/pisa/results/ses_reanalysis/tuning_check/` |
+| Tables S27 and S28 (diagnostics on which no claim depends) | primary runs (`analysis/run_all.R`); matched controls: `analysis/pisa/run_pv1_matched_controls.R` | `supplement/shild/tables/`, `supplement/pisa/tables/`, `analysis/pisa/results/pisa_matched_control_50/`, `final_docs/PISA_LOCO_MATCHED_CONTROL_CONTEXT_BY_PV.csv` |
 | Table S22 (claims and criteria of the PISA confirmatory stage as fixed in advance) | `analysis/pisa/confirmatory_claims.md`, quoted word for word | — |
 | Supplement G (controlled examples) | `analysis/targeted/run.R --mode=synthetic` | `analysis/targeted/results/controlled/` |
 | Supplement I (sensitivity of the model comparisons; the three-model PISA importance across plausible values behind Table S34) | `analysis/sensitivity/run_sensitivities.R`; `analysis/targeted/pisa_synthesis.R` (`run.R --mode=aggregate`) | `analysis/sensitivity/results/`, `analysis/targeted/results/pisa/` |
 | Computational supplement, Figures CS1–CS28 | `supplement/assemble_publication.py` (components: `analysis/render_supplement_figures.R` and the primary runs) | `supplement/computational_supplement.pdf` |
-| Retained displays and summaries not reported in the article (PISA matched controls and country calibration, locality curve, performance-explanation sensitivity) | `analysis/render_retained_figures.R`; `analysis/pisa/run_pv1_matched_controls.R` and `analysis/pisa/run_loco_country_calibration_bootstrap.R` (need private model objects) | `final_docs/figures/pisa_pv1_loco_*.pdf`, `final_docs/EVIDENCE_FIGURES/figures/shild_g4_systematic_local_audit__locality_curve.pdf`, `final_docs/EVIDENCE_FIGURES/figures/performance_explanation_sensitivity__*.pdf`, `analysis/pisa/results/`, `final_docs/PISA_*.csv` |
+| Retained displays and summaries not reported in the article (PISA country calibration, locality curve, performance-explanation sensitivity) | `analysis/render_retained_figures.R`; `analysis/pisa/run_loco_country_calibration_bootstrap.R` (needs private model objects) | `final_docs/figures/pisa_pv1_loco_*.pdf`, `final_docs/EVIDENCE_FIGURES/figures/shild_g4_systematic_local_audit__locality_curve.pdf`, `final_docs/EVIDENCE_FIGURES/figures/performance_explanation_sensitivity__*.pdf`, `analysis/pisa/results/pisa_loco_country_calibration_500/`, `final_docs/PISA_*.csv` except `PISA_MATCHED_CONTROL_*.csv` and `PISA_LOCO_MATCHED_CONTROL_CONTEXT_BY_PV.csv` |
 
 `analysis/render_decimal_figures.R` writes APA-labeled versions of selected figures (for example ".75" instead of
 "0.75") into a manuscript folder:
@@ -226,10 +226,10 @@ The tests use synthetic data or public aggregates and do not require restricted 
 If you use this code, please cite the article and the repository (see `CITATION.cff`):
 
 - Coors, S., Vetter, C. S., Hauck, J., Bischl, B., & Hilbert, S. (2026). *Which conclusions does an explanation
-  support? Claim-scoped diagnostic gates for interpretable machine learning in psychology* [Manuscript submitted for
+  support? Claim-Scoped Diagnostic Gates for interpretable machine learning in psychology* [Manuscript submitted for
   publication].
 - Coors, S., Vetter, C. S., Hauck, J., Bischl, B., & Hilbert, S. (2026). *Analyses for "Which Conclusions Does an
-  Explanation Support?" (CSDG)* (Version 1.0.2) [Computer software]. GitHub. <https://github.com/coorsaa/csdg-analysis>
+  Explanation Support?" (CSDG)* (Version 1.0.3) [Computer software]. GitHub. <https://github.com/coorsaa/csdg-analysis>
 
 ## License
 

@@ -32,7 +32,8 @@ refit the complete fixed learner pipeline; they are not simultaneous bands or mo
 
 The study scripts configure the package's diagnostic audit with claim cards of the original runs (for example
 `claim_version = "C0"`). These cards steer which diagnostics the audit runs; they are not the claims assessed in the
-article. The seven application claims, their criteria, and their assessments are stated in the manuscript (Tables 5 and 6).
+article. The application claims, their criteria, and their assessments are stated in the manuscript (Tables 5 to 7); the online
+supplement gives the records with criteria and observations in Tables S6 and S7 and the prespecified confirmatory claims in Table S22.
 
 ## Runtime controls
 

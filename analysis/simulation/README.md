@@ -1,6 +1,6 @@
 # Operating characteristics of the decision criteria
 
-`criteria_simulation.R` is a small simulation of how often three decision criteria declare a claim about
+`criteria_simulation.R` is a small simulation of how often four decision criteria declare a claim about
 permutation feature importance (PFI) "met" when the learner-level property is false, at its boundary, or true with
 increasing margin. It writes only aggregate tables and one figure to `results/`.
 
@@ -24,10 +24,10 @@ figure. Results are reproducible for any number of workers because every replica
 - **Resampling.** K-fold cross-validation with K in {5, 10}; sample size n in {1,000, 5,000}; 500 replications per
   condition.
 - **Claims.**
-  - *Dominance:* "the learner relies mainly on A and B", that is, the PFI of A and of B is each at least twice the
+  - *Dominance* (the relies-mainly claim of the article): "the learner relies mainly on A and B", that is, the PFI of A and of B is each at least twice the
     PFI of every other predictor (12 comparisons). With `b_A = 0.5` and `b_B = 0.625`, the binding comparison is
     A against C; the margin is set through `b_C`.
-  - *Ordering:* "A has larger PFI than B", with `b_A = 0.5` and `b_C = 0.3`; the margin is set through `b_B`.
+  - *Ordering* (the order claim of the article): "A has larger PFI than B", with `b_A = 0.5` and `b_C = 0.3`; the margin is set through `b_B`.
 - **Margin.** The true PFI of A divided by the value it must exceed: `PFI(A) / (2 PFI(C))` for dominance and
   `PFI(A) / PFI(B)` for ordering. The grid runs from 0.5 to 3 in steps of 0.025. The property is false below 1,
   at its boundary at 1, and true above 1.
@@ -36,8 +36,12 @@ figure. Results are reproducible for any number of workers because every replica
   2. `interval`: the lower bound of the one-sided 95% corrected resampled t interval (Nadeau and Bengio, 2003) for
      the mean difference over folds exceeds 0. Variance `(1/K + n_test/n_train) s^2`, where `s^2` is the variance of
      the K fold-level differences and `n_test/n_train = 1/(K - 1)`; t quantile with K - 1 degrees of freedom.
-  3. `mean_only`: the mean difference over folds exceeds 0.
-  4. `uncorrected_interval` (reference only, not in the figure): as 2 with variance `s^2 / K`.
+  3. `interval_and_share`: criterion 2 holds and the difference is at least 0 in at least 90% of the folds (5 of 5 or
+     9 of 10).
+  4. `mean_only`: the mean difference over folds exceeds 0.
+  5. `uncorrected_interval` (reference only, not in the figure): as 2 with variance `s^2 / K`.
+  6. `interval_two_sided` and `interval_two_sided_and_share` (not in the figure): as 2 and 3 with the two-sided 95%
+     interval, whose lower limit is a one-sided 97.5% bound; the applications and the package use this interval.
 
 ### True values
 

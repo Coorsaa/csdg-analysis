@@ -1,7 +1,7 @@
 Type: Project
 Package: csdganalysis
 Title: Analyses for "Which Conclusions Does an Explanation Support?" (CSDG)
-Version: 1.0.2
+Version: 1.0.3
 Authors@R: c(
     person("Stefan", "Coors", role = c("aut", "cre")),
     person("Clara", "Vetter", role = "aut"),
@@ -16,7 +16,7 @@ Description: Research compendium with the SHILD and PISA analyses, public
     released under CC BY 4.0 (file LICENSE-CC-BY-4.0.txt).
 License: LGPL-3 + file LICENSE
 Depends: R (>= 4.5.0)
-Imports: mlr3autoiml, mlr3, mlr3learners, mlr3misc, mlr3pipelines, data.table,
-    ggplot2, digest, jsonlite
+Imports: mlr3autoiml, mlr3, mlr3learners, mlr3misc, mlr3pipelines, mlr3tuning,
+    data.table, ggplot2, digest, jsonlite, glmnet, ranger, xgboost
 Remotes: coorsaa/mlr3autoiml
 Encoding: UTF-8
