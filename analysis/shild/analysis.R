@@ -440,7 +440,7 @@ claim_versions = claim_registry[, .(
 measurement = csdg_measurement(
   outcome = target,
   predictors = source_predictors,
-  data_source = "Supplied raw SHILD questionnaire export with an explicit reproducible recode ledger",
+  data_source = "Public SHILD 2012 release (Dryad, CC0) as CSV, with an explicit reproducible recode ledger",
   sample_definition = "A1 codes 1/2 versus 4/5 and age 16-64 inclusive; A1 codes 3/8/9 excluded",
   unit = "respondent",
   outcome_scale = "binary factor: content, discontent",
@@ -464,7 +464,7 @@ measurement = csdg_measurement(
     status = "verified_by_responsible_coauthors",
     artifact = "provenance/preprocessing_review.md",
     notes = paste(
-      "Group-level co-author verification dated 2026-09-09; this is not an independent protected-source rerun",
+      "Group-level co-author verification dated 2026-09-09; this is not an independent rerun from the source data",
       "or external reconstruction."
     )
   ),
@@ -1045,7 +1045,7 @@ validation = data.table(
   limitation = c(
     paste(
       "The responsible co-authors verified the analytic cut and preprocessing on 2026-09-09; this status is not",
-      "an independent protected-source rerun or external reconstruction."
+      "an independent rerun from the source data or external reconstruction."
     ),
     "Mixed-type dependence describes the supplied analytic distribution and is not causal.",
     paste(
@@ -1981,7 +1981,7 @@ writeLines(
     "- Verification date: `2026-09-09`",
     "- Evidence: `tables/`, `audit_bundle/`, `logs/`, `checkpoints/`, and `provenance/` in this run.",
     paste(
-      "- This records group-level co-author verification and run linkage; it is not an independent protected-source",
+      "- This records group-level co-author verification and run linkage; it is not an independent source-data",
       "rerun or external reconstruction."
     )
   ),
@@ -2008,7 +2008,7 @@ write_run_provenance(
     loaded_package_path = find.package("mlr3autoiml"),
     preprocessing_verification = "verified_by_responsible_coauthors",
     preprocessing_verification_date = "2026-09-09",
-    preprocessing_verification_scope = "group-level co-author confirmation; no independent protected-source rerun",
+    preprocessing_verification_scope = "group-level co-author confirmation; no independent source-data rerun",
     local_case_selection = "post-hoc from the exact benchmark/final focal OOF probabilities",
     optional_effect_scope = "full-fit model-query sensitivity; non-causal; not Gate 2 support evidence",
     ale_bootstrap_resampling = "respondent rows",

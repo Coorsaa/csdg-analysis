@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the article and this repository."
+title: "Analyses for 'Which Conclusions Does an Explanation Support?' (CSDG)"
+version: 1.0.1
+date-released: 2026-11-15
+url: "https://github.com/coorsaa/csdg-analysis"
+repository-code: "https://github.com/coorsaa/csdg-analysis"
+license: LGPL-3.0-only
+authors: &authors
+  - family-names: Coors
+    given-names: Stefan
+    orcid: "https://orcid.org/0000-0002-7465-2146"
+  - family-names: Vetter
+    given-names: Clara S.
+    orcid: "https://orcid.org/0000-0003-4268-2890"
+  - family-names: Hauck
+    given-names: Jonas
+    orcid: "https://orcid.org/0009-0002-8872-0530"
+  - family-names: Bischl
+    given-names: Bernd
+    orcid: "https://orcid.org/0000-0001-6002-6980"
+  - family-names: Hilbert
+    given-names: Sven
+    orcid: "https://orcid.org/0000-0001-5808-8357"
+preferred-citation:
+  type: article
+  title: "Which Conclusions Does an Explanation Support? Claim-Scoped Diagnostic Gates for Interpretable Machine Learning in Psychology"
+  authors: *authors
+  year: 2026
+  status: submitted

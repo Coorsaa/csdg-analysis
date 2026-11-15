@@ -1,0 +1,5 @@
+variable,flagged_range,n_flagged,minimum,maximum,action,basis,n_recoded
+E1,value = 0 cm,1,0,0,recode to missing as physically impossible adult height,dictionary specifies centimeters; analytic respondents are aged 16-64,1
+E1,0 < value < 100 cm,34,42,92,recode to missing as implausible adult height; do not infer or convert units,dictionary specifies centimeters; analytic respondents are aged 16-64,34
+E2,value = 0 kg,5,0,0,recode to missing as physically impossible adult weight,dictionary specifies kilograms; analytic respondents are aged 16-64,5
+E2,0 < value < 20 kg,1,16,16,recode to missing as implausible adult weight; do not infer or convert units,dictionary specifies kilograms; analytic respondents are aged 16-64,1

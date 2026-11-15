@@ -1,0 +1,11 @@
+variable,code,n_recoded,basis
+E1,999,8,prespecified high code inferred from the supplied data; analyst sign-off remains pending
+E2,998,14,prespecified high code inferred from the supplied data; analyst sign-off remains pending
+E2,999,36,prespecified high code inferred from the supplied data; analyst sign-off remains pending
+F15,98,1,outside the documented 0-10 response range; analyst sign-off remains pending
+F15,99,27,outside the documented 0-10 response range; analyst sign-off remains pending
+J17,999,6,prespecified high code inferred from the supplied data; analyst sign-off remains pending
+M6,99998,3,prespecified high code inferred from the supplied data; analyst sign-off remains pending
+M6,99999,106,prespecified high code inferred from the supplied data; analyst sign-off remains pending
+E1,0,1,physically impossible adult height; analyst sign-off remains pending
+E2,0,5,physically impossible adult weight; analyst sign-off remains pending

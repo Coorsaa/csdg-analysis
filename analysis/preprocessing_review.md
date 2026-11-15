@@ -6,12 +6,12 @@
 **Verification authority:** group-level confirmation by the responsible co-authors who prepared the analytic data
 
 This record confirms the scientific validity of the analytic cuts and preprocessing used for the frozen results.
-It does not identify an individual signer, claim an independent rerun of the protected SHILD source, or claim an
+It does not identify an individual signer, claim an independent rerun from the SHILD source data, or claim an
 independent reconstruction of the PISA compact extract.
 
 ## SHILD preprocessing definition
 
-The analysis starts from the protected SHILD questionnaire export. A1 codes 1 and 2 map to `content`, codes 4 and 5
+The analysis starts from the public SHILD 2012 release on Dryad, converted to CSV by `analysis/shild/prepare_dryad_input.R`. A1 codes 1 and 2 map to `content`, codes 4 and 5
 map to `discontent`, and neutral or non-substantive codes 3, 8, and 9 are excluded. The resulting analytic sample has
 16,971 respondents aged 16-64: 15,943 content and 1,028 discontent.
 

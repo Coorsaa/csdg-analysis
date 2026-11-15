@@ -20,7 +20,7 @@ source(file.path(analysis_dir, "shild", "prepare_data.R"), local = FALSE)
 raw_path = file.path(project_root, "data", "SHILD", "archive", "Danish_SHILD_draft_data.csv")
 if (!file.exists(raw_path)) {
   cat(paste(
-    "SHILD raw-preprocessing self-test skipped: the protected raw file is not included;",
+    "SHILD raw-preprocessing self-test skipped: the SHILD data are not included (see the README for the Dryad release);",
     "the responsible-coauthor verification record does not claim an independent raw-data rerun.\n"
   ))
   quit(save = "no", status = 0L)
