@@ -38,13 +38,13 @@ individual[, label := factor(paste0(labels[feature_group], " (", feature_group, 
 
 socio = rbindlist(list(
   summarize(pfi[design == "full" & feature_group == "socioeconomic_joint_block"])[,
-    label := "Block of ESCS, parental occupation,\nand home possessions (permuted jointly)"],
+    label := "Block: ESCS, parental occupation, home possessions"],
   summarize(pfi[design == "full" & feature_group == "ses_family"])[,
-    label := "All eight socioeconomic indices\n(permuted jointly)"],
+    label := "All eight socioeconomic indices"],
   summarize(pfi[design == "composite_only" & feature_group == "ESCS"])[,
-    label := "ESCS, refitted without the\nother socioeconomic indices"],
+    label := "ESCS only (refit)"],
   summarize(pfi[design == "components_only" & feature_group == "ses_components"])[,
-    label := "Six component indices, refitted\nwithout ESCS and home possessions"]
+    label := "Six component indices only (refit)"]
 ))
 socio[, label := factor(label, levels = rev(unique(label)))]
 
@@ -52,9 +52,9 @@ style = function(plot, limit) {
   plot + scale_shape_manual(values = c(16L, 22L, 17L, 25L), labels = learner_labels, drop = FALSE) +
     scale_x_continuous(limits = c(0, limit), expand = expansion(mult = c(0.015, 0.02))) +
     labs(x = "Increase in held-out RMSE (reading-score points)", y = NULL, shape = NULL) +
-    theme_minimal(base_size = 11, base_family = "Arial") +
-    theme(panel.grid.minor = element_blank(), axis.text = element_text(color = "black", size = 10),
-      legend.position = "bottom", legend.text = element_text(size = 10), plot.margin = margin(6, 14, 6, 6)) +
+    theme_minimal(base_size = 10, base_family = "Arial") +
+    theme(panel.grid.minor = element_blank(), axis.text = element_text(color = "black", size = 9),
+      legend.position = "bottom", legend.text = element_text(size = 9), plot.margin = margin(4, 10, 4, 4)) +
     guides(shape = guide_legend(nrow = 2L, byrow = TRUE))
 }
 panel = function(data, limit) {
@@ -62,16 +62,16 @@ panel = function(data, limit) {
   dodge = position_dodge(width = 0.8)
   style(ggplot(data, aes(x = mean, y = label, shape = learner, group = learner)) +
     geom_errorbar(aes(xmin = low, xmax = high), position = dodge, width = 0, linewidth = 0.45) +
-    geom_point(position = dodge, size = 2.5, stroke = 0.6, fill = "white"), limit)
+    geom_point(position = dodge, size = 2, stroke = 0.5, fill = "white"), limit)
 }
 limit_a = ceiling(max(individual$high)) + 0.5
 limit_b = ceiling(max(socio$high)) + 0.5
 for (name in c("a", "b")) {
   plot = if (name == "a") panel(individual, limit_a) else panel(socio, limit_b)
-  height = if (name == "a") 0.34 * length(shown) + 1.3 else 3.4
-  ggsave(file.path(result_dir, paste0("pisa_ses_figure_", name, ".pdf")), plot, width = 7.2, height = height,
+  height = if (name == "a") 0.21 * length(shown) + 0.8 else 2.1
+  ggsave(file.path(result_dir, paste0("pisa_ses_figure_", name, ".pdf")), plot, width = 6.5, height = height,
     device = cairo_pdf, bg = "white")
-  ggsave(file.path(result_dir, paste0("pisa_ses_figure_", name, ".png")), plot, width = 7.2, height = height,
+  ggsave(file.path(result_dir, paste0("pisa_ses_figure_", name, ".png")), plot, width = 6.5, height = height,
     dpi = 300, bg = "white")
 }
 fwrite(rbind(individual[, .(panel = "a", learner, feature_group, label = as.character(label), mean, low, high)],

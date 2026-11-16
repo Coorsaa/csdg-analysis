@@ -36,7 +36,7 @@ TERMS = [("log-loss-near-equivalent models", "similarly accurate learners"), ("n
          ("continuous or row-level resolution; row-level ranges remain private.", "continuous or individual-level resolution."),
          ("continuous or row-level resolution", "continuous or individual-level resolution"), ("row-level ICE curves", "individual ICE curves"),
          ("all ten plausible-value summaries are reported in the accompanying tables",
-          "Table S28 of the online supplement reports all ten plausible values"),
+          "Table S28 of the online supplement reports all 10 plausible values"),
          ("q05-q95", "5th\u201395th percentiles"), ("q25-q75", "25th\u201375th percentiles"),
          ("; this is not a population subgroup claim.", "."), (" This is a technical boundary diagnostic, not a population subgroup claim.", ""),
          ("The curve is centered accumulated local prediction differences", "The curve shows centered accumulated local differences in prediction"),

@@ -32,7 +32,7 @@ refit the complete fixed learner pipeline; they are not simultaneous bands or mo
 
 The study scripts configure the package's diagnostic audit with claim cards of the original runs (for example
 `claim_version = "C0"`). These cards steer which diagnostics the audit runs; they are not the claims assessed in the
-article. The application claims, their criteria, and their assessments are stated in the manuscript (Tables 5 to 7); the online
+article. The application claims, their criteria, and their assessments are stated in the manuscript (Tables 5 and 6); the online
 supplement gives the records with criteria and observations in Tables S6 and S7 and the prespecified confirmatory claims in Table S22.
 
 ## Runtime controls
@@ -142,7 +142,7 @@ intervals omit model-training, plausible-value-generation, survey-design, new-co
 
 The public aggregates of both runners are stored in `analysis/pisa/results/` and summarized in `final_docs/`.
 
-Each script is deliberately written as a sequence of named objects and analysis sections rather than one enclosing
+Each script is deliberately written as a sequence of named objects and analysis sections, not as one enclosing
 function. To inspect intermediate objects, open the file in RStudio or another R editor and execute it section by
 section from the repository root. Execute the setup and run-contract sections once, then evaluate each complete
 top-level expression in order. The run logger remains active through the core analysis and is stopped before the

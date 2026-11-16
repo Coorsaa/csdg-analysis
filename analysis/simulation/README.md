@@ -139,7 +139,7 @@ Proportion "met" at the boundary (Monte Carlo standard error at most 0.022):
 `workflow_simulation.R` simulates the workflow of the article for claims about PFI: an analyst inspects held-out PFI,
 states the claim the results suggest, and assesses it with the default criteria of `mlr3autoiml` 0.3.0, first in the
 data that suggested it (exploratory) and then in an independent sample with the same fixed criteria. It compares the
-share of false claims with a standard practice that reports a claim whenever its point estimates satisfy it and with
+share of false claims with the point-estimate rule, which reports a claim whenever its point estimates satisfy it, and with
 each component of the default rule alone. Results (aggregates only) are in `results/workflow/`.
 
 ```
@@ -167,14 +167,14 @@ Rscript analysis/simulation/workflow_simulation.R --mode=figure   # redraws the 
 - **Claims.** With top1 and top2 the predictors with the largest fold-averaged PFI: R, "the learner relies mainly on
   top1 and top2" (factor 2); O, "the learner relies more on top1 than on top2". Both are worded "under marginal
   permutation", because the truth is the learner's marginal PFI.
-- **Standard practice.** Reports R if the fold-averaged PFI of top2 is at least twice that of the third predictor;
-  always reports O. As a comparator for the test in new data, standard practice in both samples also requires the point
+- **Point-estimate rule.** Reports R if the fold-averaged PFI of top2 is at least twice that of the third predictor;
+  always reports O. As a comparator for the test in new data, the point-estimate rule in both samples also requires the point
   estimates of the independent sample to satisfy the claim.
 - **CSDG.** The default checks of `csdg_check()` and the decision rule of `csdg_assess()` of `mlr3autoiml` 0.3.0:
   content with the corrected resampled t interval and the smallest relevant difference (1% of the improvement) for
   every comparison the claim requires (R: each named predictor against each of the 8 other predictors, 16
   comparisons, each with its own interval and Monte Carlo threshold), the minimum importance (1%), selection stability
-  in at least 9 of 10 folds with the selection repeated, and the Monte Carlo rule; `csdg_confirm()` for the test in
+  in at least 9 of 10 folds with the leading predictors selected anew, and the Monte Carlo rule; `csdg_confirm()` for the test in
   new data.
 - **Components.** The same analyses are also assessed with each component of the defaults alone: content (the interval
   rule), content and minimum importance (G2), and selection stability (G5, the share of folds); measures
@@ -198,7 +198,7 @@ inputs, the content status differs from that of the comparison with the largest 
 
 Shares with Monte Carlo standard errors are in `workflow_operating_characteristics.csv` and `workflow_summary.csv`.
 
-| Claim | Scenario | n | Standard practice: false among reported | CSDG exploratory: false among met | Met in both stages: false | CSDG power (exploratory; both stages) |
+| Claim | Scenario | n | Point estimates: false among reported | CSDG exploratory: false among met | Met in both stages: false | CSDG power (exploratory; both stages) |
 |---|---|---|---|---|---|---|
 | R | S1 | 300 | .125 (33/263) | 0/2 | none | .006; 0 |
 | R | S1 | 1,000 | 0/437 | 0/98 | 0/15 | .198; .030 |
@@ -215,15 +215,15 @@ Shares with Monte Carlo standard errors are in `workflow_operating_characteristi
 
 Conditional on the truth (measures `csdg_met_among_false`, `standard_reported_among_false`,
 `standard_both_among_false`, `both_met_among_false`, `csdg_power`, `standard_power`, `standard_both_power`,
-`both_power`): of the 1,642 false relies-mainly claims, CSDG met 2 (.001) and standard practice reported 378 (.230);
-of the 505 false order claims, CSDG met 30 (.059; .115 in S1 at n = 1,000) and standard practice reported all. With
+`both_power`): of the 1,642 false relies-mainly claims, CSDG met 2 (.001) and the point-estimate rule reported 378 (.230);
+of the 505 false order claims, CSDG met 30 (.059; .115 in S1 at n = 1,000) and the point-estimate rule reported all. With
 the point estimates required to hold in the independent sample, 42 (.026) and 133 (.263) false claims passed, versus
 0 and 1 met by CSDG in both samples. Of the true claims, CSDG met 561 of 1,358 (.413) and 1,085 of 2,495 (.435),
-standard practice reported 1,166 (.859) and 2,495 (1), and 982 (.723) and 2,176 (.872) held in both samples by their
+the point-estimate rule reported 1,166 (.859) and 2,495 (1), and 982 (.723) and 2,176 (.872) held in both samples by their
 point estimates. These conditional rates do not depend on the share of true claims among those stated; the shares
 below do.
 
-Over all conditions, standard practice reported 1,544 relies-mainly claims, 378 of them false (.245), and 3,000 order
+Over all conditions, the point-estimate rule reported 1,544 relies-mainly claims, 378 of them false (.245), and 3,000 order
 claims, 505 false (.168). CSDG met 563 relies-mainly claims in the exploratory data, 2 false (.004), and 1,115 order
 claims, 30 false (.027); of the claims met in both stages, 0 of 434 and 1 of 754 were false. Of the exploratory met
 claims, 434 of 563 (R) and 754 of 1,115 (O) were met again in new data. Within a scenario, this share changes little

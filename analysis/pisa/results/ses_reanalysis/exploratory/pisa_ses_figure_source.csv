@@ -39,19 +39,19 @@ a,ridge_cv,UNDREM,Understanding and remembering (UNDREM),0.889045725960811,0.830
 a,ridge_cv,ESCS,"Index of economic, social, and cultural status (ESCS)",0.882815443604681,0.807457632271634,0.953281334885993
 a,ridge_cv,HOMEPOS,Home possessions (HOMEPOS),0.508298156175194,0.462796679834846,0.546889462547948
 a,ridge_cv,WEALTH,Family wealth (WEALTH),0.440766107946337,0.398411768073745,0.497534880079672
-b,random_forest,socioeconomic_joint_block,"Block of ESCS, parental occupation, and home possessions (permuted jointly)",3.75620792890205,3.67978293156468,3.86087239830165
-b,xgboost,socioeconomic_joint_block,"Block of ESCS, parental occupation, and home possessions (permuted jointly)",3.52666163960121,3.39603791611856,3.65094484004115
-b,ridge_fixed,socioeconomic_joint_block,"Block of ESCS, parental occupation, and home possessions (permuted jointly)",14.4751736554631,13.8997597291132,14.8506425217959
-b,ridge_cv,socioeconomic_joint_block,"Block of ESCS, parental occupation, and home possessions (permuted jointly)",3.81006838136277,3.540583415335,3.95614566049659
-b,random_forest,ses_family,All eight socioeconomic indices (permuted jointly),5.26490317158157,5.19372411878466,5.38474510385678
-b,xgboost,ses_family,All eight socioeconomic indices (permuted jointly),3.621062608887,3.52486954927009,3.73112016230325
-b,ridge_fixed,ses_family,All eight socioeconomic indices (permuted jointly),3.22844947325616,3.14557509251403,3.31106964562783
-b,ridge_cv,ses_family,All eight socioeconomic indices (permuted jointly),2.96537653098425,2.89606687726901,3.01687921275862
-b,random_forest,ESCS,"ESCS, refitted without the other socioeconomic indices",2.35659824141097,2.31591456603994,2.41241688717045
-b,xgboost,ESCS,"ESCS, refitted without the other socioeconomic indices",2.809458359016,2.73847367311831,2.90246342147208
-b,ridge_fixed,ESCS,"ESCS, refitted without the other socioeconomic indices",2.13769288630413,2.06866581757033,2.18865150303677
-b,ridge_cv,ESCS,"ESCS, refitted without the other socioeconomic indices",2.22023828293248,2.16224796213022,2.25853977306732
-b,random_forest,ses_components,"Six component indices, refitted without ESCS and home possessions",3.88892797156421,3.84317757464876,3.95914272059365
-b,xgboost,ses_components,"Six component indices, refitted without ESCS and home possessions",3.30898864100771,3.23941119828542,3.40046960140434
-b,ridge_fixed,ses_components,"Six component indices, refitted without ESCS and home possessions",2.15937567121496,2.0827140974649,2.2086778425819
-b,ridge_cv,ses_components,"Six component indices, refitted without ESCS and home possessions",2.44066100886986,2.3914478720142,2.48312437976826
+b,random_forest,socioeconomic_joint_block,"Block: ESCS, parental occupation, home possessions",3.75620792890205,3.67978293156468,3.86087239830165
+b,xgboost,socioeconomic_joint_block,"Block: ESCS, parental occupation, home possessions",3.52666163960121,3.39603791611856,3.65094484004115
+b,ridge_fixed,socioeconomic_joint_block,"Block: ESCS, parental occupation, home possessions",14.4751736554631,13.8997597291132,14.8506425217959
+b,ridge_cv,socioeconomic_joint_block,"Block: ESCS, parental occupation, home possessions",3.81006838136277,3.540583415335,3.95614566049659
+b,random_forest,ses_family,All eight socioeconomic indices,5.26490317158157,5.19372411878466,5.38474510385678
+b,xgboost,ses_family,All eight socioeconomic indices,3.621062608887,3.52486954927009,3.73112016230325
+b,ridge_fixed,ses_family,All eight socioeconomic indices,3.22844947325616,3.14557509251403,3.31106964562783
+b,ridge_cv,ses_family,All eight socioeconomic indices,2.96537653098425,2.89606687726901,3.01687921275862
+b,random_forest,ESCS,ESCS only (refit),2.35659824141097,2.31591456603994,2.41241688717045
+b,xgboost,ESCS,ESCS only (refit),2.809458359016,2.73847367311831,2.90246342147208
+b,ridge_fixed,ESCS,ESCS only (refit),2.13769288630413,2.06866581757033,2.18865150303677
+b,ridge_cv,ESCS,ESCS only (refit),2.22023828293248,2.16224796213022,2.25853977306732
+b,random_forest,ses_components,Six component indices only (refit),3.88892797156421,3.84317757464876,3.95914272059365
+b,xgboost,ses_components,Six component indices only (refit),3.30898864100771,3.23941119828542,3.40046960140434
+b,ridge_fixed,ses_components,Six component indices only (refit),2.15937567121496,2.0827140974649,2.2086778425819
+b,ridge_cv,ses_components,Six component indices only (refit),2.44066100886986,2.3914478720142,2.48312437976826

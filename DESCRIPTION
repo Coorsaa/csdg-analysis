@@ -1,10 +1,10 @@
 Type: Project
 Package: csdganalysis
 Title: Analyses for "Which Conclusions Does an Explanation Support?" (CSDG)
-Version: 1.0.3
+Version: 1.0.4
 Authors@R: c(
     person("Stefan", "Coors", role = c("aut", "cre")),
-    person("Clara", "Vetter", role = "aut"),
+    person("Clara S.", "Vetter", role = "aut"),
     person("Jonas", "Hauck", role = "aut"),
     person("Bernd", "Bischl", role = "aut"),
     person("Sven", "Hilbert", role = "aut"))

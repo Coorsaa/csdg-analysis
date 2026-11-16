@@ -1,8 +1,8 @@
 cff-version: 1.2.0
 message: "If you use this code, please cite the article and this repository."
 title: "Analyses for 'Which Conclusions Does an Explanation Support?' (CSDG)"
-version: 1.0.3
-date-released: 2026-11-15
+version: 1.0.4
+date-released: 2026-11-16
 url: "https://github.com/coorsaa/csdg-analysis"
 repository-code: "https://github.com/coorsaa/csdg-analysis"
 license: LGPL-3.0-only

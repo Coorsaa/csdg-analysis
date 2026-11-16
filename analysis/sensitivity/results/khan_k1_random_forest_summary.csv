@@ -1,0 +1,2 @@
+loss_random_forest,loss_featureless,smallest_relevant_difference,folds_A2_largest,folds_D2_ahead_beyond_thresholds,mean_difference,lower,upper
+0.13317931189071,0.228543688338503,0.00095364376447793,5,6 8,0.00335891573764425,-0.00581997407552852,0.012537805550817
