@@ -26,8 +26,8 @@ results are not included (see [Data](#data)).
 | `analysis/pisa/preprocess_PISA_v2.R`, `analysis/pisa/pisa2018_reading_compactv2_manifest.csv` | Extraction of the 32-country analytic extract from the public OECD PISA 2018 files, and the variable table of the extract used in the article. |
 | `analysis/pisa/run_pv1_matched_controls.R`, `analysis/pisa/run_loco_country_calibration_bootstrap.R`, `analysis/pisa/results/` | PISA matched-control summaries of the primary run (Table S28, country exclusion; `analysis/pisa/results/pisa_matched_control_50/`) and country-calibration summaries (retained; not reported in the article). |
 | `analysis/targeted/` | Probability versus log-odds surrogates and number of perturbed points in SHILD, the three-model PISA importance summary across plausible values, and the controlled examples (`controlled_examples.R`, Supplement G); controller `run.R`; public results in `analysis/targeted/results/`. |
-| `analysis/simulation/criteria_simulation.R` | Simulation of the operating characteristics of the decision criteria (Supplement M); design and outputs in `analysis/simulation/README.md`. |
-| `analysis/simulation/workflow_simulation.R` | Simulation of the workflow from the exploratory claim to its test on new data, compared with reporting from point estimates and with each component of the default rule alone (Figure 2 of the article, Supplement M); design, verification against `mlr3autoiml` 0.3.0, and outputs in `analysis/simulation/README.md`. |
+| `analysis/simulation/criteria_simulation.R` | Simulation of the operating characteristics of the decision criteria (Supplement L); design and outputs in `analysis/simulation/README.md`. |
+| `analysis/simulation/workflow_simulation.R` | Simulation of the workflow from the exploratory claim to its test on new data, compared with reporting from point estimates and with each component of the default rule alone (Figure 2 of the article, Supplement L); design, verification against `mlr3autoiml` 0.3.0, and outputs in `analysis/simulation/README.md`. |
 | `analysis/sensitivity/` | Sensitivity analyses of Supplement I, Figure S2b, numerical checks of statements in the article (`article_checks.R`), the numbers the article derives from fold-level aggregates (`article_derivations.R`), and the fold-level check of claim K1 of Khan et al. (`khan_k1.R`, Table S41). |
 | `analysis/render_*.R` | Figure rendering from stored aggregates. |
 | `analysis/shared/`, `analysis/tests/` | Shared helpers and tests. |
@@ -117,8 +117,8 @@ Rscript analysis/sensitivity/article_derivations.R              # numbers derive
 Rscript analysis/sensitivity/khan_k1.R                          # claim K1 of Khan et al. (Table S41)
 Rscript analysis/targeted/run.R --mode=aggregate                # three-model PISA summary (Table S34), Figures S1 and S3
 Rscript analysis/targeted/run.R --mode=synthetic                # controlled examples (Supplement G)
-Rscript analysis/simulation/criteria_simulation.R --workers=3   # criteria simulation (Supplement M)
-Rscript analysis/simulation/workflow_simulation.R --workers=6   # workflow simulation (Figure 2, Supplement M), about 15 minutes
+Rscript analysis/simulation/criteria_simulation.R --workers=3   # criteria simulation (Supplement L)
+Rscript analysis/simulation/workflow_simulation.R --workers=6   # workflow simulation (Figure 2, Supplement L), about 15 minutes
 python3 supplement/build_supplement.py --verify                 # computational supplement: checksums and privacy checks
 python3 supplement/assemble_publication.py --output build/supplement   # computational supplement PDF (XeLaTeX)
 ```
@@ -184,13 +184,13 @@ cases or respondents per row. The primary SHILD analysis and the evidence synthe
 | Figure S2b | `analysis/sensitivity/render_paired_difference_figure.R` | `analysis/sensitivity/results/shild_common_probability_paired_rmse_difference.pdf` |
 | Figure S3 (panels a to d) | `analysis/targeted/render_targeted_figures.R`; APA labels of panels b and c by `analysis/render_decimal_figures.R` | `analysis/targeted/results/shild/shild_{common_probability_weighted_rmse,common_probability_weighted_r2,convergence_weighted_r2,convergence_weighted_rmse}.pdf` |
 | Table S41, claim K1 of Khan et al. (our random forest learner: fold-level comparison of self-rated health and depressiveness) | `analysis/sensitivity/khan_k1.R` | `analysis/sensitivity/results/khan_k1_random_forest_{folds,summary}.csv` |
-| Figure S4, Table S42, and Supplement M (simulation of the decision criteria) | `analysis/simulation/criteria_simulation.R` | `analysis/simulation/results/criteria_simulation.pdf`, `criteria_summary.csv` |
-| Figure 2, Tables S43 and S44, and Supplement M (simulation of the workflow) | `analysis/simulation/workflow_simulation.R` (`--mode=verify` with `mlr3autoiml` 0.3.0; `--mode=figure` redraws the figure) | `analysis/simulation/results/workflow/` |
+| Figure S4, Table S42, and Supplement L (simulation of the decision criteria) | `analysis/simulation/criteria_simulation.R` | `analysis/simulation/results/criteria_simulation.pdf`, `criteria_summary.csv` |
+| Figure 2, Tables S43 and S44, and Supplement L (simulation of the workflow) | `analysis/simulation/workflow_simulation.R` (`--mode=verify` with `mlr3autoiml` 0.3.0; `--mode=figure` redraws the figure) | `analysis/simulation/results/workflow/` |
 | Stronger SHILD claim with 500 permutations per fold, its neighboring criteria, and the bootstrap of the held-out folds (Supplements D and I; Table 5) | `analysis/shild/package_check.R` | `analysis/shild/results/package_check/stronger_claim_{precise_folds,precise_summary,fold_bootstrap,permutations}.csv` |
 | Table S13 (SHILD sample) | primary SHILD run (`analysis/run_all.R`; `analysis/shild/analysis.R`) | sample flow, class balance, and missingness tables of the run |
 | Tables S15 and S16 (PISA predictors and countries) | `analysis/pisa/preprocess_PISA_v2.R` (extraction) and `analysis/pisa/prepare_data.R` | `analysis/pisa/pisa2018_reading_compactv2_manifest.csv` and the prepared data |
 | Table S20 (PISA permutation and refit designs) | `analysis/pisa/ses_reanalysis.R` | `analysis/pisa/results/ses_reanalysis/` |
-| Supplement D.12 and Table S21 (tuning checks; Table S21 lists the configurations chosen in PISA) | `analysis/shild/tuning_check.R`, `analysis/pisa/tuning_check.R` | `analysis/shild/results/tuning_check/`, `analysis/pisa/results/ses_reanalysis/tuning_check/` |
+| Supplement D.11 and Table S21 (tuning checks; Table S21 lists the configurations chosen in PISA) | `analysis/shild/tuning_check.R`, `analysis/pisa/tuning_check.R` | `analysis/shild/results/tuning_check/`, `analysis/pisa/results/ses_reanalysis/tuning_check/` |
 | Tables S27 and S28 (diagnostics on which no claim depends) | primary runs (`analysis/run_all.R`); matched controls: `analysis/pisa/run_pv1_matched_controls.R` | `supplement/shild/tables/`, `supplement/pisa/tables/`, `analysis/pisa/results/pisa_matched_control_50/`, `final_docs/PISA_LOCO_MATCHED_CONTROL_CONTEXT_BY_PV.csv` |
 | Table S22 (claims and criteria of the PISA confirmatory stage as fixed in advance) | `analysis/pisa/confirmatory_claims.md`, quoted word for word | — |
 | Supplement G (numerical example and unequal reliability) | `analysis/targeted/run.R --mode=synthetic` | `analysis/targeted/results/controlled/` |
@@ -231,7 +231,7 @@ If you use this code, please cite the article and the repository (see `CITATION.
   support? Claim-Scoped Diagnostic Gates for interpretable machine learning in psychology* [Manuscript submitted for
   publication].
 - Coors, S., Vetter, C. S., Hauck, J., Bischl, B., & Hilbert, S. (2026). *Analyses for "Which Conclusions Does an
-  Explanation Support?" (CSDG)* (Version 1.0.4) [Computer software]. GitHub. <https://github.com/coorsaa/csdg-analysis>
+  Explanation Support?" (CSDG)* (Version 1.0.5) [Computer software]. GitHub. <https://github.com/coorsaa/csdg-analysis>
 
 ## License
 

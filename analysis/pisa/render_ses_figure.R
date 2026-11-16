@@ -3,6 +3,7 @@
 # analysis/pisa/ses_reanalysis.R. Points are means over the 10 plausible values; ranges are minimum and maximum
 # across plausible values (not confidence intervals).
 # Usage (from the repository root): Rscript analysis/pisa/render_ses_figure.R [stage]
+# Needs ggplot2 4.0.0 or later (argument reverse of position_dodge()).
 
 suppressPackageStartupMessages({
   library(data.table)
@@ -53,14 +54,19 @@ style = function(plot, limit) {
     scale_x_continuous(limits = c(0, limit), expand = expansion(mult = c(0.015, 0.02))) +
     labs(x = "Increase in held-out RMSE (reading-score points)", y = NULL, shape = NULL) +
     theme_minimal(base_size = 10, base_family = "Arial") +
-    theme(panel.grid.minor = element_blank(), axis.text = element_text(color = "black", size = 9),
-      legend.position = "bottom", legend.text = element_text(size = 9), plot.margin = margin(4, 10, 4, 4)) +
-    guides(shape = guide_legend(nrow = 2L, byrow = TRUE))
+    theme(panel.grid.minor = element_blank(), panel.grid.major.y = element_blank(),
+      axis.text = element_text(color = "black", size = 9),
+      legend.position = "bottom", legend.location = "plot", legend.text = element_text(size = 9),
+      legend.key.spacing.x = unit(10, "pt"), legend.margin = margin(0, 0, 0, 0), legend.box.spacing = unit(6, "pt"),
+      plot.margin = margin(4, 10, 4, 4)) +
+    guides(shape = guide_legend(nrow = 1L))
 }
 panel = function(data, limit) {
   data[, learner := factor(learner, levels = learner_levels)]
-  dodge = position_dodge(width = 0.8)
+  # Learners are offset within each row in legend order (XGBoost on top); lines separate the rows.
+  dodge = position_dodge(width = 0.7, reverse = TRUE)
   style(ggplot(data, aes(x = mean, y = label, shape = learner, group = learner)) +
+    geom_hline(yintercept = seq_len(nlevels(data$label) - 1L) + 0.5, colour = "grey85", linewidth = 0.3) +
     geom_errorbar(aes(xmin = low, xmax = high), position = dodge, width = 0, linewidth = 0.45) +
     geom_point(position = dodge, size = 2, stroke = 0.5, fill = "white"), limit)
 }
@@ -68,7 +74,7 @@ limit_a = ceiling(max(individual$high)) + 0.5
 limit_b = ceiling(max(socio$high)) + 0.5
 for (name in c("a", "b")) {
   plot = if (name == "a") panel(individual, limit_a) else panel(socio, limit_b)
-  height = if (name == "a") 0.21 * length(shown) + 0.8 else 2.1
+  height = if (name == "a") 0.26 * length(shown) + 0.55 else 1.6
   ggsave(file.path(result_dir, paste0("pisa_ses_figure_", name, ".pdf")), plot, width = 6.5, height = height,
     device = cairo_pdf, bg = "white")
   ggsave(file.path(result_dir, paste0("pisa_ses_figure_", name, ".png")), plot, width = 6.5, height = height,

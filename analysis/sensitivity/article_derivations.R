@@ -316,7 +316,7 @@ add("top_5_min_margin_fold_pv", "exploratory", "xgboost", "fifth minus sixth", m
 say("PISA exploratory, XGBoost top five selected anew in each fold and plausible value: %d of %d; min margin %.2f",
   sum(fold_top$same), nrow(fold_top), min(fold_top$gap))
 
-# ---- SHILD LOCO: robustness of the comparisons to larger standard errors (Supplement M: corrected variance 23% to
+# ---- SHILD LOCO: robustness of the comparisons to larger standard errors (Supplement L: corrected variance 23% to
 # 36% of the actual variance, i.e., standard errors too small by a factor of up to about 2.1) ----
 say("SHILD LOCO comparisons with inflated standard errors: largest Holm-adjusted p over the 50 comparisons")
 for (factor in c(2, 2.1)) {
